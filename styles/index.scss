@@ -1,0 +1,42 @@
+@import "public/poppins/poppins.css";
+@import "utils";
+
+:root {
+  --base-light: #eeeeee;
+  --base-dark: #303030;
+}
+
+html {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: var(--app-palette-main);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--app-palette-light);
+    border-radius: 5px;
+  }
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--base-light);
+  * {
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: var(--base-light);
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--app-palette-light);
+      border-radius: 5px;
+    }
+  }
+}
+
+#root-layout {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
