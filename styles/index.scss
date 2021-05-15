@@ -2,7 +2,7 @@
 @import "utils";
 
 :root {
-  --base-light: #eeeeee;
+  --base-light: #e0e0e0;
   --base-dark: #303030;
 }
 
@@ -20,11 +20,10 @@ html {
 
 body {
   overflow-x: hidden;
-  background-color: var(--base-light);
   * {
     &::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 5px;
+      height: 5px;
       background-color: var(--base-light);
     }
     &::-webkit-scrollbar-thumb {

@@ -3,12 +3,10 @@ import { ReactNode } from "react";
 import { RootContainer, Wrapper, Title, BackgroundDesign } from "./styled";
 
 import BorrowedBooks from "./components/BorrowedBooks";
-import PendingRequests from "./components/PendingRequests";
 import ReturnedBooks from "./components/ReturnedBooks";
 import Bookmarks from "./components/Bookmarks";
 import ExpiredBooks from "./components/ExpiredBooks";
 import Penalties from "./components/Penalties";
-import Activities from "./components/Activities";
 import LostBooks from "./components/LostBooks";
 
 export default function FeatureOne() {
@@ -31,11 +29,7 @@ export default function FeatureOne() {
     },
     {
       component: <LostBooks />,
-      sizes: [12, 6, 6, 6],
-    },
-    {
-      component: <PendingRequests />,
-      sizes: [12, 6, 6, 6],
+      sizes: [12, 6, 4, 4],
     },
     {
       component: <Bookmarks />,
@@ -43,10 +37,6 @@ export default function FeatureOne() {
     },
     {
       component: <Penalties />,
-      sizes: [12, 6, 4, 4],
-    },
-    {
-      component: <Activities />,
       sizes: [12, 6, 4, 4],
     },
   ];

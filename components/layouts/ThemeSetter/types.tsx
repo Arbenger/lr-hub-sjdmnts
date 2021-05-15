@@ -1,7 +1,7 @@
 import { CSSProperties } from "@material-ui/styles";
 
 export type AppPaletteKey =
-  | "dark"
+  | "black"
   | "blue"
   | "indigo"
   | "red"

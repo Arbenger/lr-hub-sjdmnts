@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Chart } from "frappe-charts";
 
-export default function LineChart() {
+export default function Statistics() {
   useEffect(() => {
     const months = [
       "JAN",
@@ -62,7 +62,7 @@ export default function LineChart() {
       data: data,
       type: "axis-mixed",
       height: 400,
-      colors: ["#b71c1c", "#0d47a1", "#2e7d32", "#fbc02d"],
+      colors: ["#b71c1c", "#0d47a1", "#6a1b9a", "#2e7d32"],
       axisOptions: {
         xIsSeries: true,
       },

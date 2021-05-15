@@ -1,12 +1,12 @@
-import { LineChartContainer, RootContainer } from "./styled";
-import LineChart from "./LineChart";
+import { StatisticsContainer, RootContainer } from "./styled";
+import Statistics from "./Statistics";
 
 export default function FeatureTwo() {
   return (
     <RootContainer maxWidth="lg">
-      <LineChartContainer>
-        <LineChart />
-      </LineChartContainer>
+      <StatisticsContainer>
+        <Statistics />
+      </StatisticsContainer>
     </RootContainer>
   );
 }

@@ -2,7 +2,7 @@ import { AppPaletteKey, AppPaletteObject, AppPaletteProperties } from "./types";
 
 export const palettes: AppPaletteObject[] = [
   {
-    key: "dark",
+    key: "black",
     properties: {
       light: "#484848",
       main: "#212121",
