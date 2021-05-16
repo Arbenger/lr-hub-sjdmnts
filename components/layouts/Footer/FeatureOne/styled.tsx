@@ -52,12 +52,15 @@ export const ColumnFourContainer = styled("div")(({ theme: { spacing } }) => ({
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-start",
-      "&:hover": {
-        textDecoration: "underline",
-      },
-      "& svg": {
-        fontSize: 22,
-        marginRight: spacing(1),
+      "& div": {
+        minWidth: 40,
+        maxWidth: 40,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        "& svg": {
+          fontSize: 22,
+        },
       },
     },
   },

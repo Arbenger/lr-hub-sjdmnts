@@ -21,12 +21,12 @@ export default function Notifications() {
         <HeaderButton variant="text">View All</HeaderButton>
       </Header>
       <List>
-        <BarrowAccepted createdAt={new Date()} />
-        <ReturnAccepted createdAt={new Date()} />
-        <ResolveAccepted createdAt={new Date()} />
-        <BarrowDenied createdAt={new Date()} />
-        <ReturnDenied createdAt={new Date()} />
-        <ResolveDenied createdAt={new Date()} />
+        <BarrowAccepted createdAt={new Date(1621142681607)} />
+        <ReturnAccepted createdAt={new Date(1621142681607)} />
+        <ResolveAccepted createdAt={new Date(1621142681607)} />
+        <BarrowDenied createdAt={new Date(1621142681607)} />
+        <ReturnDenied createdAt={new Date(1621142681607)} />
+        <ResolveDenied createdAt={new Date(1621142681607)} />
       </List>
     </RootContainer>
   );

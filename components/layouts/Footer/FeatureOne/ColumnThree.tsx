@@ -6,9 +6,11 @@ export default function ColumnThree() {
     <ColumnThreeContainer>
       <Typography>RESOURCES</Typography>
       <ul>
-        <li>Usage</li>
-        <li>Term of Servive</li>
+        <li>About</li>
+        <li>Usage Guide</li>
+        <li>Terms of Service</li>
         <li>Privacy Policy</li>
+        <li>References</li>
       </ul>
     </ColumnThreeContainer>
   );

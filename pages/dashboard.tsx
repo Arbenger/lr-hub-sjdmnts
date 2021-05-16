@@ -23,6 +23,7 @@ const config = {
   title: "Dashboard",
   withNavbar: true,
   withFooter: true,
+  withDrawer: true,
 };
 
 export default withLayout(Dashboard, config);

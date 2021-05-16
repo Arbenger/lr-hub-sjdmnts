@@ -20,8 +20,6 @@ const Home = () => {
 const config = {
   pageName: "home",
   title: "Home",
-  withNavbar: false,
-  withFooter: false,
 };
 
 export default withLayout(Home, config);

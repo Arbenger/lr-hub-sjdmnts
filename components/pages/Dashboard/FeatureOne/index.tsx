@@ -1,4 +1,4 @@
-import { Grid, GridSize } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { ReactNode } from "react";
 import { RootContainer, Wrapper, Title, BackgroundDesign } from "./styled";
 
@@ -8,37 +8,20 @@ import Bookmarks from "./components/Bookmarks";
 import ExpiredBooks from "./components/ExpiredBooks";
 import Penalties from "./components/Penalties";
 import LostBooks from "./components/LostBooks";
+import { useAppSelector } from "redux/hooks";
+import { selectLayout } from "redux/selectors";
 
 export default function FeatureOne() {
-  interface Item {
-    component: ReactNode;
-    sizes: GridSize[];
-  }
-  const items: Item[] = [
-    {
-      component: <BorrowedBooks />,
-      sizes: [12, 6, 4, 4],
-    },
-    {
-      component: <ReturnedBooks />,
-      sizes: [12, 6, 4, 4],
-    },
-    {
-      component: <ExpiredBooks />,
-      sizes: [12, 6, 4, 4],
-    },
-    {
-      component: <LostBooks />,
-      sizes: [12, 6, 4, 4],
-    },
-    {
-      component: <Bookmarks />,
-      sizes: [12, 6, 4, 4],
-    },
-    {
-      component: <Penalties />,
-      sizes: [12, 6, 4, 4],
-    },
+  const {
+    drawer: { isOpen },
+  } = useAppSelector(selectLayout);
+  const items: ReactNode[] = [
+    <BorrowedBooks />,
+    <ReturnedBooks />,
+    <ExpiredBooks />,
+    <LostBooks />,
+    <Bookmarks />,
+    <Penalties />,
   ];
 
   return (
@@ -47,16 +30,9 @@ export default function FeatureOne() {
       <Wrapper maxWidth="lg">
         <Title variant="h4">Dashboard</Title>
         <Grid container spacing={2}>
-          {items.map(({ component, sizes }, index) => (
-            <Grid
-              item
-              key={index}
-              xs={sizes[0]}
-              sm={sizes[1]}
-              md={sizes[2]}
-              lg={sizes[3]}
-            >
-              {component}
+          {items.map((item, index) => (
+            <Grid item key={index} xs={12} sm={6} md={isOpen ? 6 : 4} lg={4}>
+              {item}
             </Grid>
           ))}
         </Grid>

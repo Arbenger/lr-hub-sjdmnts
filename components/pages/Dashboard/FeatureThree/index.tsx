@@ -7,10 +7,10 @@ export default function FeatureThree() {
   return (
     <RootContainer maxWidth="lg">
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={6}>
           <PendingRequests />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={6}>
           <Notifications />
         </Grid>
       </Grid>

@@ -19,6 +19,9 @@ export const Content = styled(Box)(({ theme: { appPalette } }) => ({
 
 export const Caption = styled(Box)({
   flexGrow: 1,
+  "& *": {
+    whiteSpace: "nowrap",
+  },
 });
 
 export const Display = styled(Avatar)(

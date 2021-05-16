@@ -12,15 +12,21 @@ export default function ColumnFour() {
       <Typography>CONTACT US</Typography>
       <ul>
         <li>
-          <PhoneIcon />
+          <div>
+            <PhoneIcon />
+          </div>
           <span>+(64) 9266943578</span>
         </li>
         <li>
-          <MailIcon />
+          <div>
+            <MailIcon />
+          </div>
           <span>lr.hub.sjdmnts@gmail.com</span>
         </li>
         <li>
-          <LocationIcon />
+          <div>
+            <LocationIcon />
+          </div>
           <span>
             Barangay Fatima V, Area E, San Jose del Monte City, Bulacan
           </span>
