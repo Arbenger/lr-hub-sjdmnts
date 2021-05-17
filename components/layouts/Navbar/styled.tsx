@@ -22,7 +22,7 @@ export const AppBar = styled(MuiAppBar)(
       "&[data-is-drawer-open='false']": {
         paddingLeft: 67.5,
       },
-      "&[data-is-drawer-minimized='true']": {
+      "&[data-is-drawer-open='true']": {
         paddingLeft: 280,
       },
     },

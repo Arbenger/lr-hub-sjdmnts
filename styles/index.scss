@@ -6,6 +6,11 @@
   --base-dark: #303030;
 }
 
+* {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 html {
   &::-webkit-scrollbar {
     width: 8px;

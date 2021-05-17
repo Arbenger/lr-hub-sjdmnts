@@ -9,7 +9,6 @@ export const Container = styled(Box)(
     left: 0,
     backgroundColor: palette.grey[900],
     zIndex: zIndex.drawer,
-    userSelect: "none",
     transform: "translateX(-300px)",
     transition: `${transitions.create("width")}, ${transitions.create(
       "transform"
