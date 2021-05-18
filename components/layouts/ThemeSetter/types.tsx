@@ -28,7 +28,7 @@ export interface AppPaletteObject {
 
 export interface AppPalette {
   current: AppPaletteKey;
-  dark?: AppPaletteProperties;
+  black?: AppPaletteProperties;
   red?: AppPaletteProperties;
   blue?: AppPaletteProperties;
   indigo?: AppPaletteProperties;

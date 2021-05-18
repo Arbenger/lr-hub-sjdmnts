@@ -6,10 +6,10 @@ export const Container = styled(Box)(({ theme: { spacing, palette } }) => ({
   color: palette.common.white,
   backgroundColor: palette.grey[900],
   padding: spacing(2),
-  overflow: 'hidden'
+  overflow: "hidden",
 }));
 
-export const Icon = styled(Box)(({ theme: { spacing, breakpoints } }) => ({
+export const Icon = styled(Box)(({ theme: { spacing } }) => ({
   ...flexCenter,
   fontSize: 32,
   marginRight: spacing(1.5),

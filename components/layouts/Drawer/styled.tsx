@@ -1,13 +1,13 @@
 import { styled, Box, Divider as MuiDivider } from "@material-ui/core";
 
 export const Container = styled(Box)(
-  ({ theme: { palette, zIndex, transitions, breakpoints } }) => ({
+  ({ theme: { appPalette, zIndex, transitions, breakpoints } }) => ({
     width: 280,
     height: "100%",
     position: "fixed",
     top: 0,
     left: 0,
-    backgroundColor: palette.grey[900],
+    backgroundColor: appPalette.black.dark,
     zIndex: zIndex.drawer,
     transform: "translateX(-300px)",
     transition: `${transitions.create("width")}, ${transitions.create(
