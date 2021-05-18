@@ -4,7 +4,7 @@ import ImageCarousel from "components/pages/Home/ImageCarousel";
 
 const Home = () => {
   return (
-    <Box>
+    <Box marginBottom={50}>
       <ImageCarousel />
     </Box>
   );

@@ -1,19 +1,4 @@
 import { Box, styled } from "@material-ui/core";
-import { flexCenter } from "components/layouts/ThemeSetter/mixins";
-
-export const Container = styled(Box)(({ theme: { breakpoints, palette } }) => ({
-  "& .swiper-slide": {
-    ...flexCenter,
-    width: "100%",
-    height: "100vh",
-    [breakpoints.only("xs")]: {
-      height: 500,
-    },
-  },
-  "& .swiper-button-next, & .swiper-button-prev": {
-    color: palette.common.white,
-  },
-}));
 
 export const Wrapper = styled(Box)({
   width: "100%",
@@ -21,3 +6,24 @@ export const Wrapper = styled(Box)({
   backgroundColor: "rgba(0, 0, 0, .3)",
   position: "absolute",
 });
+
+export const Container = styled("div")(({ theme: { palette, spacing } }) => ({
+  backgroundColor: palette.grey[900],
+  paddingBottom: spacing(1),
+  "& .swiper-main": {
+    height: "calc(100vh - 150px - 16px)",
+    marginBottom: spacing(1),
+  },
+  "& .swiper-sub": {
+    height: 150,
+    "& .swiper-slide": {
+      opacity: 0.4,
+    },
+    "& .swiper-slide-thumb-active": {
+      opacity: 1,
+    },
+  },
+  "& .swiper-button-next, & .swiper-button-prev": {
+    color: palette.common.white,
+  },
+}));
