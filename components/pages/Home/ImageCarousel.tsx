@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
 
 import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
@@ -10,15 +11,15 @@ SwiperCore.use([Navigation, Autoplay]);
 
 export default function ImageCarousel() {
   const images = [
-    { src: "/images/1.png" },
-    { src: "/images/2.png" },
-    { src: "/images/3.png" },
-    { src: "/images/4.png" },
-    { src: "/images/5.png" },
-    { src: "/images/6.png" },
-    { src: "/images/7.png" },
-    { src: "/images/8.png" },
-    { src: "/images/9.png" },
+    { src: "/images/1.png", alt: "image-1" },
+    { src: "/images/2.png", alt: "image-2" },
+    { src: "/images/3.png", alt: "image-3" },
+    { src: "/images/4.png", alt: "image-4" },
+    { src: "/images/5.png", alt: "image-5" },
+    { src: "/images/6.png", alt: "image-6" },
+    { src: "/images/7.png", alt: "image-7" },
+    { src: "/images/8.png", alt: "image-8" },
+    { src: "/images/9.png", alt: "image-9" },
   ];
 
   return (
@@ -32,12 +33,15 @@ export default function ImageCarousel() {
           disableOnInteraction: false,
         }}
       >
-        {images.map((image) => (
-          <SwiperSlide
-            key={image.src}
-            className="swiper-slide"
-            style={{ backgroundImage: `url(${image.src})` }}
-          >
+        {images.map(({ src, alt }) => (
+          <SwiperSlide key={src} className="swiper-slide">
+            <Image
+              src={src}
+              layout="fill"
+              objectFit="cover"
+              alt={alt}
+              loading={alt === "image-1" ? "eager" : "lazy"}
+            />
             <Wrapper />
           </SwiperSlide>
         ))}

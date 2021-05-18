@@ -6,9 +6,6 @@ export const Container = styled(Box)(({ theme: { breakpoints, palette } }) => ({
     ...flexCenter,
     width: "100%",
     height: "100vh",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
     [breakpoints.only("xs")]: {
       height: 500,
     },
@@ -22,4 +19,5 @@ export const Wrapper = styled(Box)({
   width: "100%",
   height: "100%",
   backgroundColor: "rgba(0, 0, 0, .3)",
+  position: "absolute",
 });
