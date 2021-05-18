@@ -1,19 +1,12 @@
-import Link from "next/link";
-import { Fragment } from "react";
-import { Box, Button } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import withLayout from "HOC/withLayout";
+import ImageCarousel from "components/pages/Home/ImageCarousel";
 
 const Home = () => {
   return (
-    <Fragment>
-      <Box id="home" padding={2}>
-        <Link href="/dashboard">
-          <Button variant="contained" color="primary">
-            Go to Dashboard
-          </Button>
-        </Link>
-      </Box>
-    </Fragment>
+    <Box>
+      <ImageCarousel />
+    </Box>
   );
 };
 

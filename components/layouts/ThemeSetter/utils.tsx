@@ -79,7 +79,7 @@ export const palettes: AppPaletteObject[] = [
       light: "#fff263",
       main: "#fbc02d",
       dark: "#c49000",
-      contrastText: "#000000",
+      contrastText: "#ffffff",
     },
   },
   {

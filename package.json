@@ -21,7 +21,8 @@
     "react-icons": "^4.2.0",
     "react-redux": "^7.2.4",
     "react-time-ago": "^6.2.2",
-    "sass": "^1.32.12"
+    "sass": "^1.32.12",
+    "swiper": "^6.6.1"
   },
   "devDependencies": {
     "@types/javascript-time-ago": "^2.0.2",

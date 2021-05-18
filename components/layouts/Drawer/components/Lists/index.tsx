@@ -31,7 +31,11 @@ import { useState, useEffect } from "react";
 import { Hidden } from "@material-ui/core";
 import { triggerDrawer } from "redux/layoutSlice";
 
-export default function Lists() {
+interface Props {
+  pageName: string;
+}
+
+export default function Lists({ pageName }: Props) {
   const {
     drawer: { isOpen },
   } = useAppSelector(selectLayout);
@@ -71,7 +75,7 @@ export default function Lists() {
         <Header className="hide-on-close">Menu</Header>
         <Menu>
           <Link href="/">
-            <MenuItem>
+            <MenuItem data-is-active={pageName === "home"}>
               <MenuIcon>
                 <HomeIcon />
               </MenuIcon>
@@ -80,7 +84,7 @@ export default function Lists() {
           </Link>
 
           <Link href="/dashboard">
-            <MenuItem>
+            <MenuItem data-is-active={pageName === "dashboard"}>
               <MenuIcon>
                 <DashboardIcon />
               </MenuIcon>
@@ -89,14 +93,14 @@ export default function Lists() {
           </Link>
 
           <MenuItem>
-            <MenuIcon>
+            <MenuIcon data-is-active={pageName === "library"}>
               <BookIcon />
             </MenuIcon>
             <MenuTitle className="fade-on-close">Library</MenuTitle>
           </MenuItem>
 
           <MenuItem>
-            <MenuIcon>
+            <MenuIcon data-is-active={pageName === "account"}>
               <UserIcon />
             </MenuIcon>
             <MenuTitle className="fade-on-close">Account</MenuTitle>
@@ -107,28 +111,28 @@ export default function Lists() {
 
         <Header className="hide-on-close">Tools</Header>
         <Menu>
-          <MenuItem>
+          <MenuItem data-is-active={pageName === "book-manager"}>
             <MenuIcon>
               <BookManagerIcon />
             </MenuIcon>
             <MenuTitle className="fade-on-close">Book Manager</MenuTitle>
           </MenuItem>
 
-          <MenuItem>
+          <MenuItem data-is-active={pageName === "pending-requests"}>
             <MenuIcon>
               <HourglassIcon />
             </MenuIcon>
             <MenuTitle className="fade-on-close">Pending Requests</MenuTitle>
           </MenuItem>
 
-          <MenuItem>
+          <MenuItem data-is-active={pageName === "notifications"}>
             <MenuIcon>
               <NotificationIcon />
             </MenuIcon>
             <MenuTitle className="fade-on-close">Notifications</MenuTitle>
           </MenuItem>
 
-          <MenuItem>
+          <MenuItem data-is-active={pageName === "penalties"}>
             <MenuIcon>
               <ErrorIcon />
             </MenuIcon>
@@ -140,35 +144,35 @@ export default function Lists() {
 
         <Header className="hide-on-close">Resources</Header>
         <Menu className="hide-on-close">
-          <MenuItem>
+          <MenuItem data-is-active={pageName === "about"}>
             <MenuIcon>
               <ArrowRightIcon />
             </MenuIcon>
             <MenuTitle className="fade-on-close">About</MenuTitle>
           </MenuItem>
 
-          <MenuItem>
+          <MenuItem data-is-active={pageName === "usage-guide"}>
             <MenuIcon>
               <ArrowRightIcon />
             </MenuIcon>
             <MenuTitle className="fade-on-close">Usage Guide</MenuTitle>
           </MenuItem>
 
-          <MenuItem>
+          <MenuItem data-is-active={pageName === "terms-of-service"}>
             <MenuIcon>
               <ArrowRightIcon />
             </MenuIcon>
             <MenuTitle className="fade-on-close">Terms of Service</MenuTitle>
           </MenuItem>
 
-          <MenuItem>
+          <MenuItem data-is-active={pageName === "privacy-policy"}>
             <MenuIcon>
               <ArrowRightIcon />
             </MenuIcon>
             <MenuTitle className="fade-on-close">Privacy Policy</MenuTitle>
           </MenuItem>
 
-          <MenuItem>
+          <MenuItem data-is-active={pageName === "references"}>
             <MenuIcon>
               <ArrowRightIcon />
             </MenuIcon>

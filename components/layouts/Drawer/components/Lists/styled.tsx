@@ -36,7 +36,7 @@ export const MenuItem = styled(Box)(({ theme: { palette, spacing } }) => ({
   ...flexStartCenter,
   padding: `${spacing(1.5)}px ${spacing(2)}px`,
   cursor: "pointer",
-  "&:hover": {
+  "&:hover, &[data-is-active='true']": {
     backgroundColor: palette.grey[700],
   },
 }));
