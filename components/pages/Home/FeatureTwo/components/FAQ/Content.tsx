@@ -5,10 +5,10 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useState } from "react";
+import { ContentContainer, Title } from "../styled";
 import { RiArrowDropDownLine as ArrowIcon } from "react-icons/ri";
-import { Container, Title } from "./styled";
 
-export default function FAQ() {
+export default function Content() {
   const faqs = [
     {
       id: "questionOne",
@@ -59,7 +59,7 @@ export default function FAQ() {
   };
 
   return (
-    <Container>
+    <ContentContainer>
       <Title variant="h5">Frequently Asked Questions</Title>
 
       {faqs.map((faq) => (
@@ -77,6 +77,6 @@ export default function FAQ() {
           </AccordionDetails>
         </Accordion>
       ))}
-    </Container>
+    </ContentContainer>
   );
 }

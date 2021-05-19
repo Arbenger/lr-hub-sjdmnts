@@ -1,29 +1,13 @@
-import { Grid, Box } from "@material-ui/core";
-import { Container, Wrapper } from "components/pages/Home/styled";
-import { ImageCarouselCurve } from "components/pages/Home/ImageCarousel/styled";
+import { Box } from "@material-ui/core";
 import withLayout from "HOC/withLayout";
-import ImageCarousel from "components/pages/Home/ImageCarousel";
-import FAQ from "components/pages/Home/FAQ";
-import FollowUs from "components/pages/Home/FollowUs";
+import FeatureOne from "components/pages/Home/FeatureOne";
+import FeatureTwo from "components/pages/Home/FeatureTwo";
 
 const Home = () => {
   return (
     <Box>
-      <ImageCarousel />
-      <ImageCarouselCurve />
-
-      <Container>
-        <Wrapper maxWidth="lg">
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <FAQ />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              {/* <FollowUs /> */}
-            </Grid>
-          </Grid>
-        </Wrapper>
-      </Container>
+      <FeatureOne />
+      <FeatureTwo />
     </Box>
   );
 };
