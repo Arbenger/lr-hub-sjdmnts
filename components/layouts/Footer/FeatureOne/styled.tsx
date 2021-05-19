@@ -1,17 +1,16 @@
 import { styled } from "@material-ui/core";
-import { autumn } from "hero-patterns";
 
-export const RootContainer = styled("div")(
-  ({ theme: { appPalette, spacing } }) => ({
-    textAlign: "left",
-    backgroundColor: appPalette[appPalette.current].main,
-    backgroundImage: autumn(appPalette[appPalette.current].contrastText, 0.05),
-    padding: `${spacing(4)}px ${spacing(1)}px`,
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-  })
-);
+export const RootContainer = styled("div")(({ theme: { spacing } }) => ({
+  textAlign: "left",
+  backgroundColor: "#111",
+  backgroundImage: "url(/images/cool-background.svg)",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  padding: `${spacing(4)}px ${spacing(1)}px`,
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
+}));
 
 export const ColumnOneContainer = styled("div")(
   ({ theme: { breakpoints } }) => ({

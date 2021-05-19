@@ -11,18 +11,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-html {
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    background-color: var(--app-palette-main);
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--app-palette-light);
-    border-radius: 5px;
-  }
-}
-
 body {
   overflow-x: hidden;
   * {

@@ -15,6 +15,15 @@ export const Icon = styled(Box)(({ theme: { spacing } }) => ({
   marginRight: spacing(1.5),
 }));
 
+export const ImageContainer = styled(Box)(({ theme: { spacing } }) => ({
+  ...flexCenter,
+  minWidth: 35,
+  maxWidth: 35,
+  minHeight: 35,
+  maxHeight: 35,
+  marginRight: spacing(1.5),
+}));
+
 export const Title = styled(Typography)(({ theme: { breakpoints } }) => ({
   fontSize: 23,
   [breakpoints.only("xs")]: {

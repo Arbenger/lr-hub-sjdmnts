@@ -26,6 +26,7 @@ export default function Drawer({ pageName }: Props) {
       const isSM = width <= breakpoints.values.md;
       document.body.style.overflowY = isSM && isOpen ? "hidden" : "auto";
     };
+    observeWindowWidth();
     window.addEventListener("resize", observeWindowWidth);
     return () => {
       window.removeEventListener("resize", observeWindowWidth);

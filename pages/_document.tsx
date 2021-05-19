@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
             name="description"
             content="San Jose del Monte National Trade School Learning Resources Management System. Developed by 12-Aquamarine."
           />
-          <link rel="shortcut icon" href="/sjdmnts-logo.png" type="image/png" />
+          <link rel="shortcut icon" href="/images/logo.png" type="image/png" />
         </Head>
 
         <body>

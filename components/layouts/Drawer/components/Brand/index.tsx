@@ -1,6 +1,6 @@
-import { Container, Icon, Title } from "./styled";
-import { RiBookOpenLine as BookIcon } from "react-icons/ri";
+import { Container, ImageContainer, Title } from "./styled";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Brand() {
   const [maxHeight, setMaxHeight] = useState<number>();
@@ -19,9 +19,14 @@ export default function Brand() {
 
   return (
     <Container maxHeight={maxHeight}>
-      <Icon>
-        <BookIcon />
-      </Icon>
+      <ImageContainer>
+        <Image
+          src="/images/logo.png"
+          alt="LR Hub Logo"
+          width="100%"
+          height="100%"
+        />
+      </ImageContainer>
       <Title className="fade-on-close">LR Hub</Title>
     </Container>
   );
