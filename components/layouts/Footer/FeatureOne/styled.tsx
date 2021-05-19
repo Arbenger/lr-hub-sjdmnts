@@ -2,8 +2,8 @@ import { styled } from "@material-ui/core";
 
 export const RootContainer = styled("div")(({ theme: { spacing } }) => ({
   textAlign: "left",
-  backgroundColor: "#111",
-  backgroundImage: "url(/images/cool-background.svg)",
+  backgroundColor: "#212121",
+  // backgroundImage: "url(/images/cool-background-1.svg)",
   backgroundSize: "cover",
   backgroundPosition: "center",
   padding: `${spacing(4)}px ${spacing(1)}px`,
