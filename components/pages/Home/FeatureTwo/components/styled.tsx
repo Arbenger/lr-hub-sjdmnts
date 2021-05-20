@@ -1,10 +1,15 @@
 import { Paper, Typography, styled, Box } from "@material-ui/core";
 import { flexCenter } from "components/layouts/ThemeSetter/mixins";
 
-export const RootContainer = styled(Box)(({ theme: { spacing } }) => ({
-  paddingTop: spacing(2),
-  paddingBottom: spacing(2),
-}));
+export const RootContainer = styled(Box)(
+  ({ theme: { spacing, breakpoints } }) => ({
+    paddingTop: spacing(2),
+    paddingBottom: spacing(2),
+    [breakpoints.only("xs")]: {
+      marginBottom: spacing(8),
+    },
+  })
+);
 
 export const ContentContainer = styled(Paper)(({ theme: { spacing } }) => ({
   padding: spacing(4),
@@ -39,3 +44,7 @@ export const IconContainer = styled(Box)(
 export const Title = styled(Typography)(({ theme: { spacing } }) => ({
   marginBottom: spacing(2),
 }));
+
+export const Body = styled(Typography)({
+  textIndent: "2rem",
+});

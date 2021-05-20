@@ -5,7 +5,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { useState } from "react";
-import { ContentContainer, Title } from "../styled";
+import { ContentContainer, Title, Body } from "../styled";
 import { RiArrowDropDownLine as ArrowIcon } from "react-icons/ri";
 
 export default function Content() {
@@ -60,7 +60,7 @@ export default function Content() {
 
   return (
     <ContentContainer>
-      <Title variant="h5">Frequently Asked Questions</Title>
+      <Title variant="h4">Frequently Asked Questions</Title>
 
       {faqs.map((faq) => (
         <Accordion
@@ -73,7 +73,7 @@ export default function Content() {
             <Typography>{faq.question}</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>{faq.answer}</Typography>
+            <Body>{faq.answer}</Body>
           </AccordionDetails>
         </Accordion>
       ))}
