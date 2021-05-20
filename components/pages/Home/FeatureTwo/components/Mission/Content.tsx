@@ -5,10 +5,10 @@ export default function Content() {
     <ContentContainer>
       <Title variant="h4">Our Mission</Title>
       <Body>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat quia
-        dolorem accusamus ad architecto. Magnam rerum molestiae atque velit nam
-        natus repellendus omnis sunt eaque pariatur obcaecati, animi, veritatis
-        iure?
+        To ensure a high quality educational library services, we developed a
+        web application to support students, teachers, and staffs in pursuit of
+        educational excellence in a welcoming environment of cultivating
+        literacy skills.
       </Body>
     </ContentContainer>
   );

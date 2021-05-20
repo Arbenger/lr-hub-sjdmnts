@@ -1,11 +1,54 @@
 import { Box, styled } from "@material-ui/core";
+import { flexCenter } from "components/layouts/ThemeSetter/mixins";
 
-export const Wrapper = styled(Box)({
+export const WrapperContainer = styled(Box)({
+  ...flexCenter,
   width: "100%",
   height: "100%",
-  backgroundColor: "rgba(0, 0, 0, .3)",
+  backgroundColor: "rgba(0, 0, 0, .5)",
   position: "absolute",
 });
+
+export const Wrapper = styled(Box)(({ theme: { spacing, breakpoints } }) => ({
+  width: "100%",
+  color: "white",
+  flexDirection: "column",
+  textAlign: "left",
+  padding: spacing(10),
+  [breakpoints.only("xs")]: {
+    padding: spacing(2),
+  },
+}));
+
+export const WrapperHeader = styled(Box)(
+  ({ theme: { spacing, breakpoints } }) => ({
+    width: "50%",
+    marginBottom: spacing(2),
+    [breakpoints.down("sm")]: {
+      width: "70%",
+    },
+  })
+);
+
+export const WrapperBody = styled(Box)(
+  ({ theme: { spacing, breakpoints } }) => ({
+    width: "70%",
+    marginBottom: spacing(2),
+    [breakpoints.down("sm")]: {
+      width: "90%",
+    },
+  })
+);
+
+export const WrapperAction = styled(Box)(({ theme: { appPalette } }) => ({
+  width: "100%",
+  "& button": {
+    backgroundColor: appPalette[appPalette.current].main,
+    "&:hover": {
+      backgroundColor: appPalette[appPalette.current].dark,
+    },
+  },
+}));
 
 export const ImageCarouselCurve = styled(Box)({
   width: "100%",
