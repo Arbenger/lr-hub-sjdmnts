@@ -57,9 +57,9 @@ export default function ImageCarousel() {
             </WrapperHeader>
             <WrapperBody>
               <Typography>
-                We provide tools that will make you efficiently deal with your
-                tasks and visualize all the activities that you commited using a
-                precise graphical representations.
+                We provide tools that will help you efficiently deal with your
+                tasks and visualize all the activities that you've commited
+                using a precise graphical representations.
               </Typography>
             </WrapperBody>
             <WrapperAction>
