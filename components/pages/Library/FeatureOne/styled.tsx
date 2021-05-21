@@ -31,3 +31,5 @@ export const Wrapper = styled(MuiContainer)(({ theme: { appPalette } }) => ({
 export const Title = styled(Typography)(({ theme: { spacing } }) => ({
   marginBottom: spacing(1),
 }));
+
+export const ToolContainer = styled(Box)(({ theme: { spacing } }) => ({}));
