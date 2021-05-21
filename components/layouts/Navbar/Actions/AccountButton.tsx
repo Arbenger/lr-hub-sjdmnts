@@ -6,7 +6,7 @@ interface Props {
 }
 
 const AccountButton = ({ pageName }: Props) => {
-  return pageName !== "library" ? (
+  return pageName !== "account" ? (
     <IconButton edge="end" color="inherit" aria-label="account">
       <UserIcon />
     </IconButton>

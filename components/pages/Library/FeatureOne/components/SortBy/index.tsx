@@ -5,14 +5,15 @@ import {
   AiOutlineSortDescending as DescendingIcon,
 } from "react-icons/ai";
 import { Container, IconButton, FormControl } from "./styled";
-import { SortByOption, SortByValue, Props } from "./types";
+import { SortByOption, SortByValue, SortDirectionValue } from "./types";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { selectLibrary } from "redux/selectors";
+import { setSortBy, setSortDirection } from "redux/librarySlice";
 
-export default function SortBy({
-  sortBy,
-  sortDirection,
-  setSortBy,
-  setSortDirection,
-}: Props) {
+export default function SortBy() {
+  const dispatch = useAppDispatch();
+  const { sortBy, sortDirection } = useAppSelector(selectLibrary);
+
   const sortByOptions: SortByOption[] = [
     { title: "Title", value: "title" },
     { title: "Author", value: "author" },
@@ -21,13 +22,13 @@ export default function SortBy({
   ];
 
   const handleClick = () => {
-    setSortDirection(
-      sortDirection === "ascending" ? "descending" : "ascending"
-    );
+    const newSortDirection: SortDirectionValue =
+      sortDirection === "ascending" ? "descending" : "ascending";
+    dispatch(setSortDirection(newSortDirection));
   };
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(event.target.value as SortByValue);
+    dispatch(setSortBy(event.target.value as SortByValue));
   };
 
   return (

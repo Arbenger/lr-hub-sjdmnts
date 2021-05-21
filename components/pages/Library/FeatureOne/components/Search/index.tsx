@@ -1,16 +1,22 @@
-import { FormEvent } from "react";
+import { ChangeEvent, FormEvent } from "react";
 import { AiOutlineSearch as SearchIcon } from "react-icons/ai";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
+import { setSearchInput } from "redux/librarySlice";
+import { selectLibrary } from "redux/selectors";
 import { Container, IconButton, Form, TextField } from "./styled";
 import { Props } from "./types";
 
-export default function Search({
-  searchInput,
-  setSearchInput,
-  beginSearch,
-}: Props) {
+export default function Search({ beginSearch }: Props) {
+  const dispatch = useAppDispatch();
+  const { searchInput } = useAppSelector(selectLibrary);
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     beginSearch();
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchInput(event.target.value));
   };
 
   return (
@@ -19,7 +25,7 @@ export default function Search({
         <IconButton type="submit" edge="start">
           <SearchIcon />
         </IconButton>
-        <TextField label="Search" />
+        <TextField label="Search" value={searchInput} onChange={handleChange} />
       </Form>
     </Container>
   );

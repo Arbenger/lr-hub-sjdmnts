@@ -7,19 +7,11 @@ import {
   Title,
   ToolContainer,
 } from "./styled";
-import { SortByValue, SortDirectionValue } from "./components/SortBy/types";
-import { FilterByValue } from "./components/FilterBy/types";
 import SortBy from "./components/SortBy";
 import FilterBy from "./components/FilterBy";
 import Search from "./components/Search";
 
 export default function FeatureOne() {
-  const [sortDirection, setSortDirection] =
-    useState<SortDirectionValue>("ascending");
-  const [sortBy, setSortBy] = useState<SortByValue>("title");
-  const [filterBy, setFilterBy] = useState<FilterByValue>("all");
-  const [searchInput, setSearchInput] = useState<string>();
-
   const beginSearch = () => {};
 
   return (
@@ -30,22 +22,13 @@ export default function FeatureOne() {
         <ToolContainer>
           <Grid container spacing={2}>
             <Grid item xs={6} sm={3}>
-              <SortBy
-                sortBy={sortBy}
-                sortDirection={sortDirection}
-                setSortBy={setSortBy}
-                setSortDirection={setSortDirection}
-              />
+              <SortBy />
             </Grid>
             <Grid item xs={6} sm={3}>
-              <FilterBy filterBy={filterBy} setFilterBy={setFilterBy} />
+              <FilterBy />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Search
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
-                beginSearch={beginSearch}
-              />
+              <Search beginSearch={beginSearch} />
             </Grid>
           </Grid>
         </ToolContainer>

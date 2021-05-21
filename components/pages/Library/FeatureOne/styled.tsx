@@ -6,7 +6,9 @@ import {
 } from "@material-ui/core";
 import Color from "color";
 
-export const Container = styled(Box)({});
+export const Container = styled(Box)(({ theme: { spacing } }) => ({
+  marginBottom: spacing(2),
+}));
 
 export const BackgroundDesign = styled(Box)(({ theme: { appPalette } }) => {
   const main = Color(appPalette[appPalette.current].main).object();

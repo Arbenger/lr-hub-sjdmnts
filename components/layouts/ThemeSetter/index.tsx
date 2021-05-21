@@ -24,7 +24,7 @@ const ThemeSetter = ({ children }: Props) => {
     () =>
       createMuiTheme({
         typography: {
-          fontFamily: "Poppins, Verdana",
+          fontFamily: "'Comfortaa', 'Poppins', Verdana",
         },
         palette: {
           type: "light",
