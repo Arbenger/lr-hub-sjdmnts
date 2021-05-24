@@ -1,5 +1,5 @@
 import { ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
-import { ListAvatar } from "../styled";
+import { ListAvatar } from "./styled";
 import { BiBook as BookIcon } from "react-icons/bi";
 
 import ReactTimeAgo from "react-time-ago";

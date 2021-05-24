@@ -6,12 +6,12 @@ import {
   List,
 } from "./styled";
 
-import BarrowAccepted from "./components/BarrowAccepted";
-import ReturnAccepted from "./components/ReturnAccepted";
-import ResolveAccepted from "./components/ResolveAccepted";
-import BarrowDenied from "./components/BarrowDenied";
-import ReturnDenied from "./components/ReturnDenied";
-import ResolveDenied from "./components/ResolveDenied";
+import BarrowAccepted from "components/pages/Notifications/FeatureTwo/components/List/components/BarrowAccepted";
+import ReturnAccepted from "components/pages/Notifications/FeatureTwo/components/List/components/ReturnAccepted";
+import ResolveAccepted from "components/pages/Notifications/FeatureTwo/components/List/components/ResolveAccepted";
+import BarrowDenied from "components/pages/Notifications/FeatureTwo/components/List/components/BarrowDenied";
+import ReturnDenied from "components/pages/Notifications/FeatureTwo/components/List/components/ReturnDenied";
+import ResolveDenied from "components/pages/Notifications/FeatureTwo/components/List/components/ResolveDenied";
 
 export default function Notifications() {
   return (

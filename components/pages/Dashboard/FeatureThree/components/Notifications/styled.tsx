@@ -4,8 +4,7 @@ import {
   Box,
   Typography,
   Button,
-  Avatar,
-  List as MuiList
+  List as MuiList,
 } from "@material-ui/core";
 
 export const RootContainer = styled(Paper)({});
@@ -27,9 +26,5 @@ export const HeaderButton = styled(Button)(({ theme: { appPalette } }) => ({
 }));
 
 export const List = styled(MuiList)({
-  paddingTop: 0
-})
-
-export const ListAvatar = styled(Avatar)(({ theme: { appPalette } }) => ({
-  backgroundColor: appPalette[appPalette.current].main,
-}));
+  paddingTop: 0,
+});

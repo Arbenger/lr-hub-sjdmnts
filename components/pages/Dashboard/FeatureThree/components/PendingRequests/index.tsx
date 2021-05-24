@@ -5,9 +5,9 @@ import {
   HeaderButton,
   List,
 } from "./styled";
-import Barrow from "./components/Barrow";
-import Return from "./components/Return";
-import Resolve from "./components/Resolve";
+import Barrow from "components/pages/PendingRequests/FeatureTwo/components/List/components/Barrow";
+import Return from "components/pages/PendingRequests/FeatureTwo/components/List/components/Return";
+import Resolve from "components/pages/PendingRequests/FeatureTwo/components/List/components/Resolve";
 
 export default function PendingRequests() {
   return (
