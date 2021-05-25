@@ -6,26 +6,17 @@ import AppBarScroll from "./AppBarScroll";
 import Display from "./Display";
 import Actions from "./Actions";
 
-interface Props {
-  pageName: string;
-  title: string;
-}
-
-const Navbar = ({ pageName, title }: Props) => {
-  const {
-    drawer: { isOpen },
-  } = useAppSelector(selectLayout);
+export default function Navbar() {
+  const { drawer } = useAppSelector(selectLayout);
 
   return (
     <AppBarScroll>
-      <AppBar id="navbar" position="fixed" data-is-drawer-open={isOpen}>
+      <AppBar id="navbar" position="fixed" data-is-drawer-open={drawer.isOpen}>
         <Toolbar>
-          <Display title={title} />
-          <Actions pageName={pageName} />
+          <Display />
+          <Actions />
         </Toolbar>
       </AppBar>
     </AppBarScroll>
   );
-};
-
-export default Navbar;
+}

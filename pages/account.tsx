@@ -1,7 +1,18 @@
 import withLayout from "HOC/withLayout";
 import FeatureOne from "components/pages/Account/FeatureOne";
+import { useAppDispatch } from "redux/hooks";
+import { useEffect } from "react";
+import { setPage } from "redux/pageSlice";
 
 const Account = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const name = "account";
+    const title = "Account";
+    dispatch(setPage({ name, title }));
+  }, []);
+
   return (
     <div>
       <FeatureOne />
@@ -9,9 +20,4 @@ const Account = () => {
   );
 };
 
-const config = {
-  pageName: "account",
-  title: "Account",
-};
-
-export default withLayout(Account, config);
+export default withLayout(Account);

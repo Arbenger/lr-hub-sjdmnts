@@ -1,15 +1,13 @@
 import { Container } from "./styled";
 import { HiMenuAlt2 as MenuIcon } from "react-icons/hi";
 import { Hidden, IconButton, Typography } from "@material-ui/core";
-import { useAppDispatch } from "redux/hooks";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { triggerDrawer } from "redux/layoutSlice";
+import { selectPage } from "redux/selectors";
 
-interface Props {
-  title: string;
-}
-
-export default function Display({ title }: Props) {
+export default function Display() {
   const dispatch = useAppDispatch();
+  const page = useAppSelector(selectPage);
 
   const handleClick = () => {
     dispatch(triggerDrawer("toggle"));
@@ -29,7 +27,7 @@ export default function Display({ title }: Props) {
       </Hidden>
 
       <Typography variant="h6" className="title">
-        {title}
+        {page.title}
       </Typography>
     </Container>
   );

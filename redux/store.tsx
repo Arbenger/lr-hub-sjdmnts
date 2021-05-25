@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./themeSlice";
 import layoutReducer from "./layoutSlice";
 import libraryReducer from "./librarySlice";
+import pageReducer from "./pageSlice";
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
+    page: pageReducer,
     layout: layoutReducer,
     library: libraryReducer,
   },

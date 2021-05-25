@@ -26,18 +26,17 @@ import {
 import Link from "next/link";
 import { Divider } from "../../styled";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
-import { selectLayout } from "redux/selectors";
+import { selectLayout, selectPage } from "redux/selectors";
 import { useState, useEffect, Fragment } from "react";
 import { Hidden, useTheme } from "@material-ui/core";
 import { triggerDrawer } from "redux/layoutSlice";
-import { Props, List } from "./types";
+import { List } from "./types";
 
-export default function Lists({ pageName }: Props) {
-  const {
-    drawer: { isOpen },
-  } = useAppSelector(selectLayout);
+export default function Lists() {
   const dispatch = useAppDispatch();
+  const page = useAppSelector(selectPage);
   const { breakpoints } = useTheme();
+  const { drawer } = useAppSelector(selectLayout);
   const [navbarHeight, setNavbarHeight] = useState<number>();
 
   const lists: List[] = [
@@ -145,7 +144,7 @@ export default function Lists({ pageName }: Props) {
   }, []);
 
   return (
-    <Container data-is-open={isOpen}>
+    <Container data-is-open={drawer.isOpen}>
       <MenuContainer maxHeight={`calc(100vh - ${navbarHeight}px - 60px)`}>
         <Hidden mdUp>
           <Menu>
@@ -172,7 +171,7 @@ export default function Lists({ pageName }: Props) {
                   href={item.title === "Home" ? "/" : `/${item.pageName}`}
                 >
                   <MenuItem
-                    data-is-active={pageName === item.pageName}
+                    data-is-active={page.name === item.pageName}
                     onClick={handleClick}
                   >
                     <MenuIcon>{item.icon}</MenuIcon>
