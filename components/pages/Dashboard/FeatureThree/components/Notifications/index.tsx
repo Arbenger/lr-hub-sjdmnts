@@ -5,6 +5,7 @@ import {
   HeaderButton,
   List,
 } from "./styled";
+import Link from "next/link";
 
 import BarrowAccepted from "components/pages/Notifications/FeatureTwo/components/List/components/BarrowAccepted";
 import ReturnAccepted from "components/pages/Notifications/FeatureTwo/components/List/components/ReturnAccepted";
@@ -18,7 +19,9 @@ export default function Notifications() {
     <RootContainer>
       <Header>
         <HeaderTitle variant="body1">Notifications</HeaderTitle>
-        <HeaderButton variant="text">View All</HeaderButton>
+        <Link href="/notifications">
+          <HeaderButton variant="text">View All</HeaderButton>
+        </Link>
       </Header>
       <List>
         <BarrowAccepted createdAt={new Date(1621142681607)} />
