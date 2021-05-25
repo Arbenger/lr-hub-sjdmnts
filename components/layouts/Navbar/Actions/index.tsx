@@ -1,22 +1,12 @@
-import { FC, Fragment } from "react";
-import LibraryButton from "./LibraryButton";
-import DashboardButton from "./DashboardButton";
+import { Fragment } from "react";
 import AccountButton from "./AccountButton";
 import PaletteButton from "./PaletteButton";
 
-interface Props {
-  pageName: string;
-}
-
-const Actions: FC<Props> = ({ pageName }) => {
+export default function Actions() {
   return (
     <Fragment>
       <PaletteButton />
-      <LibraryButton pageName={pageName} />
-      <DashboardButton pageName={pageName} />
-      <AccountButton pageName={pageName} />
+      <AccountButton />
     </Fragment>
   );
-};
-
-export default Actions;
+}
