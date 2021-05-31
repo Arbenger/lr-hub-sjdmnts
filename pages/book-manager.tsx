@@ -1,8 +1,9 @@
 import withLayout from "HOC/withLayout";
-import FeatureOne from "components/pages/BookManager/FeatureOne";
 import { useAppDispatch } from "redux/hooks";
 import { useEffect } from "react";
 import { setPage } from "redux/pageSlice";
+import FeatureOne from "components/pages/BookManager/FeatureOne";
+import FeatureTwo from "components/pages/BookManager/FeatureTwo";
 
 const BookManager = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +17,7 @@ const BookManager = () => {
   return (
     <div>
       <FeatureOne />
+      <FeatureTwo />
     </div>
   );
 };

@@ -1,14 +1,18 @@
-import { useEffect } from "react";
 import { Container } from "./styled";
+import dynamic from "next/dynamic";
+const ReactFrappeChart = dynamic(() => import("react-frappe-charts"), {
+  ssr: false,
+});
 
 export default function Chart() {
-  useEffect(() => {
-    (async () => {
-      const { Chart: FrappeChart } = await import("frappe-charts");
-
-      new FrappeChart("#chart", {
-        title: "Content",
-        data: {
+  return (
+    <Container>
+      <ReactFrappeChart
+        type="pie"
+        height={480}
+        colors={["#b71c1c", "#0d47a1", "#6a1b9a", "#2e7d32"]}
+        title="Content"
+        data={{
           labels: ["Barrow", "Return", "Penalty", "System"],
           datasets: [
             {
@@ -16,17 +20,8 @@ export default function Chart() {
               values: [5, 3, 5, 2],
             },
           ],
-        },
-        type: "donut",
-        height: 400,
-        colors: ["#b71c1c", "#0d47a1", "#6a1b9a", "#2e7d32"],
-      });
-    })();
-  }, []);
-
-  return (
-    <Container>
-      <div id="chart" />
+        }}
+      />
     </Container>
   );
 }
