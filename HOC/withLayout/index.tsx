@@ -1,8 +1,7 @@
-import { ComponentType, Fragment } from "react";
+import { ComponentType, Fragment, useEffect } from "react";
 import { useTheme } from "@material-ui/core";
-
 import { LayoutContainer } from "./styled";
-import { useAppSelector } from "redux/hooks";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout, selectPage } from "redux/selectors";
 
 import Head from "next/head";
@@ -10,12 +9,26 @@ import Footer from "components/layouts/Footer";
 import Navbar from "components/layouts/Navbar";
 import Drawer from "components/layouts/Drawer";
 import QuickAccess from "components/layouts/QuickAccess";
+import { setPage } from "redux/pageSlice";
 
-export default function withLayout<T>(WrappedComponent: ComponentType<T>) {
+interface Config {
+  pageName: string;
+  pageTitle: string;
+}
+
+export default function withLayout<T>(
+  WrappedComponent: ComponentType<T>,
+  config: Config
+) {
   const WithLayout = (props: T) => {
     const { appPalette } = useTheme();
     const { drawer } = useAppSelector(selectLayout);
+    const dispatch = useAppDispatch();
     const page = useAppSelector(selectPage);
+
+    useEffect(() => {
+      dispatch(setPage({ name: config.pageName, title: config.pageTitle }));
+    }, []);
 
     return (
       <Fragment>
