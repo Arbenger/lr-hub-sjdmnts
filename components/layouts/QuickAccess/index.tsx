@@ -1,5 +1,4 @@
 import { Grid, IconButton, Typography } from "@material-ui/core";
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { triggerQuickAccess } from "redux/layoutSlice";
 import { selectLayout } from "redux/selectors";
@@ -16,7 +15,6 @@ import { FaRegTimesCircle as TimesIcon } from "react-icons/fa";
 import { HiOutlineQuestionMarkCircle as LostIcon } from "react-icons/hi";
 import {
   Container,
-  Backdrop,
   Header,
   Title,
   MenuContainer,
@@ -27,10 +25,11 @@ import {
 } from "./styled";
 import { Item } from "./types";
 import Link from "next/link";
+import Backdrop from "components/layouts/Backdrop";
 
 export default function QuickAccess() {
   const dispatch = useAppDispatch();
-  const { quickAccess, drawer } = useAppSelector(selectLayout);
+  const { quickAccess } = useAppSelector(selectLayout);
 
   const items: Item[] = [
     {
@@ -69,19 +68,17 @@ export default function QuickAccess() {
     dispatch(triggerQuickAccess("close"));
   };
 
-  useEffect(() => {
-    if (quickAccess.isOpen) document.body.style.overflowY = "hidden";
-    else if (!quickAccess.isOpen && !drawer.isOpen)
-      document.body.style.overflowY = "auto";
-  }, [quickAccess.isOpen, drawer.isOpen]);
-
   if (!quickAccess.isOpen) {
     return null;
   }
 
   return (
-    <Container>
-      <Backdrop onClick={handleClose} />
+    <Container id="quick-access">
+      <Backdrop
+        elementId="quick-access"
+        isOpen={quickAccess.isOpen}
+        onClick={handleClose}
+      />
       <MenuContainer>
         <Menu>
           <Header>
