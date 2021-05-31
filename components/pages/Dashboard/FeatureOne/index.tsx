@@ -5,7 +5,6 @@ import {
   RootContainer,
   Wrapper,
   Title,
-  BackgroundDesign,
   ItemContainer,
   ItemCaption,
   ItemDisplay,
@@ -18,6 +17,7 @@ import {
 import { IoArrowUndoOutline as UndoIcon } from "react-icons/io5";
 import { FaRegTimesCircle as TimesIcon } from "react-icons/fa";
 import { HiOutlineQuestionMarkCircle as LostIcon } from "react-icons/hi";
+import { WaveBackground } from "components/designs/styled";
 import { Item } from "./types";
 import Link from "next/link";
 
@@ -31,7 +31,7 @@ export default function FeatureOne() {
       icon: <BookIcon />,
     },
     {
-      title: "Returend Books",
+      title: "Returned Books",
       quantity: 15,
       link: "/book/returned",
       icon: <UndoIcon />,
@@ -64,7 +64,7 @@ export default function FeatureOne() {
 
   return (
     <RootContainer>
-      <BackgroundDesign />
+      <WaveBackground />
       <Wrapper maxWidth="lg">
         <Title variant="h4">Dashboard</Title>
         <Grid container spacing={2}>

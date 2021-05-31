@@ -1,12 +1,6 @@
-import { useState } from "react";
 import { Grid } from "@material-ui/core";
-import {
-  BackgroundDesign,
-  Container,
-  Wrapper,
-  Title,
-  ToolContainer,
-} from "./styled";
+import { Container, Wrapper, Title, ToolContainer } from "./styled";
+import { WaveBackground } from "components/designs/styled";
 import SortBy from "./components/SortBy";
 import FilterBy from "./components/FilterBy";
 import Search from "./components/Search";
@@ -16,7 +10,7 @@ export default function FeatureOne() {
 
   return (
     <Container>
-      <BackgroundDesign />
+      <WaveBackground />
       <Wrapper maxWidth="lg">
         <Title variant="h4">Library</Title>
         <ToolContainer>

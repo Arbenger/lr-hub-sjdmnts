@@ -1,9 +1,10 @@
-import { BackgroundDesign, Container, Wrapper, Title } from "./styled";
+import { WaveBackground } from "components/designs/styled";
+import { Container, Wrapper, Title } from "./styled";
 
 export default function FeatureOne() {
   return (
     <Container>
-      <BackgroundDesign />
+      <WaveBackground />
       <Wrapper maxWidth="lg">
         <Title variant="h4">Pending Requests</Title>
       </Wrapper>

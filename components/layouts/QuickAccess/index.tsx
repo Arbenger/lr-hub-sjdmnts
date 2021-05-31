@@ -38,7 +38,7 @@ export default function QuickAccess() {
       icon: <BookIcon />,
     },
     {
-      title: "Returend Books",
+      title: "Returned Books",
       link: "/book/returned",
       icon: <UndoIcon />,
     },
