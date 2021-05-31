@@ -9,6 +9,7 @@ import Head from "next/head";
 import Footer from "components/layouts/Footer";
 import Navbar from "components/layouts/Navbar";
 import Drawer from "components/layouts/Drawer";
+import QuickAccess from "components/layouts/QuickAccess";
 
 export default function withLayout<T>(WrappedComponent: ComponentType<T>) {
   const WithLayout = (props: T) => {
@@ -33,6 +34,7 @@ export default function withLayout<T>(WrappedComponent: ComponentType<T>) {
         <div id="root-layout">
           <Navbar />
           <Drawer />
+          <QuickAccess />
           <LayoutContainer data-is-drawer-open={drawer.isOpen}>
             <WrappedComponent {...props} />
             <Footer />

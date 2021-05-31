@@ -29,7 +29,7 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout, selectPage } from "redux/selectors";
 import { useState, useEffect, Fragment } from "react";
 import { Hidden, useTheme } from "@material-ui/core";
-import { triggerDrawer } from "redux/layoutSlice";
+import { triggerDrawer, triggerQuickAccess } from "redux/layoutSlice";
 import { List } from "./types";
 
 export default function Lists() {
@@ -144,6 +144,10 @@ export default function Lists() {
     if (width <= breakpoints.values.sm) dispatch(triggerDrawer("close"));
   };
 
+  const handleQuickAccessClick = () => {
+    dispatch(triggerQuickAccess("open"));
+  };
+
   useEffect(() => {
     const handleWindowResize = () => {
       const navbar = document.getElementById("navbar") as HTMLDivElement;
@@ -181,7 +185,7 @@ export default function Lists() {
               {list.items.map((item) => {
                 if (item.title === "Quick Access") {
                   return (
-                    <MenuItem key={item.title}>
+                    <MenuItem key={item.title} onClick={handleQuickAccessClick}>
                       <MenuIcon>{item.icon}</MenuIcon>
                       <MenuTitle className="fade-on-close">
                         {item.title}
