@@ -1,8 +1,5 @@
 import { Container } from "./styled";
-import dynamic from "next/dynamic";
-const ReactFrappeChart = dynamic(() => import("react-frappe-charts"), {
-  ssr: false,
-});
+import ReactFrappeChart from "react-frappe-charts";
 
 export default function Chart() {
   return (
