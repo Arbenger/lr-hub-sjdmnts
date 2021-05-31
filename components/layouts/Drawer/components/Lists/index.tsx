@@ -15,14 +15,14 @@ import {
 } from "react-icons/ri";
 import {
   BiBook as BookIcon,
-  BiErrorCircle as ErrorIcon,
   BiHourglass as HourglassIcon,
+  BiBookBookmark as BookmarksIcon,
 } from "react-icons/bi";
-import { GoBook as BookManagerIcon } from "react-icons/go";
 import {
   MdKeyboardArrowRight as ArrowRightIcon,
   MdKeyboardArrowLeft as ArrowLeftIcon,
 } from "react-icons/md";
+import { IoLinkSharp as LinkIcon } from "react-icons/io5";
 import Link from "next/link";
 import { Divider } from "../../styled";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
@@ -46,21 +46,25 @@ export default function Lists() {
         {
           title: "Home",
           pageName: "home",
+          link: "/",
           icon: <HomeIcon />,
         },
         {
           title: "Dashboard",
           pageName: "dashboard",
+          link: "/dashboard",
           icon: <DashboardIcon />,
         },
         {
           title: "Library",
           pageName: "library",
+          link: "/book/library",
           icon: <BookIcon />,
         },
         {
           title: "Account",
           pageName: "account",
+          link: "/account",
           icon: <UserIcon />,
         },
       ],
@@ -69,24 +73,28 @@ export default function Lists() {
       title: "Tools",
       items: [
         {
-          title: "Book Manager",
-          pageName: "book-manager",
-          icon: <BookManagerIcon />,
+          title: "Quick Access",
+          pageName: "",
+          link: "",
+          icon: <LinkIcon />,
+        },
+        {
+          title: "Bookmarks",
+          pageName: "bookmarks",
+          link: "/book/bookmarks",
+          icon: <BookmarksIcon />,
         },
         {
           title: "Pending Requests",
           pageName: "pending-requests",
+          link: "/pending-requests",
           icon: <HourglassIcon />,
         },
         {
           title: "Notifications",
           pageName: "notifications",
+          link: "/notifications",
           icon: <NotificationIcon />,
-        },
-        {
-          title: "Penalties",
-          pageName: "penalties",
-          icon: <ErrorIcon />,
         },
       ],
     },
@@ -96,26 +104,31 @@ export default function Lists() {
         {
           title: "About",
           pageName: "about",
+          link: "/about",
           icon: <ArrowRightIcon />,
         },
         {
           title: "Usage Guide",
           pageName: "usage-guide",
+          link: "/resources/usage-guide",
           icon: <ArrowRightIcon />,
         },
         {
           title: "Terms of Service",
           pageName: "terms-of-service",
+          link: "/resources/terms-of-service",
           icon: <ArrowRightIcon />,
         },
         {
           title: "Privacy Policy",
           pageName: "privacy-policy",
+          link: "/resources/privacry-policy",
           icon: <ArrowRightIcon />,
         },
         {
           title: "References",
           pageName: "references",
+          link: "/resources/references",
           icon: <ArrowRightIcon />,
         },
       ],
@@ -165,22 +178,32 @@ export default function Lists() {
                 list.title === "Resources" ? "hide-on-close" : null
               }`}
             >
-              {list.items.map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.title === "Home" ? "/" : `/${item.pageName}`}
-                >
-                  <MenuItem
-                    data-is-active={page.name === item.pageName}
-                    onClick={handleClick}
-                  >
-                    <MenuIcon>{item.icon}</MenuIcon>
-                    <MenuTitle className="fade-on-close">
-                      {item.title}
-                    </MenuTitle>
-                  </MenuItem>
-                </Link>
-              ))}
+              {list.items.map((item) => {
+                if (item.title === "Quick Access") {
+                  return (
+                    <MenuItem key={item.title}>
+                      <MenuIcon>{item.icon}</MenuIcon>
+                      <MenuTitle className="fade-on-close">
+                        {item.title}
+                      </MenuTitle>
+                    </MenuItem>
+                  );
+                }
+
+                return (
+                  <Link key={item.title} href={item.link}>
+                    <MenuItem
+                      data-is-active={page.name === item.pageName}
+                      onClick={handleClick}
+                    >
+                      <MenuIcon>{item.icon}</MenuIcon>
+                      <MenuTitle className="fade-on-close">
+                        {item.title}
+                      </MenuTitle>
+                    </MenuItem>
+                  </Link>
+                );
+              })}
             </Menu>
             {list.title !== "Resources" && <Divider />}
           </Fragment>

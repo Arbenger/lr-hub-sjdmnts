@@ -1,16 +1,36 @@
 import { Typography } from "@material-ui/core";
 import { ColumnThreeContainer } from "./styled";
+import Link from "next/link";
 
 export default function ColumnThree() {
+  const items = [
+    {
+      title: "Usage Guide",
+      link: "/resources/usage-guide",
+    },
+    {
+      title: "Terms of Service",
+      link: "/resources/terms-of-service",
+    },
+    {
+      title: "Privacy Policy",
+      link: "/resources/privacy-policy",
+    },
+    {
+      title: "References",
+      link: "/resources/references",
+    },
+  ];
+
   return (
     <ColumnThreeContainer>
       <Typography>RESOURCES</Typography>
       <ul>
-        <li>About</li>
-        <li>Usage Guide</li>
-        <li>Terms of Service</li>
-        <li>Privacy Policy</li>
-        <li>References</li>
+        {items.map((item) => (
+          <Link key={item.title} href={item.link}>
+            <li>{item.title}</li>
+          </Link>
+        ))}
       </ul>
     </ColumnThreeContainer>
   );

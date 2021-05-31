@@ -7,6 +7,7 @@ export interface Props {
 export interface Item {
   title: string;
   pageName: string;
+  link: string;
   icon: ReactNode;
 }
 
