@@ -1,13 +1,5 @@
 import withLayout from "HOC/withLayout";
-import FeatureOne from "components/pages/Account/FeatureOne";
-
-const Account = () => {
-  return (
-    <div>
-      <FeatureOne />
-    </div>
-  );
-};
+import Account from "components/pages/Account";
 
 export default withLayout(Account, {
   pageName: "account",

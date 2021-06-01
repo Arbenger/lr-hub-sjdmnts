@@ -1,15 +1,5 @@
 import withLayout from "HOC/withLayout";
-import FeatureOne from "components/pages/PendingRequests/FeatureOne";
-import FeatureTwo from "components/pages/PendingRequests/FeatureTwo";
-
-const PendingRequests = () => {
-  return (
-    <div>
-      <FeatureOne />
-      <FeatureTwo />
-    </div>
-  );
-};
+import PendingRequests from "components/pages/PendingRequests";
 
 export default withLayout(PendingRequests, {
   pageName: "pending-requests",

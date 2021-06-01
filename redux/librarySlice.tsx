@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FilterByValue } from "components/pages/Library/FeatureOne/components/FilterBy/types";
+import { FilterByValue } from "components/pages/Library/components/FeatureOne/components/FilterBy/types";
 import {
   SortByValue,
   SortDirectionValue,
-} from "components/pages/Library/FeatureOne/components/SortBy/types";
+} from "components/pages/Library/components/FeatureOne/components/SortBy/types";
 
 interface InitialState {
   sortBy: SortByValue;
