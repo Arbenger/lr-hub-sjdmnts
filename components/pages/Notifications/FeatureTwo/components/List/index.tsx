@@ -1,4 +1,5 @@
-import { Container, MuiList } from "./styled";
+import { List as MuiList } from "@material-ui/core";
+import { Container, LoadMoreButton, LoadMoreContainer } from "./styled";
 
 import BarrowAccepted from "./components/BarrowAccepted";
 import ReturnAccepted from "./components/ReturnAccepted";
@@ -21,9 +22,10 @@ export default function List() {
         <ReturnAccepted createdAt={new Date(1621142681607)} />
         <ResolveAccepted createdAt={new Date(1621142681607)} />
         <BarrowDenied createdAt={new Date(1621142681607)} />
-        <ReturnDenied createdAt={new Date(1621142681607)} />
-        <ResolveDenied createdAt={new Date(1621142681607)} />
       </MuiList>
+      <LoadMoreContainer>
+        <LoadMoreButton variant="contained">Load More</LoadMoreButton>
+      </LoadMoreContainer>
     </Container>
   );
 }
