@@ -2,23 +2,18 @@ import { useEffect } from "react";
 import { Container } from "./styled";
 
 interface Props {
-  elementId: string;
-  isOpen: boolean;
-  onClick?: any;
+  onClick?: () => void;
 }
 
-export default function Backdrop({ isOpen, elementId }: Props) {
+export default function Backdrop({ onClick }: Props) {
   useEffect(() => {
-    const element = document.getElementById(elementId) as HTMLDivElement;
-    if (!element) return;
-    const preventScroll = (event) => event.preventDefault();
-    element.addEventListener("touchmove", preventScroll);
-    element.addEventListener("wheel", preventScroll);
+    document.body.style.overflowY = "hidden";
+    const backdrop = document.getElementById("backdrop");
+    if (backdrop) backdrop.addEventListener("click", onClick);
     return () => {
-      element.removeEventListener("touchmove", preventScroll);
-      element.removeEventListener("wheel", preventScroll);
+      document.body.style.overflowY = "auto";
+      backdrop.removeEventListener("click", onClick);
     };
-  }, [isOpen]);
-
-  return <Container></Container>;
+  }, []);
+  return <Container id="backdrop"></Container>;
 }

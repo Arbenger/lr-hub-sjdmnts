@@ -73,12 +73,8 @@ export default function QuickAccess() {
   }
 
   return (
-    <Container id="quick-access">
-      <Backdrop
-        elementId="quick-access"
-        isOpen={quickAccess.isOpen}
-        onClick={handleClose}
-      />
+    <Container>
+      <Backdrop onClick={handleClose} />
       <MenuContainer>
         <Menu>
           <Header>
