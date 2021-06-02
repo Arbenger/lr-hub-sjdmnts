@@ -1,0 +1,25 @@
+import {
+  Box,
+  Paper,
+  styled,
+  TextField as MuiTextField,
+} from "@material-ui/core";
+import { flexCenter } from "components/layouts/ThemeSetter/mixins";
+import Image from "next/image";
+
+export const Container = styled(Paper)(({ theme: { spacing } }) => ({
+  padding: spacing(2),
+}));
+
+export const PictureContainer = styled(Box)({
+  ...flexCenter,
+  width: "100%",
+});
+
+export const Picture = styled(Image)({
+  borderRadius: "50%",
+});
+
+export const TextField = styled(MuiTextField)({
+  width: "100%",
+});

@@ -5,10 +5,13 @@ import {
 } from "@material-ui/core";
 
 export const Container = styled(MuiContainer)(
-  ({ theme: { appPalette, spacing } }) => ({
+  ({ theme: { appPalette, spacing, breakpoints } }) => ({
     color: appPalette[appPalette.current].contrastText,
     paddingTop: 70,
-    marginBottom: spacing(10),
+    marginBottom: spacing(30),
+    [breakpoints.only("xs")]: {
+      marginBottom: spacing(10),
+    },
   })
 );
 
