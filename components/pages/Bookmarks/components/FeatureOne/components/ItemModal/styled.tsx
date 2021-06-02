@@ -40,16 +40,6 @@ export const ContentImage = styled(Box)(({ theme: { breakpoints } }) => ({
   },
 }));
 
-export const ContentChips = styled(Box)(({ theme: { spacing } }) => ({
-  marginTop: spacing(3),
-}));
-
-export const ContentChipsTitle = styled(Typography)(
-  ({ theme: { spacing } }) => ({
-    marginBottom: spacing(1),
-  })
-);
-
 export const Button = styled(MuiButton)(
   ({ theme: { spacing, appPalette } }) => ({
     color: appPalette[appPalette.current].main,

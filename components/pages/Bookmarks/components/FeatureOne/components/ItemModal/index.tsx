@@ -6,9 +6,7 @@ import {
   ContentContainer,
   Content,
   ContentImage,
-  ContentChips,
   Button,
-  ContentChipsTitle,
 } from "./styled";
 import Backdrop from "components/layouts/Backdrop";
 import Image from "next/image";
@@ -54,35 +52,7 @@ export default function ItemModal() {
                     </Button>
                   </Grid>
                 </Grid>
-
-                <Hidden only="xs">
-                  <ContentChips>
-                    <ContentChipsTitle variant="body2">Tags:</ContentChipsTitle>
-                    <Grid container spacing={1}>
-                      <Grid item>
-                        <Chip label="Math" />
-                      </Grid>
-                      <Grid item>
-                        <Chip label="Entertainment" />
-                      </Grid>
-                    </Grid>
-                  </ContentChips>
-                </Hidden>
               </Grid>
-
-              <Hidden smUp>
-                <Grid xs={12}>
-                  <ContentChipsTitle variant="body2">Tags:</ContentChipsTitle>
-                  <Grid container spacing={1}>
-                    <Grid item>
-                      <Chip label="Math" />
-                    </Grid>
-                    <Grid item>
-                      <Chip label="Entertainment" />
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Hidden>
 
               <Grid item xs={12}>
                 <Typography variant="h6">Description</Typography>

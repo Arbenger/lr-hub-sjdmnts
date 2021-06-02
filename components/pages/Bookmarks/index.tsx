@@ -5,7 +5,6 @@ import { Container, Title } from "./styled";
 
 import FeatureOne from "./components/FeatureOne";
 import FeatureTwo from "./components/FeatureTwo";
-import FeatureThree from "./components/FeatureThree";
 
 export default function Bookmarks() {
   return (
@@ -22,9 +21,6 @@ export default function Bookmarks() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <FeatureTwo />
-              </Grid>
-              <Grid item xs={12}>
-                <FeatureThree />
               </Grid>
             </Grid>
           </Grid>
