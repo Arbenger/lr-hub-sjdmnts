@@ -1,31 +1,7 @@
 import ReactFrappeChart from "react-frappe-charts";
+import { getMonthLabels } from "utils";
 
 export default function Statistics() {
-  const getLabels = () => {
-    const months = [
-      "JAN",
-      "FEB",
-      "APR",
-      "MAR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
-      "NOV",
-      "DEC",
-    ];
-    let current = new Date().getMonth();
-    let labels: string[] = [];
-    for (let i = 0; i < 12; i++) {
-      labels = [...labels, months[current]];
-      if (current === 11) current = 0;
-      else current++;
-    }
-    return labels;
-  };
-
   return (
     <ReactFrappeChart
       type="axis-mixed"
@@ -33,7 +9,7 @@ export default function Statistics() {
       colors={["#b71c1c", "#0d47a1", "#6a1b9a", "#2e7d32"]}
       title="Statistics"
       data={{
-        labels: getLabels(),
+        labels: getMonthLabels(),
         datasets: [
           {
             name: "Barrowed",

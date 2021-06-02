@@ -151,3 +151,9 @@ export function applyKey(key: AppPaletteKey) {
   storeKey(key);
   setCSSRootVariables(palettes[key]);
 }
+
+export function getAllHex() {
+  let hex = palettes.map((palette) => palette.properties.main);
+  hex.shift();
+  return hex;
+}

@@ -21,7 +21,7 @@ const initialState: InitialState = {
 };
 
 const layoutSlice = createSlice({
-  name: "theme",
+  name: "layout",
   initialState,
   reducers: {
     triggerDrawer({ drawer }, action: PayloadAction<Action>) {

@@ -1,8 +1,5 @@
 import withLayout from "HOC/withLayout";
-
-const Bookmarks = () => {
-  return <div>Bookmarks</div>;
-};
+import Bookmarks from "components/pages/Bookmarks";
 
 export default withLayout(Bookmarks, {
   pageName: "bookmarks",
