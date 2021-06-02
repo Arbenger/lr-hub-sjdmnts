@@ -1,4 +1,4 @@
-import { Grid, IconButton, Typography } from "@material-ui/core";
+import { Fade, Grid, IconButton, Typography } from "@material-ui/core";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { triggerQuickAccess } from "redux/layoutSlice";
 import { selectLayout } from "redux/selectors";
@@ -73,32 +73,34 @@ export default function QuickAccess() {
   }
 
   return (
-    <Container>
-      <Backdrop onClick={handleClose} />
-      <MenuContainer>
-        <Menu>
-          <Header>
-            <Title variant="h5">Quick Access</Title>
-            <IconButton edge="end" onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
-          </Header>
-          <Grid container spacing={2}>
-            {items.map((item) => (
-              <Grid key={item.title} item xs={12} sm={6}>
-                <Link href={item.link}>
-                  <ItemContainer>
-                    <ItemIcon className="item-icon">{item.icon}</ItemIcon>
-                    <ItemCaption>
-                      <Typography variant="h6">{item.title}</Typography>
-                    </ItemCaption>
-                  </ItemContainer>
-                </Link>
-              </Grid>
-            ))}
-          </Grid>
-        </Menu>
-      </MenuContainer>
-    </Container>
+    <Fade in={true}>
+      <Container>
+        <Backdrop onClick={handleClose} />
+        <MenuContainer>
+          <Menu>
+            <Header>
+              <Title variant="h5">Quick Access</Title>
+              <IconButton edge="end" onClick={handleClose}>
+                <CloseIcon />
+              </IconButton>
+            </Header>
+            <Grid container spacing={2}>
+              {items.map((item) => (
+                <Grid key={item.title} item xs={12} sm={6}>
+                  <Link href={item.link}>
+                    <ItemContainer onClick={handleClose}>
+                      <ItemIcon className="item-icon">{item.icon}</ItemIcon>
+                      <ItemCaption>
+                        <Typography variant="h6">{item.title}</Typography>
+                      </ItemCaption>
+                    </ItemContainer>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
+          </Menu>
+        </MenuContainer>
+      </Container>
+    </Fade>
   );
 }
