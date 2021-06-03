@@ -1,8 +1,5 @@
 import withLayout from "HOC/withLayout";
-
-const References = () => {
-  return <div>References</div>;
-};
+import References from "components/pages/References";
 
 export default withLayout(References, {
   pageName: "references",

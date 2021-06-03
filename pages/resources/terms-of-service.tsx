@@ -1,8 +1,5 @@
 import withLayout from "HOC/withLayout";
-
-const TermsOfService = () => {
-  return <div>Terms of Service</div>;
-};
+import TermsOfService from "components/pages/TermsOfService";
 
 export default withLayout(TermsOfService, {
   pageName: "terms-of-service",

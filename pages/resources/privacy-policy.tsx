@@ -1,8 +1,5 @@
 import withLayout from "HOC/withLayout";
-
-const PrivacyPolicy = () => {
-  return <div>Privacy Policy</div>;
-};
+import PrivacyPolicy from "components/pages/PrivacyPolicy";
 
 export default withLayout(PrivacyPolicy, {
   pageName: "privacy-policy",

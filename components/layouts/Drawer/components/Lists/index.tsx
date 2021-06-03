@@ -110,7 +110,7 @@ export default function Lists() {
         {
           title: "Privacy Policy",
           pageName: "privacy-policy",
-          link: "/resources/privacry-policy",
+          link: "/resources/privacy-policy",
           icon: <ArrowRightIcon />,
         },
         {
