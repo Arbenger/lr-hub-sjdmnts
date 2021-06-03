@@ -1,10 +1,7 @@
 import withLayout from "HOC/withLayout";
+import ExpiredBooks from "components/pages/ExpiredBooks";
 
-const Expired = () => {
-  return <div>Expired Books</div>;
-};
-
-export default withLayout(Expired, {
+export default withLayout(ExpiredBooks, {
   pageName: "expired-books",
   pageTitle: "Expired Books",
 });

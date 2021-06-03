@@ -1,10 +1,7 @@
 import withLayout from "HOC/withLayout";
+import LostBooks from "components/pages/LostBooks";
 
-const Lost = () => {
-  return <div>Lost Books</div>;
-};
-
-export default withLayout(Lost, {
+export default withLayout(LostBooks, {
   pageName: "lost-books",
   pageTitle: "Lost Books",
 });

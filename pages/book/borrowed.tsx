@@ -1,10 +1,7 @@
 import withLayout from "HOC/withLayout";
+import BorrowedBooks from "components/pages/BorrowedBooks";
 
-const Borrowed = () => {
-  return <div>Borrowed Books</div>;
-};
-
-export default withLayout(Borrowed, {
+export default withLayout(BorrowedBooks, {
   pageName: "borrowed-books",
   pageTitle: "Borrowed Books",
 });
