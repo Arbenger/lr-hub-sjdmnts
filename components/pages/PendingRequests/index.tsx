@@ -14,10 +14,10 @@ export default function PendingRequests() {
         <Title variant="h4">Pending Requests</Title>
 
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={7}>
+          <Grid item xs={12} sm={6}>
             <FeatureOne />
           </Grid>
-          <Grid item xs={12} sm={6} md={5}>
+          <Grid item xs={12} sm={6}>
             <FeatureTwo />
           </Grid>
         </Grid>
