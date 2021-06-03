@@ -5,10 +5,6 @@ import Link from "next/link";
 export default function ColumnThree() {
   const items = [
     {
-      title: "Usage Guide",
-      link: "/resources/usage-guide",
-    },
-    {
       title: "Terms of Service",
       link: "/resources/terms-of-service",
     },

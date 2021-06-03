@@ -102,18 +102,6 @@ export default function Lists() {
       title: "Resources",
       items: [
         {
-          title: "About",
-          pageName: "about",
-          link: "/about",
-          icon: <ArrowRightIcon />,
-        },
-        {
-          title: "Usage Guide",
-          pageName: "usage-guide",
-          link: "/resources/usage-guide",
-          icon: <ArrowRightIcon />,
-        },
-        {
           title: "Terms of Service",
           pageName: "terms-of-service",
           link: "/resources/terms-of-service",

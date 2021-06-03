@@ -20,10 +20,6 @@ export default function ColumnTwo() {
       title: "Account",
       link: "/account",
     },
-    {
-      title: "About",
-      link: "/about",
-    },
   ];
 
   return (
