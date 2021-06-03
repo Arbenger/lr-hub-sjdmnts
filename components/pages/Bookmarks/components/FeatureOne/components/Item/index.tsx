@@ -25,7 +25,12 @@ export default function Item({ index, bookTitle, imageUrl, createdAt }: Props) {
   return (
     <ListItem button onClick={handleClick}>
       <ListItemAvatar>
-        <Avatar variant="square" alt="book-cover" src={imageUrl} />
+        <Avatar
+          variant="square"
+          alt="book-cover"
+          src={imageUrl}
+          style={{ height: 100, width: 75, marginRight: 16 }}
+        />
       </ListItemAvatar>
       <ListItemText
         primary={bookTitle}
