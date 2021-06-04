@@ -3,13 +3,13 @@ import { useTheme } from "@material-ui/core";
 import { LayoutContainer } from "./styled";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout, selectPage } from "redux/selectors";
+import { setPage } from "redux/pageSlice";
 
 import Head from "next/head";
 import Footer from "components/layouts/Footer";
 import Navbar from "components/layouts/Navbar";
 import Drawer from "components/layouts/Drawer";
 import QuickAccess from "components/layouts/QuickAccess";
-import { setPage } from "redux/pageSlice";
 
 interface Config {
   pageName: string;

@@ -4,9 +4,9 @@ import {
   ListItemAvatar,
   ListItemText,
 } from "@material-ui/core";
-import ReactTimeAgo from "react-time-ago";
 import { setSelectedItem } from "redux/bookmarksSlice";
 import { useAppDispatch } from "redux/hooks";
+import ReactTimeAgo from "utils/ReactTimeAgo";
 
 interface Props {
   index: number;
@@ -34,7 +34,7 @@ export default function Item({ index, bookTitle, imageUrl, createdAt }: Props) {
       </ListItemAvatar>
       <ListItemText
         primary={bookTitle}
-        secondary={<ReactTimeAgo date={createdAt} locale="en-US" />}
+        secondary={<ReactTimeAgo date={createdAt} />}
       />
     </ListItem>
   );

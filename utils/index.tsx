@@ -1,7 +1,3 @@
-import { GetServerSidePropsContext } from "next";
-import { firebaseAdmin } from "firebase/admin";
-import nookies from "nookies";
-
 export const getMonthLabels = () => {
   const months = [
     "JAN",
@@ -25,22 +21,4 @@ export const getMonthLabels = () => {
     else current++;
   }
   return labels;
-};
-
-export const redirectIfNotSignedIn = async (ctx: GetServerSidePropsContext) => {
-  try {
-    const cookies = nookies.get(ctx);
-    const auth = firebaseAdmin.auth();
-    await auth.verifyIdToken(cookies.token);
-
-    return {
-      props: {},
-    };
-  } catch (error) {
-    return {
-      redirect: {
-        destination: "/login",
-      },
-    };
-  }
 };

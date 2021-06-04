@@ -15,6 +15,15 @@ module.exports = withTM({
     appId: "1:352114457828:web:d73022558aae6c5b8a80f1",
     measurementId: "G-V7YGZ03RCY",
     fbAccessToken:
-      "EAANM4cgOp3QBAKQx2aFkmwZCsZBHFNMZAYPYiYYedwwxFZBPEpetD1t3hpdAzKB3DAn3kzSoNYxtASZC0ApQJZBjhz4tdEjtBZAxowCEpJilNMGhto12FwXptGIoHxd5BZCP8bSNklRs1v2GVuZAv2il6EMYL1lL7ieiKQLTW6940Ff8HFWDII7jdlis8kUJqnxjKkc9B5RjqeDhhTZA0YtLxHPzZAhLaWXDrK0wkEnXVZCyz1H095OYoioG",
+      "EAANM4cgOp3QBAASWBA78ZBD8O8vWMNZBz4d3bP1UQMJr7H3k6KwJ62ZBK4XhIK9sO8GZBrJQnY4K8foP20HYL9qzDNoMxOurW3CAxO5ywTixv23lUQcDhGOa952tZBjW0HjemHE7IbNCZA3kGaeaT3ZAuV4pLMSCeUf0jphqveMkSyZANkycC1pf8DgrvhHeEQQB9yInX6xZAtIw8vmsGP1xCAhJDEZAYic2RF44yKVjnuUBs6Wy4gZCkud",
   },
 });
+
+// webpack: (config, { isServer }) => {
+//   if (!isServer) {
+//     config.node = {
+//       fs: "empty",
+//     };
+//   }
+//   return config;
+// },

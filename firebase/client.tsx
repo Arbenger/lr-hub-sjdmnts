@@ -11,7 +11,6 @@ if (!firebase.apps.length) {
     appId: process.env.appId,
     measurementId: process.env.measurementId,
   });
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 }
 
 export const firebaseClient = firebase;

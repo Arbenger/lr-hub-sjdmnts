@@ -2,7 +2,7 @@ import { ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
 import { ListAvatar, BookIcon, UndoIcon } from "./styled";
 import { Item as ItemType } from "../../types";
 import { Templates } from "./types";
-import ReactTimeAgo from "react-time-ago";
+import ReactTimeAgo from "utils/ReactTimeAgo";
 
 export default function Item({ type, createdAt }: ItemType) {
   const templates: Templates = {
@@ -20,7 +20,7 @@ export default function Item({ type, createdAt }: ItemType) {
       </ListItemAvatar>
       <ListItemText
         primary={templates[type].text}
-        secondary={<ReactTimeAgo date={createdAt} locale="en-US" />}
+        secondary={<ReactTimeAgo date={createdAt} />}
       />
     </ListItem>
   );

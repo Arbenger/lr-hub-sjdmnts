@@ -16,7 +16,6 @@
     "firebase-admin": "^9.9.0",
     "frappe-charts": "^1.6.1",
     "hero-patterns": "^2.1.0",
-    "javascript-time-ago": "^2.3.5",
     "material-ui-popup-state": "^1.8.3",
     "next": "10.2.0",
     "next-transpile-modules": "^7.2.0",
@@ -28,7 +27,7 @@
     "react-hook-use-window-width": "^1.0.3",
     "react-icons": "^4.2.0",
     "react-redux": "^7.2.4",
-    "react-time-ago": "^6.2.2",
+    "react-timeago": "^6.2.1",
     "redux": "^4.1.0",
     "sass": "^1.32.12",
     "swiper": "^6.6.1"
