@@ -66,7 +66,7 @@ export default function PaletteButton() {
       {(popupState) => (
         <Fragment>
           <IconButton
-            edge="end"
+            edge="start"
             color="inherit"
             aria-label="palette"
             {...bindTrigger(popupState)}

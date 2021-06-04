@@ -1,3 +1,4 @@
+import { AuthProvider } from "firebase/AuthProvider";
 import { Provider } from "react-redux";
 import { store } from "redux/store";
 import ThemeSetter from "components/layouts/ThemeSetter";
@@ -9,11 +10,13 @@ TimeAgo.addLocale(en);
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider store={store}>
-      <ThemeSetter>
-        <Component {...pageProps} />
-      </ThemeSetter>
-    </Provider>
+    <AuthProvider>
+      <Provider store={store}>
+        <ThemeSetter>
+          <Component {...pageProps} />
+        </ThemeSetter>
+      </Provider>
+    </AuthProvider>
   );
 }
 
