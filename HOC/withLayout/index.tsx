@@ -1,5 +1,5 @@
 import { ComponentType, Fragment, useEffect } from "react";
-import { useTheme } from "@material-ui/core";
+import { useTheme, Box } from "@material-ui/core";
 import { LayoutContainer } from "./styled";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout, selectPage } from "redux/selectors";
@@ -44,7 +44,7 @@ export default function withLayout<T>(
           <title>LR Hub | {page.title}</title>
         </Head>
 
-        <div id="root-layout">
+        <Box>
           <Navbar />
           <Drawer />
           <QuickAccess />
@@ -52,7 +52,7 @@ export default function withLayout<T>(
             <WrappedComponent {...props} />
             <Footer />
           </LayoutContainer>
-        </div>
+        </Box>
       </Fragment>
     );
   };

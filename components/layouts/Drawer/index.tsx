@@ -1,41 +1,51 @@
 import { Container, Divider } from "./styled";
-import { useAppSelector } from "redux/hooks";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout } from "redux/selectors";
-import { useTheme } from "@material-ui/core";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { Dialog } from "@material-ui/core";
 
 import Brand from "./components/Brand";
 import Lists from "./components/Lists";
 import Action from "./components/Action";
-import Backdrop from "./components/Backdrop";
+import { triggerDrawer } from "redux/layoutSlice";
 
 export default function Drawer() {
-  const { breakpoints } = useTheme();
   const { drawer } = useAppSelector(selectLayout);
+  const dispatch = useAppDispatch();
+  const [width, setWidth] = useState(0);
+
+  const handleClose = () => {
+    dispatch(triggerDrawer("close"));
+  };
+
+  useEffect(() => {
+    function observeWidth() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", observeWidth);
+    return () => {
+      window.removeEventListener("resize", observeWidth);
+    };
+  }, []);
 
   useEffect(() => {
     setTimeout(() => window.dispatchEvent(new Event("resize")), 500);
-    const observeWindowWidth = () => {
-      const width = window.innerWidth;
-      const isSM = width <= breakpoints.values.md;
-      document.body.style.overflowY = isSM && drawer.isOpen ? "hidden" : "auto";
-    };
-    observeWindowWidth();
-    window.addEventListener("resize", observeWindowWidth);
-    return () => {
-      window.removeEventListener("resize", observeWindowWidth);
-    };
+    setTimeout(() => window.dispatchEvent(new Event("resize")), 1000);
   }, [drawer.isOpen]);
 
   return (
     <Fragment>
+      <Dialog
+        open={drawer.isOpen && width <= 960}
+        onClose={handleClose}
+        style={{ zIndex: 1150 }}
+      />
       <Container data-is-open={drawer.isOpen}>
         <Brand />
         <Divider />
         <Lists />
         <Action />
       </Container>
-      <Backdrop />
     </Fragment>
   );
 }

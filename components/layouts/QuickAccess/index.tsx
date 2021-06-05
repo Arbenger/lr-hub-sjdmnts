@@ -1,33 +1,41 @@
-import { Fade, Grid, IconButton, Typography } from "@material-ui/core";
+import {
+  Slide,
+  Typography,
+  IconButton,
+  Toolbar,
+  AppBar,
+  List,
+  ListItem,
+  ListItemText,
+  Dialog,
+  Avatar,
+  ListItemAvatar,
+} from "@material-ui/core";
+import { TransitionProps } from "@material-ui/core/transitions";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
-import { triggerQuickAccess } from "redux/layoutSlice";
 import { selectLayout } from "redux/selectors";
+import { triggerQuickAccess } from "redux/layoutSlice";
 import {
-  BiBookAlt as BookIcon,
-  BiErrorCircle as ErrorIcon,
-  BiBookBookmark as BookmarksIcon,
-} from "react-icons/bi";
-import {
-  IoArrowUndoOutline as UndoIcon,
-  IoCloseSharp as CloseIcon,
-} from "react-icons/io5";
-import { FaRegTimesCircle as TimesIcon } from "react-icons/fa";
-import { HiOutlineQuestionMarkCircle as LostIcon } from "react-icons/hi";
-import {
-  Container,
-  Header,
-  Title,
-  MenuContainer,
-  Menu,
-  ItemContainer,
-  ItemCaption,
-  ItemIcon,
+  CloseIcon,
+  BookIcon,
+  UndoIcon,
+  TimesIcon,
+  LostIcon,
+  BookmarksIcon,
+  ErrorIcon,
 } from "./styled";
 import { Item } from "./types";
+import React from "react";
 import Link from "next/link";
-import Backdrop from "components/layouts/Backdrop";
 
-export default function QuickAccess() {
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & { children?: React.ReactElement },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+export default function FullScreenDialog() {
   const dispatch = useAppDispatch();
   const { quickAccess } = useAppSelector(selectLayout);
 
@@ -68,39 +76,39 @@ export default function QuickAccess() {
     dispatch(triggerQuickAccess("close"));
   };
 
-  if (!quickAccess.isOpen) {
-    return null;
-  }
-
   return (
-    <Fade in={true}>
-      <Container>
-        <Backdrop onClick={handleClose} />
-        <MenuContainer>
-          <Menu>
-            <Header>
-              <Title variant="h5">Quick Access</Title>
-              <IconButton edge="end" onClick={handleClose}>
-                <CloseIcon />
-              </IconButton>
-            </Header>
-            <Grid container spacing={2}>
-              {items.map((item) => (
-                <Grid key={item.title} item xs={12} sm={6}>
-                  <Link href={item.link}>
-                    <ItemContainer onClick={handleClose}>
-                      <ItemIcon className="item-icon">{item.icon}</ItemIcon>
-                      <ItemCaption>
-                        <Typography variant="h6">{item.title}</Typography>
-                      </ItemCaption>
-                    </ItemContainer>
-                  </Link>
-                </Grid>
-              ))}
-            </Grid>
-          </Menu>
-        </MenuContainer>
-      </Container>
-    </Fade>
+    <Dialog
+      fullScreen
+      open={quickAccess.isOpen}
+      onClose={handleClose}
+      TransitionComponent={Transition}
+    >
+      <AppBar position="relative">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            onClick={handleClose}
+            aria-label="close"
+          >
+            <CloseIcon />
+          </IconButton>
+          <Typography variant="h6">Quick Access</Typography>
+        </Toolbar>
+      </AppBar>
+
+      <List>
+        {items.map((item) => (
+          <Link href={item.link} key={item.title}>
+            <ListItem button>
+              <ListItemAvatar>
+                <Avatar>{item.icon}</Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={item.title} />
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+    </Dialog>
   );
 }
