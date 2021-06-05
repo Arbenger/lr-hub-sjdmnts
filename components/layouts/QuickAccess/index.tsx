@@ -100,7 +100,7 @@ export default function FullScreenDialog() {
       <List>
         {items.map((item) => (
           <Link href={item.link} key={item.title}>
-            <ListItem button>
+            <ListItem button onClick={handleClose}>
               <ListItemAvatar>
                 <Avatar>{item.icon}</Avatar>
               </ListItemAvatar>
