@@ -7,11 +7,10 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 const uiConfig = {
   signInFlow: "popup",
   signInSuccessUrl: "/account",
-  signInOptions: [
-    firebaseClient.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebaseClient.auth.FacebookAuthProvider.PROVIDER_ID,
-    firebaseClient.auth.PhoneAuthProvider.PROVIDER_ID,
-  ],
+  signInOptions: [firebaseClient.auth.GoogleAuthProvider.PROVIDER_ID],
+  credentialHelper: "none",
+  tosUrl: "/resources/terms-of-service",
+  privacyPolicyUrl: "/resources/privacy-policy",
 };
 
 export default function Login() {

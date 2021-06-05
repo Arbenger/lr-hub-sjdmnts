@@ -1,6 +1,6 @@
 import {
   styled,
-  Box,
+  Paper,
   Typography,
   Container as MuiContainer,
 } from "@material-ui/core";
@@ -9,7 +9,7 @@ export const Container = styled(MuiContainer)(
   ({ theme: { palette, spacing } }) => ({
     color: palette.primary.contrastText,
     paddingTop: 70,
-    marginBottom: spacing(10),
+    marginBottom: spacing(15),
   })
 );
 
@@ -17,7 +17,9 @@ export const Title = styled(Typography)(({ theme: { spacing } }) => ({
   marginBottom: spacing(1),
 }));
 
-export const ContentContainer = styled(Box)({
+export const ContentContainer = styled(Paper)(({ theme: { spacing } }) => ({
   width: "fit-content",
   margin: "auto",
-});
+  padding: spacing(2),
+  backgroundColor: "rgba(255, 255, 255, .85)",
+}));
