@@ -1,4 +1,6 @@
 import { Grid } from "@material-ui/core";
+import { useAppSelector } from "redux/hooks";
+import { selectAccount } from "redux/selectors";
 import {
   Container,
   PictureContainer,
@@ -7,23 +9,11 @@ import {
   TextField,
 } from "./styled";
 
-interface Props {
-  displayName: string;
-  email: string;
-  occupation: string;
-  registeredAt: string;
-  photoURL: string;
-  provider: string;
-}
+export default function FeatureOne() {
+  const {
+    data: { displayName, email, occupation, registeredAt, photoURL, provider },
+  } = useAppSelector(selectAccount);
 
-export default function FeatureOne({
-  displayName,
-  email,
-  occupation,
-  registeredAt,
-  photoURL,
-  provider,
-}: Props) {
   return (
     <Container>
       <Grid container spacing={2}>
@@ -35,7 +25,11 @@ export default function FeatureOne({
                 height={150}
                 objectFit="cover"
                 alt="profile-picture"
-                src={photoURL || "/images/no-profile-picture.png"}
+                src={
+                  photoURL !== "not-applicable" && photoURL !== "Loading"
+                    ? photoURL
+                    : "/images/no-profile-picture.png"
+                }
                 quality={100}
               />
             </PictureBorder>
@@ -45,7 +39,7 @@ export default function FeatureOne({
         <Grid item xs={12}>
           <TextField
             label="Display Name"
-            defaultValue={displayName}
+            value={displayName}
             variant="standard"
             InputProps={{
               readOnly: true,
@@ -56,7 +50,7 @@ export default function FeatureOne({
         <Grid item xs={12}>
           <TextField
             label="Email"
-            defaultValue={email}
+            value={email}
             variant="standard"
             InputProps={{
               readOnly: true,
@@ -67,7 +61,7 @@ export default function FeatureOne({
         <Grid item xs={6}>
           <TextField
             label="Occupation"
-            defaultValue={occupation}
+            value={occupation}
             variant="standard"
             InputProps={{
               readOnly: true,
@@ -78,7 +72,7 @@ export default function FeatureOne({
         <Grid item xs={6}>
           <TextField
             label="Registered At"
-            defaultValue={new Date(registeredAt).toDateString()}
+            value={new Date(registeredAt).toDateString()}
             variant="standard"
             InputProps={{
               readOnly: true,
@@ -89,7 +83,7 @@ export default function FeatureOne({
         <Grid item xs={12}>
           <TextField
             label="Provider"
-            defaultValue={provider}
+            value={provider}
             variant="standard"
             InputProps={{
               readOnly: true,

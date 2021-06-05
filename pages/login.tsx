@@ -6,10 +6,12 @@ import { GetServerSidePropsContext } from "next";
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   try {
+    const auth = firebaseAdmin.auth();
     const cookies = nookies.get(ctx);
-    const token = await firebaseAdmin.auth().verifyIdToken(cookies.token);
+    const token = await auth.verifyIdToken(cookies.token);
+    const userRecord = await auth.getUser(token.uid);
 
-    const { uid } = token;
+    const { uid } = userRecord;
 
     if (uid) {
       return {

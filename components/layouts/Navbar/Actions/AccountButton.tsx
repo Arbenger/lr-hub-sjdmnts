@@ -8,9 +8,7 @@ export default function AccountButton() {
 
   const getPhotoURL = () => {
     try {
-      return auth.user.photoURL
-        ? `${auth.user.photoURL}?width=1080&height&1080&type=large&access_token=${process.env.fbAccessToken}`
-        : "/images/no-profile-picture.png";
+      return auth.user.photoURL || "/images/no-profile-picture.png";
     } catch (error) {
       return "/images/no-profile-picture.png";
     }

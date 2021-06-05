@@ -4,6 +4,7 @@ import layoutReducer from "./layoutSlice";
 import libraryReducer from "./librarySlice";
 import pageReducer from "./pageSlice";
 import bookmarksReducer from "./bookmarksSlice";
+import accountReducer from "./accountSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     layout: layoutReducer,
     library: libraryReducer,
     bookmarks: bookmarksReducer,
+    account: accountReducer,
   },
 });
 

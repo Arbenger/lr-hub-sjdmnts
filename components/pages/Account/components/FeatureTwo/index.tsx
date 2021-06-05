@@ -4,6 +4,7 @@ import {
   LockIcon,
   Avatar,
   EllipsisIcon,
+  EditIcon,
 } from "./styled";
 import {
   List,
@@ -14,16 +15,29 @@ import {
 } from "@material-ui/core";
 import { firebaseClient } from "firebase/client";
 import { useRouter } from "next/router";
+import { useAppDispatch } from "redux/hooks";
+import { triggerModal } from "redux/accountSlice";
 import { useState } from "react";
+import DeactivateAccountModal from "./components/DeactivateAccountModal";
 
 export default function FeatureTwo() {
   const router = useRouter();
-  const [isSignOutLoading, setIsSignOutLoading] = useState(false);
+  const dispatch = useAppDispatch();
+  const [isSignOutPending, setIsSignOutPending] = useState(false);
 
-  const handleLogout = async () => {
-    setIsSignOutLoading(true);
+  const handleSignOut = async () => {
+    setIsSignOutPending(true);
     await firebaseClient.auth().signOut();
     router.push("/login");
+  };
+
+  const handdleClickDeactivateAccount = () => {
+    dispatch(
+      triggerModal({
+        target: "deactivateAccount",
+        isOpen: true,
+      })
+    );
   };
 
   return (
@@ -31,18 +45,27 @@ export default function FeatureTwo() {
       <List>
         <ListSubheader>Actions</ListSubheader>
 
-        <ListItem button onClick={handleLogout}>
+        <ListItem button onClick={handleSignOut}>
           <ListItemAvatar>
             <Avatar>
-              {isSignOutLoading ? <EllipsisIcon /> : <LogoutIcon />}
+              {isSignOutPending ? <EllipsisIcon /> : <LogoutIcon />}
             </Avatar>
           </ListItemAvatar>
           <ListItemText
-            primary={isSignOutLoading ? "Signing Out" : "Sign Out"}
+            primary={isSignOutPending ? "Signing Out" : "Sign Out"}
           />
         </ListItem>
 
         <ListItem button>
+          <ListItemAvatar>
+            <Avatar>
+              <EditIcon />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary="Edit Informations" />
+        </ListItem>
+
+        <ListItem button onClick={handdleClickDeactivateAccount}>
           <ListItemAvatar>
             <Avatar>
               <LockIcon />
@@ -51,6 +74,8 @@ export default function FeatureTwo() {
           <ListItemText primary="Deactivate Account" />
         </ListItem>
       </List>
+
+      <DeactivateAccountModal />
     </Container>
   );
 }

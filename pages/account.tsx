@@ -1,9 +1,11 @@
 import { firebaseAdmin } from "firebase/admin";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { WaveBackground } from "components/designs/styled";
 import { Container, Title } from "components/pages/Account/styled";
 import { Grid } from "@material-ui/core";
+import { useAppDispatch } from "redux/hooks";
+import { setData } from "redux/accountSlice";
 
 import nookies from "nookies";
 import FeatureOne from "components/pages/Account/components/FeatureOne";
@@ -44,6 +46,21 @@ function Account({
   photoURL,
   provider,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(
+      setData({
+        displayName,
+        email,
+        occupation,
+        registeredAt,
+        photoURL,
+        provider,
+      })
+    );
+  }, [displayName, email, occupation, registeredAt, photoURL, provider]);
+
   return (
     <Fragment>
       <WaveBackground />
@@ -52,18 +69,7 @@ function Account({
 
         <Grid container spacing={2}>
           <Grid item xs={12} sm={7}>
-            <FeatureOne
-              displayName={displayName}
-              email={email}
-              occupation={occupation}
-              registeredAt={registeredAt}
-              photoURL={
-                photoURL !== "not-applicable"
-                  ? `${photoURL}?width=1080&height&1080&type=large&access_token=${process.env.fbAccessToken}`
-                  : "/images/no-profile-picture.png"
-              }
-              provider={provider}
-            />
+            <FeatureOne />
           </Grid>
           <Grid item xs={12} sm={5}>
             <FeatureTwo />
