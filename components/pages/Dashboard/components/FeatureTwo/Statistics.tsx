@@ -1,5 +1,8 @@
-import ReactFrappeChart from "react-frappe-charts";
 import { getMonthLabels } from "utils";
+import dynamic from "next/dynamic";
+const ReactFrappeChart = dynamic(() => import("react-frappe-charts"), {
+  ssr: false,
+});
 
 export default function Statistics() {
   return (
