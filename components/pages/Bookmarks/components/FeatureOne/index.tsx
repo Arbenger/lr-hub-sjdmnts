@@ -12,52 +12,52 @@ export default function FeatuerOne() {
     {
       bookTitle: "Sample book title",
       imageUrl: "/images/book-cover-1.png",
-      createdAt: new Date(),
+      createdAt: new Date(1622983974222),
     },
     {
       bookTitle: "Sample book title",
       imageUrl: "/images/book-cover-2.png",
-      createdAt: new Date(),
+      createdAt: new Date(1622983974222),
     },
     {
       bookTitle: "Sample book title",
       imageUrl: "/images/book-cover-3.png",
-      createdAt: new Date(),
+      createdAt: new Date(1622983974222),
     },
     {
       bookTitle: "Sample book title",
       imageUrl: "/images/book-cover-4.png",
-      createdAt: new Date(),
+      createdAt: new Date(1622983974222),
     },
     {
       bookTitle: "Sample book title",
       imageUrl: "/images/book-cover-5.png",
-      createdAt: new Date(),
+      createdAt: new Date(1622983974222),
     },
     {
       bookTitle: "Sample book title",
       imageUrl: "/images/book-cover-1.png",
-      createdAt: new Date(),
+      createdAt: new Date(1622983974222),
     },
     {
       bookTitle: "Sample book title",
       imageUrl: "/images/book-cover-2.png",
-      createdAt: new Date(),
+      createdAt: new Date(1622983974222),
     },
     {
       bookTitle: "Sample book title",
       imageUrl: "/images/book-cover-3.png",
-      createdAt: new Date(),
+      createdAt: new Date(1622983974222),
     },
     {
       bookTitle: "Sample book title",
       imageUrl: "/images/book-cover-4.png",
-      createdAt: new Date(),
+      createdAt: new Date(1622983974222),
     },
     {
       bookTitle: "Sample book title",
       imageUrl: "/images/book-cover-5.png",
-      createdAt: new Date(),
+      createdAt: new Date(1622983974222),
     },
   ];
 

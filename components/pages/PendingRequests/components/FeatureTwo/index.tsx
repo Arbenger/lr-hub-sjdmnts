@@ -1,24 +1,12 @@
-import { Paper } from "@material-ui/core";
-import ReactFrappeChart from "react-frappe-charts";
+import PieChart from "components/charts/PieChart";
 
-export default function Chart() {
+export default function FeatureTwo() {
   return (
-    <Paper>
-      <ReactFrappeChart
-        type="pie"
-        height={480}
-        colors={["#b71c1c", "#0d47a1", "#6a1b9a"]}
-        title="Content"
-        data={{
-          labels: ["Barrow", "Return", "Penalty"],
-          datasets: [
-            {
-              name: "Content",
-              values: [5, 3, 5],
-            },
-          ],
-        }}
-      />
-    </Paper>
+    <PieChart
+      title="Content"
+      height={480}
+      labels={["Borrow", "Return", "Penalty"]}
+      values={[5, 3, 4]}
+    />
   );
 }
