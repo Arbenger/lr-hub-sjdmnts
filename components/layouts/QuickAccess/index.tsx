@@ -16,14 +16,14 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout } from "redux/selectors";
 import { triggerQuickAccess } from "redux/layoutSlice";
 import {
+  BookmarkIcon,
+  BorrowedBookIcon,
+  LostBookIcon,
+  PenaltyIcon,
+  ReturnedBookIcon,
+  ExpiredBookIcon,
   CloseIcon,
-  BookIcon,
-  UndoIcon,
-  TimesIcon,
-  LostIcon,
-  BookmarksIcon,
-  ErrorIcon,
-} from "./styled";
+} from "components/Icons";
 import { Item } from "./types";
 import React from "react";
 import Link from "next/link";
@@ -43,32 +43,32 @@ export default function FullScreenDialog() {
     {
       title: "Borrowed Books",
       link: "/book/borrowed",
-      icon: <BookIcon />,
+      icon: <BorrowedBookIcon />,
     },
     {
       title: "Returned Books",
       link: "/book/returned",
-      icon: <UndoIcon />,
+      icon: <ReturnedBookIcon />,
     },
     {
       title: "Expired Books",
       link: "/book/expired",
-      icon: <TimesIcon />,
+      icon: <ExpiredBookIcon />,
     },
     {
       title: "Lost Books",
       link: "/book/lost",
-      icon: <LostIcon />,
+      icon: <LostBookIcon />,
     },
     {
       title: "Bookmarks",
       link: "/book/bookmarks",
-      icon: <BookmarksIcon />,
+      icon: <BookmarkIcon />,
     },
     {
       title: "Penalties",
       link: "/penalties",
-      icon: <ErrorIcon />,
+      icon: <PenaltyIcon />,
     },
   ];
 

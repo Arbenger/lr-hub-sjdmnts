@@ -7,30 +7,26 @@ import {
   MenuTitle,
   MenuContainer,
 } from "./styled";
-import {
-  RiHomeLine as HomeIcon,
-  RiDashboardLine as DashboardIcon,
-  RiUser4Line as UserIcon,
-  RiNotification3Line as NotificationIcon,
-} from "react-icons/ri";
-import {
-  BiBook as BookIcon,
-  BiHourglass as HourglassIcon,
-  BiBookBookmark as BookmarksIcon,
-} from "react-icons/bi";
-import {
-  MdKeyboardArrowRight as ArrowRightIcon,
-  MdKeyboardArrowLeft as ArrowLeftIcon,
-} from "react-icons/md";
-import { IoLinkSharp as LinkIcon } from "react-icons/io5";
-import Link from "next/link";
 import { Divider } from "../../styled";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout, selectPage } from "redux/selectors";
 import { useState, useEffect, Fragment } from "react";
 import { Hidden, useTheme } from "@material-ui/core";
 import { triggerDrawer, triggerQuickAccess } from "redux/layoutSlice";
+import {
+  AccountIcon,
+  BookmarkIcon,
+  DashboardIcon,
+  HomeIcon,
+  LibraryIcon,
+  PendingRequestIcon,
+  QuickAccessIcon,
+  NotificationIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+} from "components/Icons";
 import { List } from "./types";
+import Link from "next/link";
 
 export default function Lists() {
   const dispatch = useAppDispatch();
@@ -59,13 +55,13 @@ export default function Lists() {
           title: "Library",
           pageName: "library",
           link: "/book/library",
-          icon: <BookIcon />,
+          icon: <LibraryIcon />,
         },
         {
           title: "Account",
           pageName: "account",
           link: "/account",
-          icon: <UserIcon />,
+          icon: <AccountIcon />,
         },
       ],
     },
@@ -76,19 +72,19 @@ export default function Lists() {
           title: "Quick Access",
           pageName: "",
           link: "",
-          icon: <LinkIcon />,
+          icon: <QuickAccessIcon />,
         },
         {
           title: "Bookmarks",
           pageName: "bookmarks",
           link: "/book/bookmarks",
-          icon: <BookmarksIcon />,
+          icon: <BookmarkIcon />,
         },
         {
           title: "Pending Requests",
           pageName: "pending-requests",
           link: "/pending-requests",
-          icon: <HourglassIcon />,
+          icon: <PendingRequestIcon />,
         },
         {
           title: "Notifications",

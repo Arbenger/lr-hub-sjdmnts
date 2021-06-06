@@ -1,11 +1,11 @@
 import { DisplayContainer, IconContainer } from "../styled";
-import { BiTargetLock as TargetIcon } from "react-icons/bi";
+import { MissionIcon } from "components/Icons";
 
 export default function Display() {
   return (
     <DisplayContainer>
       <IconContainer>
-        <TargetIcon />
+        <MissionIcon />
       </IconContainer>
     </DisplayContainer>
   );

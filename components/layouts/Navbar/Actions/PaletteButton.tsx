@@ -10,10 +10,10 @@ import {
 } from "@material-ui/core";
 import { Fragment } from "react";
 import { useAppDispatch } from "redux/hooks";
-import { BiPalette as PaletteIcon } from "react-icons/bi";
 import { changeAppPalette } from "redux/themeSlice";
 import { AppPaletteKey } from "components/layouts/ThemeSetter/types";
 import { getKeys } from "components/layouts/ThemeSetter/utils";
+import { PaletteIcon } from "components/Icons";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 
 const useStyles = makeStyles(({ spacing, appPalette }) => {

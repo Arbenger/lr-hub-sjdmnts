@@ -1,9 +1,5 @@
 import { Typography } from "@material-ui/core";
-import {
-  HiOutlineMail as MailIcon,
-  HiOutlineLocationMarker as LocationIcon,
-} from "react-icons/hi";
-import { BiPhone as PhoneIcon } from "react-icons/bi";
+import { LocationIcon, MailIcon, PhoneIcon } from "components/Icons";
 import { ColumnFourContainer } from "./styled";
 
 export default function ColumnFour() {

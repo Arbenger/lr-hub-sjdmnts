@@ -1,9 +1,9 @@
 import { Container } from "./styled";
 import { Hidden, IconButton } from "@material-ui/core";
-import { MdKeyboardArrowRight as ArrowIcon } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout } from "redux/selectors";
 import { triggerDrawer } from "redux/layoutSlice";
+import { ArrowRightIcon } from "components/Icons";
 
 export default function Action() {
   const dispatch = useAppDispatch();
@@ -23,7 +23,7 @@ export default function Action() {
           aria-label="close-drawer"
           onClick={handleClick}
         >
-          <ArrowIcon />
+          <ArrowRightIcon />
         </IconButton>
       </Hidden>
     </Container>

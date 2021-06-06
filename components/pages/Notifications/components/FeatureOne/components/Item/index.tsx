@@ -1,5 +1,10 @@
 import { ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
-import { ListAvatar, BookIcon, UndoIcon, ErrorIcon } from "./styled";
+import {
+  BorrowedBookIcon,
+  PenaltyIcon,
+  ReturnedBookIcon,
+} from "components/Icons";
+import { ListAvatar } from "./styled";
 import { Item as ItemType } from "../../types";
 import { Templates } from "./types";
 import ReactTimeAgo from "utils/ReactTimeAgo";
@@ -8,27 +13,27 @@ export default function item({ type, createdAt }: ItemType) {
   const templates: Templates = {
     borrowAccepted: {
       text: "Your request to borrow a book was accepted.",
-      icon: <BookIcon />,
+      icon: <BorrowedBookIcon />,
     },
     borrowDenied: {
       text: "Your request to borrow a book was denied.",
-      icon: <BookIcon />,
+      icon: <BorrowedBookIcon />,
     },
     returnAccepted: {
       text: "Your request to return a book was accepted.",
-      icon: <UndoIcon />,
+      icon: <ReturnedBookIcon />,
     },
     returnDenied: {
       text: "Your request to return a book was denied.",
-      icon: <UndoIcon />,
+      icon: <ReturnedBookIcon />,
     },
     resolveAccepted: {
       text: "Your request to resolve a penalty was accepted.",
-      icon: <ErrorIcon />,
+      icon: <PenaltyIcon />,
     },
     resolveDenied: {
       text: "Your request to resolve a penalty was accepted.",
-      icon: <ErrorIcon />,
+      icon: <PenaltyIcon />,
     },
   };
 

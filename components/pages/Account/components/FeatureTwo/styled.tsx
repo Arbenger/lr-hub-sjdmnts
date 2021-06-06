@@ -1,10 +1,4 @@
 import { Paper, styled, Avatar as MuiAvatar } from "@material-ui/core";
-export { FiLogOut as LogoutIcon } from "react-icons/fi";
-export { BiEdit as EditIcon } from "react-icons/bi";
-export {
-  AiOutlineLock as LockIcon,
-  AiOutlineEllipsis as EllipsisIcon,
-} from "react-icons/ai";
 
 export const Container = styled(Paper)({});
 

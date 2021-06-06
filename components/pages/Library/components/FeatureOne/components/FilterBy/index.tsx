@@ -1,11 +1,11 @@
 import { ChangeEvent } from "react";
 import { InputLabel, MenuItem, Select } from "@material-ui/core";
-import { FiFilter as FilterIcon } from "react-icons/fi";
-import { Container, IconButton, FormControl } from "./styled";
-import { FilterByOption, FilterByValue } from "./types";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLibrary } from "redux/selectors";
 import { setFilterBy } from "redux/librarySlice";
+import { FilterIcon } from "components/Icons";
+import { Container, IconButton, FormControl } from "./styled";
+import { FilterByOption, FilterByValue } from "./types";
 
 export default function FilterBy() {
   const dispatch = useAppDispatch();

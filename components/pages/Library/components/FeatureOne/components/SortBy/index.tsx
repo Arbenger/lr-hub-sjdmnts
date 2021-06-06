@@ -1,14 +1,11 @@
 import { ChangeEvent } from "react";
 import { InputLabel, MenuItem, Select } from "@material-ui/core";
-import {
-  AiOutlineSortAscending as AscendingIcon,
-  AiOutlineSortDescending as DescendingIcon,
-} from "react-icons/ai";
-import { Container, IconButton, FormControl } from "./styled";
-import { SortByOption, SortByValue, SortDirectionValue } from "./types";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLibrary } from "redux/selectors";
 import { setSortBy, setSortDirection } from "redux/librarySlice";
+import { AscendingIcon, DescendingIcon } from "components/Icons";
+import { Container, IconButton, FormControl } from "./styled";
+import { SortByOption, SortByValue, SortDirectionValue } from "./types";
 
 export default function SortBy() {
   const dispatch = useAppDispatch();

@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent } from "react";
-import { AiOutlineSearch as SearchIcon } from "react-icons/ai";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { setSearchInput } from "redux/librarySlice";
 import { selectLibrary } from "redux/selectors";
+import { SearchIcon } from "components/Icons";
 import { Container, IconButton, Form, TextField } from "./styled";
 import { Props } from "./types";
 

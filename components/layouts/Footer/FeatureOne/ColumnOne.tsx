@@ -1,10 +1,6 @@
 import { IconButton, Typography, Box } from "@material-ui/core";
 import { ColumnOneContainer } from "./styled";
-import { RiFacebookCircleLine as FacebookIcon } from "react-icons/ri";
-import {
-  FiTwitter as TwitterIcon,
-  FiInstagram as InstagramIcon,
-} from "react-icons/fi";
+import { FacebookIcon, InstagramIcon, TwitterIcon } from "components/Icons";
 import Image from "next/image";
 
 export default function ColumnOne() {

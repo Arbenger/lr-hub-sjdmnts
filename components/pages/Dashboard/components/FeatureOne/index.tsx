@@ -1,6 +1,15 @@
 import { Grid, Typography } from "@material-ui/core";
 import { useAppSelector } from "redux/hooks";
 import { selectLayout } from "redux/selectors";
+import { WaveBackground } from "components/designs/styled";
+import {
+  BorrowedBookIcon,
+  ReturnedBookIcon,
+  ExpiredBookIcon,
+  LostBookIcon,
+  BookmarkIcon,
+  PenaltyIcon,
+} from "components/Icons";
 import {
   RootContainer,
   Wrapper,
@@ -9,15 +18,6 @@ import {
   ItemCaption,
   ItemDisplay,
 } from "./styled";
-import {
-  BiBookAlt as BookIcon,
-  BiErrorCircle as ErrorIcon,
-  BiBookBookmark as BookmarksIcon,
-} from "react-icons/bi";
-import { IoArrowUndoOutline as UndoIcon } from "react-icons/io5";
-import { FaRegTimesCircle as TimesIcon } from "react-icons/fa";
-import { HiOutlineQuestionMarkCircle as LostIcon } from "react-icons/hi";
-import { WaveBackground } from "components/designs/styled";
 import { Item } from "./types";
 import Link from "next/link";
 
@@ -28,37 +28,37 @@ export default function FeatureOne() {
       title: "Borrowed Books",
       quantity: 5,
       link: "/book/borrowed",
-      icon: <BookIcon />,
+      icon: <BorrowedBookIcon />,
     },
     {
       title: "Returned Books",
       quantity: 15,
       link: "/book/returned",
-      icon: <UndoIcon />,
+      icon: <ReturnedBookIcon />,
     },
     {
       title: "Expired Books",
       quantity: 2,
       link: "/book/expired",
-      icon: <TimesIcon />,
+      icon: <ExpiredBookIcon />,
     },
     {
       title: "Lost Books",
       quantity: 0,
       link: "/book/lost",
-      icon: <LostIcon />,
+      icon: <LostBookIcon />,
     },
     {
       title: "Bookmarks",
       quantity: 12,
       link: "/book/bookmarks",
-      icon: <BookmarksIcon />,
+      icon: <BookmarkIcon />,
     },
     {
       title: "Penalties",
       quantity: 1,
       link: "/penalties",
-      icon: <ErrorIcon />,
+      icon: <PenaltyIcon />,
     },
   ];
 

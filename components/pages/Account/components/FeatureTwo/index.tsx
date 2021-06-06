@@ -1,23 +1,22 @@
 import {
-  Container,
-  LogoutIcon,
-  LockIcon,
-  Avatar,
-  EllipsisIcon,
-  EditIcon,
-} from "./styled";
-import {
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
   ListSubheader,
 } from "@material-ui/core";
+import { useState } from "react";
 import { firebaseClient } from "firebase/client";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "redux/hooks";
 import { triggerModal } from "redux/accountSlice";
-import { useState } from "react";
+import { Container, Avatar } from "./styled";
+import {
+  DeactivateAccountIcon,
+  LoadingEllipsisIcon,
+  SignOutIcon,
+  EditAccountIcon,
+} from "components/Icons";
 import DeactivateAccountModal from "./components/DeactivateAccountModal";
 
 export default function FeatureTwo() {
@@ -48,7 +47,7 @@ export default function FeatureTwo() {
         <ListItem button onClick={handleSignOut}>
           <ListItemAvatar>
             <Avatar>
-              {isSignOutPending ? <EllipsisIcon /> : <LogoutIcon />}
+              {isSignOutPending ? <LoadingEllipsisIcon /> : <SignOutIcon />}
             </Avatar>
           </ListItemAvatar>
           <ListItemText
@@ -59,7 +58,7 @@ export default function FeatureTwo() {
         <ListItem button>
           <ListItemAvatar>
             <Avatar>
-              <EditIcon />
+              <EditAccountIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary="Edit Informations" />
@@ -68,7 +67,7 @@ export default function FeatureTwo() {
         <ListItem button onClick={handdleClickDeactivateAccount}>
           <ListItemAvatar>
             <Avatar>
-              <LockIcon />
+              <DeactivateAccountIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary="Deactivate Account" />
