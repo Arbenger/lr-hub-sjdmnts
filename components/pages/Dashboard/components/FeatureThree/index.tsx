@@ -1,11 +1,10 @@
-import { Grid } from "@material-ui/core";
-import { RootContainer } from "./styled";
+import { Box, Grid } from "@material-ui/core";
 import Notifications from "./components/Notifications";
 import PendingRequests from "./components/PendingRequests";
 
 export default function FeatureThree() {
   return (
-    <RootContainer maxWidth="lg">
+    <Box>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <PendingRequests />
@@ -14,6 +13,6 @@ export default function FeatureThree() {
           <Notifications />
         </Grid>
       </Grid>
-    </RootContainer>
+    </Box>
   );
 }

@@ -40,12 +40,12 @@ export const WrapperBody = styled(Box)(
   })
 );
 
-export const WrapperAction = styled(Box)(({ theme: { appPalette } }) => ({
+export const WrapperAction = styled(Box)(({ theme: { palette } }) => ({
   width: "100%",
   "& button": {
-    backgroundColor: appPalette[appPalette.current].main,
+    backgroundColor: palette.primary.main,
     "&:hover": {
-      backgroundColor: appPalette[appPalette.current].dark,
+      backgroundColor: palette.primary.dark,
     },
   },
 }));

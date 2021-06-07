@@ -1,15 +1,15 @@
 import { styled, AppBar as MuiAppBar } from "@material-ui/core";
 
 export const AppBar = styled(MuiAppBar)(
-  ({ theme: { appPalette, transitions, breakpoints } }) => ({
-    color: appPalette[appPalette.current].contrastText,
+  ({ theme: { palette, transitions, breakpoints } }) => ({
+    color: palette.primary.contrastText,
     backgroundColor: "transparent",
     "& .title": {
       opacity: 0,
       transition: transitions.create("opacity"),
     },
     '&[data-reached-threshold="true"]': {
-      backgroundColor: appPalette[appPalette.current].main,
+      backgroundColor: palette.primary.main,
       "& .title": {
         opacity: 1,
       },

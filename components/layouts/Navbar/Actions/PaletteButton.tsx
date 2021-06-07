@@ -9,15 +9,20 @@ import {
   useTheme,
 } from "@material-ui/core";
 import { Fragment } from "react";
-import { useAppDispatch } from "redux/hooks";
+import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { changeAppPalette } from "redux/themeSlice";
 import { AppPaletteKey } from "components/layouts/ThemeSetter/types";
-import { getKeys } from "components/layouts/ThemeSetter/utils";
+import {
+  getKeys,
+  getPalettesObjectOfObjects,
+} from "components/layouts/ThemeSetter/utils";
 import { PaletteIcon } from "components/Icons";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
+import { selectTheme } from "redux/selectors";
 
-const useStyles = makeStyles(({ spacing, appPalette }) => {
-  const appPalettesStyles = (() => {
+const useStyles = makeStyles(({ spacing }) => {
+  const appPalette = getPalettesObjectOfObjects();
+  const appPaletteStyles = (() => {
     const keys = getKeys();
     let properties = {};
 
@@ -46,7 +51,7 @@ const useStyles = makeStyles(({ spacing, appPalette }) => {
       borderStyle: "solid",
       borderColor: "transparent",
       cursor: "pointer",
-      ...appPalettesStyles,
+      ...appPaletteStyles,
     },
   };
 });
@@ -56,6 +61,7 @@ export default function PaletteButton() {
   const theme = useTheme();
   const classes = useStyles();
   const appPaletteKeys = getKeys();
+  const { appPalette } = useAppSelector(selectTheme);
 
   const handleItemClick = (item: AppPaletteKey) => {
     dispatch(changeAppPalette(item));
@@ -92,7 +98,7 @@ export default function PaletteButton() {
                     <Tooltip title={key} aria-label={key}>
                       <Box
                         className={`${classes.paletteItem} ${key}`}
-                        data-active={theme.appPalette.current === key}
+                        data-active={appPalette.current === key}
                         onClick={() => handleItemClick(key)}
                       />
                     </Tooltip>

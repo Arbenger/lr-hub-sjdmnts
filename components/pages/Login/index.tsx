@@ -1,9 +1,13 @@
+import {
+  WaveBackground,
+  PageContainer,
+  PageTitle,
+} from "components/layouts/Page/styled";
+import { ContentContainer } from "./styled";
 import { Fragment, useEffect } from "react";
-import { WaveBackground } from "components/designs/styled";
-import { Container, Title, ContentContainer } from "./styled";
 import { firebaseClient } from "firebase/client";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { useRouter } from "next/router";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 const uiConfig = {
   signInFlow: "popup",
@@ -27,13 +31,12 @@ export default function Login() {
   return (
     <Fragment>
       <WaveBackground />
-      <Container maxWidth="lg">
-        <Title variant="h4">Login</Title>
-
+      <PageContainer maxWidth="lg">
+        <PageTitle variant="h4">Login</PageTitle>
         <ContentContainer>
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
         </ContentContainer>
-      </Container>
+      </PageContainer>
     </Fragment>
   );
 }

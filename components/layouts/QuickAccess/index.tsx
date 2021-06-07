@@ -1,4 +1,13 @@
 import {
+  BookmarkIcon,
+  BorrowedBookIcon,
+  LostBookIcon,
+  PenaltyIcon,
+  ReturnedBookIcon,
+  ExpiredBookIcon,
+  CloseIcon,
+} from "components/Icons";
+import {
   Slide,
   Typography,
   IconButton,
@@ -14,16 +23,7 @@ import {
 import { TransitionProps } from "@material-ui/core/transitions";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout } from "redux/selectors";
-import { triggerQuickAccess } from "redux/layoutSlice";
-import {
-  BookmarkIcon,
-  BorrowedBookIcon,
-  LostBookIcon,
-  PenaltyIcon,
-  ReturnedBookIcon,
-  ExpiredBookIcon,
-  CloseIcon,
-} from "components/Icons";
+import { triggerDrawer, triggerQuickAccess } from "redux/layoutSlice";
 import { Item } from "./types";
 import React from "react";
 import Link from "next/link";
@@ -74,6 +74,7 @@ export default function FullScreenDialog() {
 
   const handleClose = () => {
     dispatch(triggerQuickAccess("close"));
+    dispatch(triggerDrawer("close"));
   };
 
   return (

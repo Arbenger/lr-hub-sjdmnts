@@ -1,7 +1,3 @@
-import { Grid, Typography } from "@material-ui/core";
-import { useAppSelector } from "redux/hooks";
-import { selectLayout } from "redux/selectors";
-import { WaveBackground } from "components/designs/styled";
 import {
   BorrowedBookIcon,
   ReturnedBookIcon,
@@ -10,14 +6,10 @@ import {
   BookmarkIcon,
   PenaltyIcon,
 } from "components/Icons";
-import {
-  RootContainer,
-  Wrapper,
-  Title,
-  ItemContainer,
-  ItemCaption,
-  ItemDisplay,
-} from "./styled";
+import { ItemContainer, ItemCaption, ItemDisplay } from "./styled";
+import { Box, Grid, Typography } from "@material-ui/core";
+import { useAppSelector } from "redux/hooks";
+import { selectLayout } from "redux/selectors";
 import { Item } from "./types";
 import Link from "next/link";
 
@@ -63,33 +55,29 @@ export default function FeatureOne() {
   ];
 
   return (
-    <RootContainer>
-      <WaveBackground />
-      <Wrapper maxWidth="lg">
-        <Title variant="h4">Dashboard</Title>
-        <Grid container spacing={2}>
-          {items.map((item) => (
-            <Grid
-              item
-              key={item.title}
-              xs={12}
-              sm={6}
-              md={drawer.isOpen ? 6 : 4}
-              lg={4}
-            >
-              <Link href={item.link}>
-                <ItemContainer>
-                  <ItemCaption>
-                    <Typography variant="h4">{item.quantity}</Typography>
-                    <Typography variant="h6">{item.title}</Typography>
-                  </ItemCaption>
-                  <ItemDisplay>{item.icon}</ItemDisplay>
-                </ItemContainer>
-              </Link>
-            </Grid>
-          ))}
-        </Grid>
-      </Wrapper>
-    </RootContainer>
+    <Box>
+      <Grid container spacing={2}>
+        {items.map((item) => (
+          <Grid
+            key={item.title}
+            item
+            xs={12}
+            sm={6}
+            md={drawer.isOpen ? 6 : 4}
+            lg={4}
+          >
+            <Link href={item.link}>
+              <ItemContainer>
+                <ItemCaption>
+                  <Typography variant="h4">{item.quantity}</Typography>
+                  <Typography variant="h6">{item.title}</Typography>
+                </ItemCaption>
+                <ItemDisplay>{item.icon}</ItemDisplay>
+              </ItemContainer>
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }

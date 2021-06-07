@@ -1,10 +1,10 @@
 import { ChangeEvent } from "react";
-import { InputLabel, MenuItem, Select } from "@material-ui/core";
+import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLibrary } from "redux/selectors";
 import { setFilterBy } from "redux/librarySlice";
 import { FilterIcon } from "components/Icons";
-import { Container, IconButton, FormControl } from "./styled";
+import { Container, IconButton } from "./styled";
 import { FilterByOption, FilterByValue } from "./types";
 
 export default function FilterBy() {
@@ -26,13 +26,15 @@ export default function FilterBy() {
         <FilterIcon />
       </IconButton>
 
-      <FormControl>
+      <FormControl fullWidth>
         <InputLabel id="filter-by-label">Filter By</InputLabel>
         <Select
           labelId="filter-by-label"
           id="filter-by-select"
+          color="primary"
           value={filterBy}
           onChange={handleChange}
+          fullWidth
         >
           {filterByOptions.map((option) => (
             <MenuItem key={option.value} value={option.value}>

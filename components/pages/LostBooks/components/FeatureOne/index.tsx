@@ -1,13 +1,8 @@
-import { List } from "@material-ui/core";
-import { Container, LoadMoreButton, LoadMoreContainer } from "./styled";
+import { Paper, Box, Button, List } from "@material-ui/core";
 import { Item as ItemType } from "./types";
-import { useAppSelector } from "redux/hooks";
-import { selectBookmarks } from "redux/selectors";
-import Item from "./components/Item";
-import ItemModal from "./components/ItemModal";
+import BookListItem from "components/layouts/Book/BookListItem";
 
-export default function FeatuerOne() {
-  const bookmarks = useAppSelector(selectBookmarks);
+export default function FeatureOne() {
   const items: ItemType[] = [
     {
       bookTitle: "Sample book title",
@@ -62,22 +57,22 @@ export default function FeatuerOne() {
   ];
 
   return (
-    <Container>
+    <Paper>
       <List>
         {items.map((item, index) => (
-          <Item
+          <BookListItem
             key={index}
-            index={index}
             bookTitle={item.bookTitle}
             imageUrl={item.imageUrl}
             createdAt={item.createdAt}
           />
         ))}
       </List>
-      <LoadMoreContainer>
-        <LoadMoreButton variant="contained">Load More</LoadMoreButton>
-      </LoadMoreContainer>
-      {bookmarks.itemModal.isOpen ? <ItemModal /> : null}
-    </Container>
+      <Box padding={2} paddingTop={0}>
+        <Button variant="contained" color="primary" fullWidth>
+          Load More
+        </Button>
+      </Box>
+    </Paper>
   );
 }

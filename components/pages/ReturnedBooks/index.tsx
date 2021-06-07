@@ -1,8 +1,10 @@
-import { Fragment } from "react";
-import { WaveBackground } from "components/designs/styled";
+import {
+  WaveBackground,
+  PageContainer,
+  PageTitle,
+} from "components/layouts/Page/styled";
 import { Grid } from "@material-ui/core";
-import { Container, Title } from "./styled";
-
+import { Fragment } from "react";
 import FeatureOne from "./components/FeatureOne";
 import FeatureTwo from "./components/FeatureTwo";
 
@@ -10,9 +12,8 @@ export default function ReturnedBooks() {
   return (
     <Fragment>
       <WaveBackground />
-      <Container maxWidth="lg">
-        <Title variant="h4">Returned Books</Title>
-
+      <PageContainer maxWidth="lg">
+        <PageTitle variant="h4">Returned Books</PageTitle>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <FeatureOne />
@@ -25,7 +26,7 @@ export default function ReturnedBooks() {
             </Grid>
           </Grid>
         </Grid>
-      </Container>
+      </PageContainer>
     </Fragment>
   );
 }

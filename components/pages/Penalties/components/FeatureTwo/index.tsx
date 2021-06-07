@@ -1,5 +1,5 @@
-import OneLineChart from "components/charts/OneLineChart";
 import { getMonthLabels } from "utils";
+import OneLineChart from "components/charts/OneLineChart";
 
 export default function FeatureTwo() {
   return (

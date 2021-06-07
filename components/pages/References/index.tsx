@@ -1,13 +1,17 @@
+import {
+  WaveBackground,
+  PageContainer,
+  PageTitle,
+} from "components/layouts/Page/styled";
+import { ContentContainer, ContentText } from "./styled";
 import { Fragment } from "react";
-import { WaveBackground } from "components/designs/styled";
-import { Container, Title, ContentContainer, ContentText } from "./styled";
 
 export default function References() {
   return (
     <Fragment>
       <WaveBackground />
-      <Container maxWidth="lg">
-        <Title variant="h4">References</Title>
+      <PageContainer maxWidth="lg">
+        <PageTitle variant="h4">References</PageTitle>
 
         <ContentContainer>
           <ContentText>
@@ -53,7 +57,7 @@ export default function References() {
             vero beatae ad nisi voluptas?
           </ContentText>
         </ContentContainer>
-      </Container>
+      </PageContainer>
     </Fragment>
   );
 }

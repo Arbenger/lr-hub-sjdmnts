@@ -3,7 +3,8 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { setSearchInput } from "redux/librarySlice";
 import { selectLibrary } from "redux/selectors";
 import { SearchIcon } from "components/Icons";
-import { Container, IconButton, Form, TextField } from "./styled";
+import { Container, IconButton, Form } from "./styled";
+import { TextField } from "@material-ui/core";
 import { Props } from "./types";
 
 export default function Search({ beginSearch }: Props) {
@@ -25,7 +26,13 @@ export default function Search({ beginSearch }: Props) {
         <IconButton type="submit" edge="start">
           <SearchIcon />
         </IconButton>
-        <TextField label="Search" value={searchInput} onChange={handleChange} />
+        <TextField
+          label="Search"
+          color="primary"
+          value={searchInput}
+          onChange={handleChange}
+          fullWidth
+        />
       </Form>
     </Container>
   );

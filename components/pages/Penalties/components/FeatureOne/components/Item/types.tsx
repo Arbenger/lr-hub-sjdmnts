@@ -6,6 +6,6 @@ export interface Template {
 }
 
 export interface Templates {
-  lost: Template;
   return: Template;
+  lost: Template;
 }

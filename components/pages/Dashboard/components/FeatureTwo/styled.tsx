@@ -1,11 +1,9 @@
-import { Container, Paper, styled } from "@material-ui/core";
+import { Box, Paper, styled } from "@material-ui/core";
 
-export const RootContainer = styled(Container)(({ theme: { spacing } }) => ({
-  paddingBottom: spacing(1),
+export const Container = styled(Paper)({
   overflowX: "auto",
-}));
+});
 
-export const StatisticsContainer = styled(Paper)({
+export const ChartContainer = styled(Box)({
   minWidth: 600,
-  height: 400,
 });

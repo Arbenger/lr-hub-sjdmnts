@@ -1,4 +1,4 @@
 export interface Item {
-  type: "lost" | "return";
+  type: "return" | "lost";
   createdAt: Date;
 }

@@ -3,7 +3,6 @@ import themeReducer from "./themeSlice";
 import layoutReducer from "./layoutSlice";
 import libraryReducer from "./librarySlice";
 import pageReducer from "./pageSlice";
-import bookmarksReducer from "./bookmarksSlice";
 import accountReducer from "./accountSlice";
 
 export const store = configureStore({
@@ -12,7 +11,6 @@ export const store = configureStore({
     page: pageReducer,
     layout: layoutReducer,
     library: libraryReducer,
-    bookmarks: bookmarksReducer,
     account: accountReducer,
   },
 });

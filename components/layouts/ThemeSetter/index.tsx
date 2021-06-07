@@ -1,11 +1,10 @@
-import { Fragment, ReactNode, useEffect, useMemo, useState } from "react";
+import { Fragment, ReactNode, useEffect, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { changeAppPalette } from "redux/themeSlice";
 import { ThemeProvider } from "@material-ui/styles";
-import { createMuiTheme, CssBaseline, useTheme } from "@material-ui/core";
+import { createMuiTheme, CssBaseline } from "@material-ui/core";
 import { selectTheme } from "redux/selectors";
 import { getPalettesObjectOfObjects, getStoredKey } from "./utils";
-import "./extension";
 
 interface Props {
   children: ReactNode;
@@ -35,10 +34,6 @@ const ThemeSetter = ({ children }: Props) => {
             dark: palettes[appPalette.current].dark,
             contrastText: palettes[appPalette.current].contrastText,
           },
-        },
-        appPalette: {
-          current: appPalette.current,
-          ...palettes,
         },
       }),
     [appPalette.current]

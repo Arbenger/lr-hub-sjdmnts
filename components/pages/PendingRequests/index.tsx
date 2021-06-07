@@ -1,8 +1,10 @@
-import { Fragment } from "react";
-import { WaveBackground } from "components/designs/styled";
-import { Container, Title } from "./styled";
+import {
+  WaveBackground,
+  PageContainer,
+  PageTitle,
+} from "components/layouts/Page/styled";
 import { Grid } from "@material-ui/core";
-
+import { Fragment } from "react";
 import FeatureOne from "./components/FeatureOne";
 import FeatureTwo from "./components/FeatureTwo";
 
@@ -10,18 +12,21 @@ export default function PendingRequests() {
   return (
     <Fragment>
       <WaveBackground />
-      <Container maxWidth="lg">
-        <Title variant="h4">Pending Requests</Title>
-
+      <PageContainer maxWidth="lg">
+        <PageTitle variant="h4">Pending Requests</PageTitle>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6}>
             <FeatureOne />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <FeatureTwo />
+          <Grid item xs={12} md={6}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <FeatureTwo />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
-      </Container>
+      </PageContainer>
     </Fragment>
   );
 }

@@ -1,13 +1,17 @@
 import { Fragment } from "react";
-import { WaveBackground } from "components/designs/styled";
-import { Container, Title, ContentContainer, ContentText } from "./styled";
+import {
+  PageContainer,
+  PageTitle,
+  WaveBackground,
+} from "components/layouts/Page/styled";
+import { ContentContainer, ContentText } from "./styled";
 
 export default function TermsOfService() {
   return (
     <Fragment>
       <WaveBackground />
-      <Container maxWidth="lg">
-        <Title variant="h4">Terms Of Service</Title>
+      <PageContainer maxWidth="lg">
+        <PageTitle variant="h4">Terms Of Service</PageTitle>
 
         <ContentContainer>
           <ContentText>
@@ -53,7 +57,7 @@ export default function TermsOfService() {
             vero beatae ad nisi voluptas?
           </ContentText>
         </ContentContainer>
-      </Container>
+      </PageContainer>
     </Fragment>
   );
 }

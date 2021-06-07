@@ -27,7 +27,7 @@ export default function BookSummary({ book }: Props) {
         <Grid item xs={7}>
           <Title variant="h6">{book.title}</Title>
           <Subtitle variant="body2">20 available copies</Subtitle>
-          <Button variant="outlined" size="small">
+          <Button variant="outlined" size="small" color="primary">
             Borrow
           </Button>
         </Grid>

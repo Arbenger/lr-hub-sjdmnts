@@ -1,14 +1,12 @@
-import FeatureOne from "./FeatureOne";
-import FeatureTwo from "./FeatureTwo";
-import { RootContainer, Curve, FeatureTwoCurve } from "./styled";
+import { Container } from "./styled";
+import FeatureOne from "./components/FeatureOne";
+import FeatureTwo from "./components/FeatureTwo";
 
 export default function Footer() {
   return (
-    <RootContainer>
-      <Curve />
+    <Container>
       <FeatureOne />
-      <FeatureTwoCurve />
       <FeatureTwo />
-    </RootContainer>
+    </Container>
   );
 }

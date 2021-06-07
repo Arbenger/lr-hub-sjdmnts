@@ -1,9 +1,8 @@
-import { List as MuiList } from "@material-ui/core";
-import { Container, LoadMoreButton, LoadMoreContainer } from "./styled";
+import { Box, Button, List, Paper } from "@material-ui/core";
 import { Item as ItemType } from "./types";
 import Item from "./components/Item";
 
-export default function List() {
+export default function FeatureOne() {
   const items: ItemType[] = [
     {
       type: "borrowAccepted",
@@ -48,15 +47,17 @@ export default function List() {
   ];
 
   return (
-    <Container>
-      <MuiList>
+    <Paper>
+      <List>
         {items.map((item, index) => (
           <Item key={index} type={item.type} createdAt={item.createdAt} />
         ))}
-      </MuiList>
-      <LoadMoreContainer>
-        <LoadMoreButton variant="contained">Load More</LoadMoreButton>
-      </LoadMoreContainer>
-    </Container>
+      </List>
+      <Box padding={2} paddingTop={0}>
+        <Button variant="contained" color="primary" fullWidth>
+          Load More
+        </Button>
+      </Box>
+    </Paper>
   );
 }

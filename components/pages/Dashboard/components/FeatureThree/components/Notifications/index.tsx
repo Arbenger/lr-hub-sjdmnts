@@ -1,13 +1,8 @@
-import {
-  RootContainer,
-  Header,
-  HeaderTitle,
-  HeaderButton,
-  List,
-} from "./styled";
-import Link from "next/link";
-import Item from "components/pages/Notifications/components/FeatureOne/components/Item";
+import { Header, HeaderTitle, List } from "./styled";
+import { Paper, Button } from "@material-ui/core";
 import { Item as ItemType } from "components/pages/Notifications/components/FeatureOne/types";
+import Item from "components/pages/Notifications/components/FeatureOne/components/Item";
+import Link from "next/link";
 
 export default function Notifications() {
   const items: ItemType[] = [
@@ -38,11 +33,13 @@ export default function Notifications() {
   ];
 
   return (
-    <RootContainer>
+    <Paper>
       <Header>
         <HeaderTitle variant="body1">Notifications</HeaderTitle>
         <Link href="/notifications">
-          <HeaderButton variant="text">View All</HeaderButton>
+          <Button variant="text" color="primary">
+            View All
+          </Button>
         </Link>
       </Header>
       <List>
@@ -50,6 +47,6 @@ export default function Notifications() {
           <Item key={index} type={item.type} createdAt={item.createdAt} />
         ))}
       </List>
-    </RootContainer>
+    </Paper>
   );
 }

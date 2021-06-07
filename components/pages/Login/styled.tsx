@@ -1,21 +1,4 @@
-import {
-  styled,
-  Paper,
-  Typography,
-  Container as MuiContainer,
-} from "@material-ui/core";
-
-export const Container = styled(MuiContainer)(
-  ({ theme: { palette, spacing } }) => ({
-    color: palette.primary.contrastText,
-    paddingTop: 70,
-    marginBottom: spacing(15),
-  })
-);
-
-export const Title = styled(Typography)(({ theme: { spacing } }) => ({
-  marginBottom: spacing(1),
-}));
+import { styled, Paper } from "@material-ui/core";
 
 export const ContentContainer = styled(Paper)(({ theme: { spacing } }) => ({
   width: "fit-content",

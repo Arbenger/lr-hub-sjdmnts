@@ -31,13 +31,9 @@ export const Subtitle = styled(Typography)({
   overflow: "hidden",
 });
 
-export const Button = styled(MuiButton)(
-  ({ theme: { appPalette, spacing } }) => ({
-    color: appPalette[appPalette.current].main,
-    borderColor: appPalette[appPalette.current].main,
-    marginTop: spacing(1),
-  })
-);
+export const Button = styled(MuiButton)(({ theme: { spacing } }) => ({
+  marginTop: spacing(1),
+}));
 
 export const Description = styled(Typography)({
   display: "box",

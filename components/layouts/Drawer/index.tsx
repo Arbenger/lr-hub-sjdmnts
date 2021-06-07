@@ -3,11 +3,11 @@ import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout } from "redux/selectors";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog } from "@material-ui/core";
+import { triggerDrawer } from "redux/layoutSlice";
 
 import Brand from "./components/Brand";
 import Lists from "./components/Lists";
 import Action from "./components/Action";
-import { triggerDrawer } from "redux/layoutSlice";
 
 export default function Drawer() {
   const { drawer } = useAppSelector(selectLayout);

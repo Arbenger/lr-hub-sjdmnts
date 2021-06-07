@@ -1,24 +1,4 @@
-import {
-  Box,
-  styled,
-  Typography,
-  Avatar,
-  Paper,
-  Container as MuiContainer,
-} from "@material-ui/core";
-
-export const RootContainer = styled(Box)(({ theme: { appPalette } }) => ({
-  color: appPalette[appPalette.current].contrastText,
-}));
-
-export const Wrapper = styled(MuiContainer)(({ theme: { spacing } }) => ({
-  paddingTop: 70,
-  paddingBottom: spacing(2),
-}));
-
-export const Title = styled(Typography)(({ theme: { spacing } }) => ({
-  marginBottom: spacing(1),
-}));
+import { Box, styled, Avatar, Paper } from "@material-ui/core";
 
 export const ItemContainer = styled(Paper)(
   ({ theme: { spacing, shadows } }) => ({
@@ -42,11 +22,11 @@ export const ItemCaption = styled(Box)({
 });
 
 export const ItemDisplay = styled(Avatar)(
-  ({ theme: { spacing, palette, appPalette } }) => ({
+  ({ theme: { spacing, palette } }) => ({
     width: spacing(7),
     height: spacing(7),
     color: palette.background.paper,
-    backgroundColor: appPalette[appPalette.current].main,
+    backgroundColor: palette.primary.main,
     fontSize: 35,
   })
 );

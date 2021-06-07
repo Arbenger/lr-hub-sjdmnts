@@ -1,15 +1,19 @@
 import { ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
-import { ListAvatar, BookIcon, UndoIcon } from "./styled";
+import { PenaltyIcon, ReturnedBookIcon } from "components/Icons";
+import { ListAvatar } from "./styled";
 import { Item as ItemType } from "../../types";
 import { Templates } from "./types";
 import ReactTimeAgo from "utils/ReactTimeAgo";
 
 export default function Item({ type, createdAt }: ItemType) {
   const templates: Templates = {
-    lost: { text: "You've lost a book.", icon: <BookIcon /> },
     return: {
-      text: "You've failed to return a book within the time limit.",
-      icon: <UndoIcon />,
+      text: "You have failed to return the book within the time limit.",
+      icon: <ReturnedBookIcon />,
+    },
+    lost: {
+      text: "You have lost a book.",
+      icon: <PenaltyIcon />,
     },
   };
 

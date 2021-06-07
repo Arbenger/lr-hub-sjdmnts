@@ -1,5 +1,6 @@
 import { Paper, useTheme } from "@material-ui/core";
 import dynamic from "next/dynamic";
+
 const ReactFrappeChart = dynamic(() => import("react-frappe-charts"), {
   ssr: false,
 });
@@ -18,13 +19,10 @@ export default function OneLineChart({ title, height, labels, values }: Props) {
     <Paper>
       <ReactFrappeChart
         type="line"
-        height={height}
         title={title}
+        height={height}
         colors={[palette.primary.main]}
-        data={{
-          labels,
-          datasets: [{ name: title, values }],
-        }}
+        data={{ labels, datasets: [{ name: title, values }] }}
         lineOptions={{ heatline: 1, regionFill: 1 }}
       />
     </Paper>

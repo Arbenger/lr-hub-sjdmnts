@@ -1,9 +1,12 @@
-import { firebaseAdmin } from "firebase/admin";
+import {
+  PageContainer,
+  PageTitle,
+  WaveBackground,
+} from "components/layouts/Page/styled";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { Fragment, useEffect } from "react";
-import { WaveBackground } from "components/designs/styled";
-import { Container, Title } from "components/pages/Account/styled";
 import { Grid } from "@material-ui/core";
+import { Fragment, useEffect } from "react";
+import { firebaseAdmin } from "firebase/admin";
 import { useAppDispatch } from "redux/hooks";
 import { setData } from "redux/accountSlice";
 
@@ -64,8 +67,8 @@ function Account({
   return (
     <Fragment>
       <WaveBackground />
-      <Container maxWidth="lg">
-        <Title variant="h4">Account</Title>
+      <PageContainer maxWidth="lg">
+        <PageTitle variant="h4">Account</PageTitle>
 
         <Grid container spacing={2}>
           <Grid item xs={12} sm={7}>
@@ -75,7 +78,7 @@ function Account({
             <FeatureTwo />
           </Grid>
         </Grid>
-      </Container>
+      </PageContainer>
     </Fragment>
   );
 }

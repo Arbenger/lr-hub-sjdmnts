@@ -21,7 +21,7 @@ export default function withLayout<T>(
   config: Config
 ) {
   const WithLayout = (props: T) => {
-    const { appPalette } = useTheme();
+    const { palette } = useTheme();
     const { drawer } = useAppSelector(selectLayout);
     const dispatch = useAppDispatch();
     const page = useAppSelector(selectPage);
@@ -33,10 +33,7 @@ export default function withLayout<T>(
     return (
       <Fragment>
         <Head>
-          <meta
-            name="theme-color"
-            content={appPalette[appPalette.current].dark}
-          />
+          <meta name="theme-color" content={palette.primary.dark} />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
