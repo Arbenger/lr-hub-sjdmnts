@@ -19,13 +19,14 @@ import {
   Dialog,
   Avatar,
   ListItemAvatar,
+  Divider,
 } from "@material-ui/core";
 import { TransitionProps } from "@material-ui/core/transitions";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLayout } from "redux/selectors";
 import { triggerDrawer, triggerQuickAccess } from "redux/layoutSlice";
 import { Item } from "./types";
-import React from "react";
+import React, { Fragment } from "react";
 import Link from "next/link";
 
 const Transition = React.forwardRef(function Transition(
@@ -101,12 +102,15 @@ export default function FullScreenDialog() {
       <List>
         {items.map((item) => (
           <Link href={item.link} key={item.title}>
-            <ListItem button onClick={handleClose}>
-              <ListItemAvatar>
-                <Avatar>{item.icon}</Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={item.title} />
-            </ListItem>
+            <Fragment>
+              <ListItem button onClick={handleClose}>
+                <ListItemAvatar>
+                  <Avatar>{item.icon}</Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={item.title} />
+              </ListItem>
+              <Divider />
+            </Fragment>
           </Link>
         ))}
       </List>

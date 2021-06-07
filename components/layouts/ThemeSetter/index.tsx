@@ -34,6 +34,12 @@ const ThemeSetter = ({ children }: Props) => {
             dark: palettes[appPalette.current].dark,
             contrastText: palettes[appPalette.current].contrastText,
           },
+          secondary: {
+            light: "#ffddc1",
+            main: "#ffab91",
+            dark: "#c97b63",
+            contrastText: "#000000",
+          },
         },
       }),
     [appPalette.current]

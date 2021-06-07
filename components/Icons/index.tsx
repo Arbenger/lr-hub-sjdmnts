@@ -7,6 +7,7 @@ export {
   BiPalette as PaletteIcon,
   BiEdit as EditAccountIcon,
   BiTargetLock as MissionIcon,
+  BiDetail as DetailIcon,
 } from "react-icons/bi";
 export {
   IoArrowUndoOutline as ReturnedBookIcon,
@@ -24,6 +25,9 @@ export {
 export {
   MdKeyboardArrowRight as ArrowRightIcon,
   MdKeyboardArrowLeft as ArrowLeftIcon,
+  MdKeyboardArrowDown as ArrowDownIcon,
+  MdHistory as HistoryIcon,
+  MdTimer as ExtendIcon,
 } from "react-icons/md";
 export {
   HiOutlineQuestionMarkCircle as LostBookIcon,
@@ -37,6 +41,7 @@ export {
   AiOutlineSortAscending as AscendingIcon,
   AiOutlineSortDescending as DescendingIcon,
   AiFillEye as VisionIcon,
+  AiOutlineQrcode as QRCodeIcon,
 } from "react-icons/ai";
 export {
   FiTwitter as TwitterIcon,
@@ -48,3 +53,4 @@ export {
   FaRegTimesCircle as ExpiredBookIcon,
   FaQuestion as FAQIcon,
 } from "react-icons/fa";
+export { BsLightning as ActionIcon } from "react-icons/bs";

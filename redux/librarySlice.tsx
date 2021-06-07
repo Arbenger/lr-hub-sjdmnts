@@ -20,7 +20,7 @@ const initialState: InitialState = {
 };
 
 const librarySlice = createSlice({
-  name: "theme",
+  name: "library",
   initialState,
   reducers: {
     setSortBy(state, action: PayloadAction<SortByValue>) {

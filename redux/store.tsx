@@ -4,6 +4,7 @@ import layoutReducer from "./layoutSlice";
 import libraryReducer from "./librarySlice";
 import pageReducer from "./pageSlice";
 import accountReducer from "./accountSlice";
+import bookDialogReducer from "./bookDialogSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     layout: layoutReducer,
     library: libraryReducer,
     account: accountReducer,
+    bookDialog: bookDialogReducer,
   },
 });
 

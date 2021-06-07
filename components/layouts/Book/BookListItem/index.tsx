@@ -1,5 +1,7 @@
 import { ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
 import { Avatar } from "./styled";
+import { useAppDispatch } from "redux/hooks";
+import { triggerDialog } from "redux/bookDialogSlice";
 import ReactTimeAgo from "utils/ReactTimeAgo";
 
 interface Props {
@@ -13,8 +15,14 @@ export default function BookListItem({
   imageUrl,
   createdAt,
 }: Props) {
+  const dispatch = useAppDispatch();
+
+  const handleClick = () => {
+    dispatch(triggerDialog("open"));
+  };
+
   return (
-    <ListItem button>
+    <ListItem button onClick={handleClick}>
       <ListItemAvatar>
         <Avatar variant="square" alt="book-cover" src={imageUrl} />
       </ListItemAvatar>
