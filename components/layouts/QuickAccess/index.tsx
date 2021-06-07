@@ -101,17 +101,17 @@ export default function FullScreenDialog() {
 
       <List>
         {items.map((item) => (
-          <Link href={item.link} key={item.title}>
-            <Fragment>
+          <Fragment key={item.title}>
+            <Link href={item.link} >
               <ListItem button onClick={handleClose}>
                 <ListItemAvatar>
                   <Avatar>{item.icon}</Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={item.title} />
               </ListItem>
-              <Divider />
-            </Fragment>
-          </Link>
+            </Link>
+            <Divider />
+          </Fragment>
         ))}
       </List>
     </Dialog>
