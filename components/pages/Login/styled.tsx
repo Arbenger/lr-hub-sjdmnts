@@ -20,6 +20,9 @@ export const Title = styled(Typography)(({ theme: { spacing } }) => ({
 export const ContentContainer = styled(Paper)(({ theme: { spacing } }) => ({
   width: "fit-content",
   margin: "auto",
-  padding: spacing(2),
   backgroundColor: "rgba(255, 255, 255, .85)",
+  "& > div": {
+    paddingTop: spacing(2),
+    paddingBottom: spacing(2),
+  },
 }));

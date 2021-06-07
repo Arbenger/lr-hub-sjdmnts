@@ -19,7 +19,9 @@ export default function Login() {
   const auth = firebaseClient.auth();
 
   useEffect(() => {
-    if (auth.currentUser) router.push("/account");
+    setTimeout(() => {
+      if (auth.currentUser) router.push("/account");
+    }, 1000);
   }, [auth]);
 
   return (
@@ -27,6 +29,7 @@ export default function Login() {
       <WaveBackground />
       <Container maxWidth="lg">
         <Title variant="h4">Login</Title>
+
         <ContentContainer>
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
         </ContentContainer>
