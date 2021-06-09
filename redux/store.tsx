@@ -5,6 +5,7 @@ import libraryReducer from "./librarySlice";
 import pageReducer from "./pageSlice";
 import accountReducer from "./accountSlice";
 import bookDialogReducer from "./bookDialogSlice";
+import qrCodeGeneratorReducer from "./qrCodeGeneratorSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     library: libraryReducer,
     account: accountReducer,
     bookDialog: bookDialogReducer,
+    qrCodeGenerator: qrCodeGeneratorReducer,
   },
 });
 

@@ -41,6 +41,8 @@ export default async (req: NextApiRequestCustom, res: NextApiResponse) => {
 
     res.status(200).json({
       status: "success",
+      bookId: bookDoc.id,
+      bookTitle: title,
       copiesIds,
     });
   } catch (error) {

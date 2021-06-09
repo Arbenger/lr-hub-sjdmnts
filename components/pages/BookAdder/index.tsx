@@ -8,9 +8,12 @@ import { Box, Button, Grid, TextField } from "@material-ui/core";
 import { FormEvent, Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { useAppDispatch } from "redux/hooks";
+import { setBook } from "redux/qrCodeGeneratorSlice";
 
 export default function BookAdder() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [title, setTitle] = useState("");
   const [copies, setCopies] = useState(0);
   const [description, setDescription] = useState("");
@@ -50,14 +53,18 @@ export default function BookAdder() {
           secretAPIAccessKey: process.env.secretAPIAccessKey,
         },
       });
-      return alert("Adding of book failed!");
+      return alert("Sorry, please try again!");
     }
 
-    const items = response.data.copiesIds;
-    const itemsArray = items.map((item) => `items[]=${item}`);
-    const urlParams = itemsArray.join("&");
+    dispatch(
+      setBook({
+        bookId: response.data.bookId,
+        bookTitle: response.data.bookTitle,
+        copiesIds: response.data.copiesIds,
+      })
+    );
 
-    router.push(`/admin/qr-code-generator?${urlParams}`);
+    router.push(`/admin/qr-code-generator`);
   };
 
   return (
