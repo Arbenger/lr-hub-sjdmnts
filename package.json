@@ -18,6 +18,8 @@
     "firebase-admin": "^9.9.0",
     "frappe-charts": "^1.6.1",
     "hero-patterns": "^2.1.0",
+    "lodash": "^4.17.21",
+    "lodasync": "^1.0.7",
     "material-ui-popup-state": "^1.8.3",
     "next": "^10.2.3",
     "next-transpile-modules": "^7.2.0",
@@ -37,6 +39,8 @@
   },
   "devDependencies": {
     "@types/javascript-time-ago": "^2.0.2",
+    "@types/lodash": "^4.14.170",
+    "@types/qrcode.react": "^1.0.1",
     "@types/react": "^17.0.5",
     "typescript": "^4.2.4"
   }
