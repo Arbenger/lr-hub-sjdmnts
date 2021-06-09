@@ -8,61 +8,51 @@ export default function BookMenu() {
     {
       id: "1",
       title: "Sample sdfsdfsdfsdf Book 1",
-      author: "Sample Author",
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere labore deleniti cum, ratione doloremque obcaecati, suscipit odit velit error tenetur ad accusantium quo at quidem nobis recusandae iusto! Libero.`,
     },
     {
       id: "2",
       title: "Sample Book 2",
-      author: "Sample Author",
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere labore deleniti cum, ratione doloremque obcaecati, suscipit odit velit error tenetur ad accusantium quo at quidem nobis recusandae iusto! Libero.`,
     },
     {
       id: "3",
       title: "Sample Book 3",
-      author: "Sample Author",
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere labore deleniti cum, ratione doloremque obcaecati, suscipit odit velit error tenetur ad accusantium quo at quidem nobis recusandae iusto! Libero.`,
     },
     {
       id: "4",
       title: "Sample Book 4",
-      author: "Sample Author",
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere labore deleniti cum, ratione doloremque obcaecati, suscipit odit velit error tenetur ad accusantium quo at quidem nobis recusandae iusto! Libero.`,
     },
     {
       id: "5",
       title: "Sample Book 5",
-      author: "Sample Author",
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere labore deleniti cum, ratione doloremque obcaecati, suscipit odit velit error tenetur ad accusantium quo at quidem nobis recusandae iusto! Libero.`,
     },
     {
       id: "1",
       title: "Sample sdfsdfsdfsdf Book 1",
-      author: "Sample Author",
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere labore deleniti cum, ratione doloremque obcaecati, suscipit odit velit error tenetur ad accusantium quo at quidem nobis recusandae iusto! Libero.`,
     },
     {
       id: "2",
       title: "Sample Book 2",
-      author: "Sample Author",
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere labore deleniti cum, ratione doloremque obcaecati, suscipit odit velit error tenetur ad accusantium quo at quidem nobis recusandae iusto! Libero.`,
     },
     {
       id: "3",
       title: "Sample Book 3",
-      author: "Sample Author",
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere labore deleniti cum, ratione doloremque obcaecati, suscipit odit velit error tenetur ad accusantium quo at quidem nobis recusandae iusto! Libero.`,
     },
     {
       id: "4",
       title: "Sample Book 4",
-      author: "Sample Author",
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere labore deleniti cum, ratione doloremque obcaecati, suscipit odit velit error tenetur ad accusantium quo at quidem nobis recusandae iusto! Libero.`,
     },
     {
       id: "5",
       title: "Sample Book 5",
-      author: "Sample Author",
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facere labore deleniti cum, ratione doloremque obcaecati, suscipit odit velit error tenetur ad accusantium quo at quidem nobis recusandae iusto! Libero.`,
     },
   ];
