@@ -25,23 +25,7 @@ export default function FeatureOne() {
          createdAt: new Date(1621142681607),
       },
       {
-         type: 'resolveDenied',
-         createdAt: new Date(1621142681607),
-      },
-      {
-         type: 'borrowAccepted',
-         createdAt: new Date(1621142681607),
-      },
-      {
-         type: 'borrowDenied',
-         createdAt: new Date(1621142681607),
-      },
-      {
-         type: 'returnAccepted',
-         createdAt: new Date(1621142681607),
-      },
-      {
-         type: 'returnDenied',
+         type: 'resolveAccepted',
          createdAt: new Date(1621142681607),
       },
    ];
