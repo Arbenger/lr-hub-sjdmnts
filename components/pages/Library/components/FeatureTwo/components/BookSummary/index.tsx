@@ -1,14 +1,24 @@
-import { Grid } from "@material-ui/core";
+import {
+  BorrowedBookIcon,
+  UnbookmarkedStateIcon,
+  MoreIcon,
+} from "components/Icons";
 import {
   Container,
   Description,
   Cover,
   Title,
   Subtitle,
-  Button,
+  ActionsContainer,
+  ActionsWrapper,
 } from "./styled";
-import { Props } from "./types";
+import { Grid, IconButton } from "@material-ui/core";
+import { Book } from "redux/slices/library/types";
 import Image from "next/image";
+
+interface Props {
+  book: Book;
+}
 
 export default function BookSummary({ book }: Props) {
   return (
@@ -17,28 +27,41 @@ export default function BookSummary({ book }: Props) {
         <Grid item xs={5}>
           <Cover>
             <Image
-              src={`/images/book-cover-${book.id}.png`}
+              src={`/images/book-cover-1.png`}
               width="auto"
               height="auto"
               objectFit="cover"
             />
           </Cover>
         </Grid>
+
         <Grid item xs={7}>
-          <Title variant="h6">{book.title}</Title>
-          <Subtitle variant="body2">20 available copies</Subtitle>
-          <Button variant="outlined" size="small" color="primary">
-            Borrow
-          </Button>
+          <Title>{book.title}</Title>
+
+          <Subtitle variant="body2">
+            {book.copies.available} available copies
+          </Subtitle>
+
+          <ActionsContainer>
+            <ActionsWrapper>
+              <IconButton color="inherit">
+                <BorrowedBookIcon />
+              </IconButton>
+
+              <IconButton color="inherit">
+                <UnbookmarkedStateIcon />
+              </IconButton>
+
+              <IconButton color="inherit">
+                <MoreIcon />
+              </IconButton>
+            </ActionsWrapper>
+          </ActionsContainer>
         </Grid>
+
         <Grid item xs={12}>
-          <Title variant="h6">Description</Title>
-          <Description variant="body2">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam,
-            rem? Accusantium consequatur magnam ullam, laborum vel iusto, enim
-            in officia expedita, ab ut ipsam velit perferendis corrupti
-            corporis? Doloribus, eos.
-          </Description>
+          <Title>Description</Title>
+          <Description variant="body2">{book.description}</Description>
         </Grid>
       </Grid>
     </Container>

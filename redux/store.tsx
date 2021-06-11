@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./themeSlice";
 import layoutReducer from "./layoutSlice";
-import libraryReducer from "./librarySlice";
+import libraryReducer from "./slices/library";
 import pageReducer from "./pageSlice";
 import accountReducer from "./accountSlice";
 import bookDialogReducer from "./bookDialogSlice";

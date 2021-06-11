@@ -4,8 +4,6 @@ import FilterBy from "./components/FilterBy";
 import Search from "./components/Search";
 
 export default function FeatureOne() {
-  const beginSearch = () => {};
-
   return (
     <Box>
       <Grid container spacing={2}>
@@ -16,7 +14,7 @@ export default function FeatureOne() {
           <FilterBy />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Search beginSearch={beginSearch} />
+          <Search />
         </Grid>
       </Grid>
     </Box>

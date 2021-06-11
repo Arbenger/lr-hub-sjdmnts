@@ -1,6 +1,7 @@
 const withTM = require("next-transpile-modules")([
   "frappe-charts",
   "react-frappe-charts",
+  "firebase",
 ]);
 module.exports = withTM({
   images: {

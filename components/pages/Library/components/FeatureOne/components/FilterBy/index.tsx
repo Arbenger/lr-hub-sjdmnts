@@ -2,22 +2,24 @@ import { ChangeEvent } from "react";
 import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLibrary } from "redux/selectors";
-import { setFilterBy } from "redux/librarySlice";
+import { setFilterBy } from "redux/slices/library";
 import { FilterIcon } from "components/Icons";
 import { Container, IconButton } from "./styled";
-import { FilterByOption, FilterByValue } from "./types";
+import { FilterBy as FilterByType } from "redux/slices/library/types";
+import { fetchBook } from "redux/slices/library/thunks";
 
 export default function FilterBy() {
   const dispatch = useAppDispatch();
-  const { filterBy } = useAppSelector(selectLibrary);
-  const filterByOptions: FilterByOption[] = [
+  const state = useAppSelector(selectLibrary);
+  const filterByOptions = [
     { title: "All", value: "all" },
     { title: "Bookmarked", value: "bookmarked" },
     { title: "Previously Borrowed", value: "previouslyBorrowed" },
   ];
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setFilterBy(event.target.value as FilterByValue));
+    dispatch(setFilterBy(event.target.value as FilterByType));
+    dispatch(fetchBook());
   };
 
   return (
@@ -32,7 +34,7 @@ export default function FilterBy() {
           labelId="filter-by-label"
           id="filter-by-select"
           color="primary"
-          value={filterBy}
+          value={state.filterBy}
           onChange={handleChange}
           fullWidth
         >

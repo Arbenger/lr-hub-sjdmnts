@@ -13,4 +13,7 @@ if (!firebaseAdmin.apps.length) {
   });
 }
 
+export const db = firebaseAdmin.firestore();
+export const auth = firebaseAdmin.auth();
+
 export { firebaseAdmin };

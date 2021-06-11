@@ -2,36 +2,42 @@ import { ChangeEvent } from "react";
 import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { selectLibrary } from "redux/selectors";
-import { setSortBy, setSortDirection } from "redux/librarySlice";
+import { setSortBy, setSortDirection } from "redux/slices/library";
 import { AscendingIcon, DescendingIcon } from "components/Icons";
 import { Container, IconButton } from "./styled";
-import { SortByOption, SortByValue, SortDirectionValue } from "./types";
+import {
+  SortBy as SortByType,
+  SortDirection as SortDirectionType,
+} from "redux/slices/library/types";
+import { fetchBook } from "redux/slices/library/thunks";
 
 export default function SortBy() {
   const dispatch = useAppDispatch();
-  const { sortBy, sortDirection } = useAppSelector(selectLibrary);
+  const state = useAppSelector(selectLibrary);
 
-  const sortByOptions: SortByOption[] = [
+  const sortByOptions = [
     { title: "Title", value: "title" },
-    { title: "Author", value: "author" },
-    { title: "Number of Pages", value: "numberOfPages" },
     { title: "Popularity", value: "popularity" },
+    { title: "Available Copies", value: "availableCopies" },
+    { title: "Latest", value: "latest" },
   ];
 
   const handleClick = () => {
-    const newSortDirection: SortDirectionValue =
-      sortDirection === "ascending" ? "descending" : "ascending";
+    const newSortDirection: SortDirectionType =
+      state.sortDirection === "asc" ? "desc" : "asc";
     dispatch(setSortDirection(newSortDirection));
+    dispatch(fetchBook());
   };
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setSortBy(event.target.value as SortByValue));
+    dispatch(setSortBy(event.target.value as SortByType));
+    dispatch(fetchBook());
   };
 
   return (
     <Container>
       <IconButton edge="start" onClick={handleClick}>
-        {sortDirection === "ascending" ? <AscendingIcon /> : <DescendingIcon />}
+        {state.sortDirection === "asc" ? <AscendingIcon /> : <DescendingIcon />}
       </IconButton>
 
       <FormControl fullWidth>
@@ -40,7 +46,7 @@ export default function SortBy() {
           labelId="sort-by-label"
           id="sort-by-select"
           color="primary"
-          value={sortBy}
+          value={state.sortBy}
           onChange={handleChange}
           fullWidth
         >
