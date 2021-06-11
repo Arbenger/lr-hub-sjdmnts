@@ -28,22 +28,6 @@ export default function FeatureOne() {
          type: 'lost',
          createdAt: new Date(1621142681607),
       },
-      {
-         type: 'return',
-         createdAt: new Date(1621142681607),
-      },
-      {
-         type: 'lost',
-         createdAt: new Date(1621142681607),
-      },
-      {
-         type: 'return',
-         createdAt: new Date(1621142681607),
-      },
-      {
-         type: 'lost',
-         createdAt: new Date(1621142681607),
-      },
    ];
 
    return (
