@@ -1,12 +1,12 @@
-import PieChart from "components/charts/PieChart";
+import PieChart from 'components/charts/PieChart';
 
 export default function FeatureTwo() {
-  return (
-    <PieChart
-      title="Content"
-      height={480}
-      labels={["Borrow", "Return", "Penalty"]}
-      values={[5, 3, 4]}
-    />
-  );
+   return (
+      <PieChart
+         title="Content"
+         height={480}
+         labels={['Borrow', 'Return', 'Penalty']}
+         values={[5, 3, 4]}
+      />
+   );
 }

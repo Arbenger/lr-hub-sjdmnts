@@ -1,12 +1,12 @@
-import { Paper, styled, IconButton as MuiIconButton } from "@material-ui/core";
-import { flexStartCenter } from "components/layouts/ThemeSetter/mixins";
+import { Paper, styled, IconButton as MuiIconButton } from '@material-ui/core';
+import { flexStartCenter } from 'components/layouts/ThemeSetter/mixins';
 
 export const Container = styled(Paper)(({ theme: { spacing } }) => ({
-  ...flexStartCenter,
-  width: "100%",
-  padding: spacing(2),
+   ...flexStartCenter,
+   width: '100%',
+   padding: spacing(2),
 }));
 
 export const IconButton = styled(MuiIconButton)(({ theme: { spacing } }) => ({
-  marginRight: spacing(1),
+   marginRight: spacing(1),
 }));

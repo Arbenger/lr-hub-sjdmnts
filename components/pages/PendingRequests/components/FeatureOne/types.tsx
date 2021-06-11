@@ -1,4 +1,4 @@
 export interface Item {
-  type: "borrow" | "return" | "resolve";
-  createdAt: Date;
+   type: 'borrow' | 'return' | 'resolve';
+   createdAt: Date;
 }

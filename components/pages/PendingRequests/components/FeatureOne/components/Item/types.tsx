@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export interface Template {
-  text: string;
-  icon: ReactNode;
+   text: string;
+   icon: ReactNode;
 }
 
 export interface Templates {
-  borrow: Template;
-  return: Template;
-  resolve: Template;
+   borrow: Template;
+   return: Template;
+   resolve: Template;
 }

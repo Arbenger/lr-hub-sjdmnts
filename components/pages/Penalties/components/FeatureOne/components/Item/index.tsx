@@ -1,31 +1,31 @@
-import { ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
-import { PenaltyIcon, ReturnedBookIcon } from "components/Icons";
-import { ListAvatar } from "./styled";
-import { Item as ItemType } from "../../types";
-import { Templates } from "./types";
-import ReactTimeAgo from "utils/ReactTimeAgo";
+import { ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import { PenaltyIcon, ReturnedBookIcon } from 'components/Icons';
+import { ListAvatar } from './styled';
+import { Item as ItemType } from '../../types';
+import { Templates } from './types';
+import ReactTimeAgo from 'utils/ReactTimeAgo';
 
 export default function Item({ type, createdAt }: ItemType) {
-  const templates: Templates = {
-    return: {
-      text: "You have failed to return the book within the time limit.",
-      icon: <ReturnedBookIcon />,
-    },
-    lost: {
-      text: "You have lost a book.",
-      icon: <PenaltyIcon />,
-    },
-  };
+   const templates: Templates = {
+      return: {
+         text: 'You have failed to return the book within the time limit.',
+         icon: <ReturnedBookIcon />,
+      },
+      lost: {
+         text: 'You have lost a book.',
+         icon: <PenaltyIcon />,
+      },
+   };
 
-  return (
-    <ListItem button>
-      <ListItemAvatar>
-        <ListAvatar>{templates[type].icon}</ListAvatar>
-      </ListItemAvatar>
-      <ListItemText
-        primary={templates[type].text}
-        secondary={<ReactTimeAgo date={createdAt} />}
-      />
-    </ListItem>
-  );
+   return (
+      <ListItem button>
+         <ListItemAvatar>
+            <ListAvatar>{templates[type].icon}</ListAvatar>
+         </ListItemAvatar>
+         <ListItemText
+            primary={templates[type].text}
+            secondary={<ReactTimeAgo date={createdAt} />}
+         />
+      </ListItem>
+   );
 }

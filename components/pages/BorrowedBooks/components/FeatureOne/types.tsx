@@ -1,5 +1,5 @@
 export interface Item {
-  bookTitle: string;
-  imageUrl: string;
-  createdAt: Date;
+   bookTitle: string;
+   imageUrl: string;
+   createdAt: Date;
 }
