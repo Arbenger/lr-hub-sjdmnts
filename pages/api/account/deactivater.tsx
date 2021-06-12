@@ -3,7 +3,7 @@ import { auth } from 'firebase/admin';
 
 interface NextApiRequestCustom extends NextApiRequest {
    query: {
-      userIdToken: string;
+      accountUID: string;
       secretAPIAccessKey: string;
    };
 }
@@ -13,13 +13,12 @@ export default async (req: NextApiRequestCustom, res: NextApiResponse) => {
       if (req.query.secretAPIAccessKey !== process.env.secretAPIAccessKey)
          throw { message: 'Secret API Access Key did not match.' };
 
-      const userIdToken = await auth.verifyIdToken(req.query.userIdToken);
-      const userRecord = await auth.getUser(userIdToken.uid);
+      const { accountUID } = req.query;
 
-      await auth.deleteUser(userRecord.uid);
+      await auth.deleteUser(accountUID);
 
-      res.status(200).json({ status: 'success' });
+      res.status(200).json({ status: 'fulfilled' });
    } catch (error) {
-      res.end(JSON.stringify({ ...error, status: 'failure' }));
+      res.end(JSON.stringify({ ...error, status: 'rejected' }));
    }
 };

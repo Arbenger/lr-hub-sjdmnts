@@ -8,7 +8,7 @@ import { Grid } from '@material-ui/core';
 import { Fragment, useEffect } from 'react';
 import { firebaseAdmin } from 'firebase/admin';
 import { useAppDispatch } from 'redux/hooks';
-import { setData } from 'redux/accountSlice';
+import { setInfo } from 'redux/slices/account';
 
 import nookies from 'nookies';
 import FeatureOne from 'components/pages/Account/components/FeatureOne';
@@ -24,8 +24,9 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 
       return {
          props: {
-            displayName: userRecord.displayName || 'not-applicable',
+            uid: userRecord.uid,
             email: userRecord.email || 'not-applicable',
+            displayName: userRecord.displayName || 'not-applicable',
             occupation: 'Student',
             registeredAt: userRecord.metadata.creationTime || 'not-applicable',
             photoURL: userRecord.photoURL || 'not-applicable',
@@ -42,8 +43,9 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 };
 
 function Account({
-   displayName,
+   uid,
    email,
+   displayName,
    occupation,
    registeredAt,
    photoURL,
@@ -53,7 +55,8 @@ function Account({
 
    useEffect(() => {
       dispatch(
-         setData({
+         setInfo({
+            uid,
             displayName,
             email,
             occupation,
@@ -62,7 +65,7 @@ function Account({
             provider,
          })
       );
-   }, [displayName, email, occupation, registeredAt, photoURL, provider]);
+   }, [uid, email, displayName, occupation, registeredAt, photoURL, provider]);
 
    return (
       <Fragment>
