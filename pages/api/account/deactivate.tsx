@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { firebaseAdmin } from 'firebase/admin';
+import { auth } from 'firebase/admin';
 
 interface NextApiRequestCustom extends NextApiRequest {
    query: {
@@ -13,7 +13,6 @@ export default async (req: NextApiRequestCustom, res: NextApiResponse) => {
       if (req.query.secretAPIAccessKey !== process.env.secretAPIAccessKey)
          throw { message: 'Secret API Access Key did not match.' };
 
-      const auth = firebaseAdmin.auth();
       const userIdToken = await auth.verifyIdToken(req.query.userIdToken);
       const userRecord = await auth.getUser(userIdToken.uid);
 

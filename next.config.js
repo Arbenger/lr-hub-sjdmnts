@@ -17,7 +17,5 @@ module.exports = withTM({
       measurementId: 'G-V7YGZ03RCY',
       secretAPIAccessKey:
          'Yin and yang, male and female, strong and weak, rigid and tender, heaven and earth, light and darkness, thunder and lightning, cold and warmth, good and evil... the interplay of opposite principles constitutes the universe',
-      FIRESTORE_EMULATOR_HOST: 'localhost:8080',
-      FIREBASE_STORAGE_EMULATOR_HOST: 'localhost:9199',
    },
 });

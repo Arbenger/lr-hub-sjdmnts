@@ -6,8 +6,12 @@ import {
 import { Grid } from '@material-ui/core';
 import { Fragment } from 'react';
 import FeatureOne from './components/FeatureOne';
-import FeatureTwo from './components/FeatureTwo';
 import FeatureThree from './components/FeatureThree';
+import dynamic from 'next/dynamic';
+
+const FeatureTwo = dynamic(() => import('./components/FeatureTwo'), {
+   ssr: false,
+});
 
 export default function Dashboard() {
    return (

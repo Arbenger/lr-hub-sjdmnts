@@ -1,81 +1,53 @@
-import {
-   Container,
-   ContentContainer,
-   ItemContainer,
-   ItemCaption,
-   PrintButton,
-} from './styled';
-import { Grid, Typography } from '@material-ui/core';
+import { ContentContainer, PrintButton } from './styled';
+import { Grid, Box, Typography } from '@material-ui/core';
 import { BiPrinter as PrintIcon } from 'react-icons/bi';
-import { useEffect, useState } from 'react';
-import { useAppSelector } from 'redux/hooks';
-import { selectQRCodeGenerator } from 'redux/selectors';
-import QRCode from 'qrcode.react';
-import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { Query, BookChunks } from './types';
+import { useMemo } from 'react';
+import QRCodeItem from './components/QRCodeItem';
 import _ from 'lodash';
 
-interface Item {
-   copyId: string;
-   bookId: string;
-   bookTitle: string;
-}
-
 export default function QRCodeGenerator() {
-   const state = useAppSelector(selectQRCodeGenerator);
-   const [items, setItems] = useState<Item[][]>([]);
+   const router = useRouter();
 
-   const handlePrint = () => {
-      window && window.print();
-   };
+   const bookChunks = useMemo(() => {
+      const { bookId, bookTitle, idOfCopies } =
+         router.query as unknown as Query;
 
-   useEffect(() => {
-      const items = state.copiesIds.map((copyId) => ({
+      const bookCopies = idOfCopies?.map((copyId) => ({
          copyId,
-         bookId: state.bookId,
-         bookTitle: state.bookTitle,
+         bookId: bookId,
+         bookTitle: bookTitle,
       }));
-      const chunks = _.chunk(items, 12);
-      setItems(chunks);
-   }, [state]);
+      return (_.chunk(bookCopies, 12) as unknown as BookChunks) || [];
+   }, [router.query]);
 
    return (
-      <Container>
-         <PrintButton color="primary" aria-label="print" onClick={handlePrint}>
+      <Box>
+         <PrintButton
+            color="primary"
+            aria-label="print"
+            onClick={() => window.print()}
+         >
             <PrintIcon />
          </PrintButton>
 
-         {items.map((item, index) => (
-            <ContentContainer key={`item-${index}`}>
+         {bookChunks.map((bookCopies, index) => (
+            <ContentContainer key={index}>
+               <Typography>{router.query.bookTitle}</Typography>
                <Grid container spacing={2}>
-                  {item.map((subitem, subindex) => (
-                     <Grid item key={`subitem-${subindex}`} xs={4}>
-                        <ItemContainer>
-                           <QRCode
-                              value={JSON.stringify(subitem)}
-                              size={165}
-                              renderAs="svg"
-                           />
-                           <ItemCaption>
-                              <Image
-                                 src="/images/logo.png"
-                                 width={25}
-                                 height={25}
-                                 unoptimized
-                              />
-                              <Typography>{subitem.copyId}</Typography>
-                              <Image
-                                 src="/images/sjdmnts-logo.png"
-                                 width={25}
-                                 height={25}
-                                 unoptimized
-                              />
-                           </ItemCaption>
-                        </ItemContainer>
+                  {bookCopies.map((bookCopy) => (
+                     <Grid item key={bookCopy.copyId} xs={4}>
+                        <QRCodeItem
+                           copyId={bookCopy.copyId}
+                           bookId={bookCopy.bookId}
+                           bookTitle={bookCopy.bookTitle}
+                        />
                      </Grid>
                   ))}
                </Grid>
             </ContentContainer>
          ))}
-      </Container>
+      </Box>
    );
 }

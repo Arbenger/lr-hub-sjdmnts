@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { firebaseAdmin } from 'firebase/admin';
+import { db } from 'firebase/admin';
 import { mapAsync } from 'lodasync';
 import _ from 'lodash';
 
@@ -8,7 +8,6 @@ interface NextApiRequestCustom extends NextApiRequest {
       title: string;
       description: string;
       copies: string;
-      dateAdded: string;
       secretAPIAccessKey: string;
    };
 }
@@ -18,34 +17,34 @@ export default async (req: NextApiRequestCustom, res: NextApiResponse) => {
       if (req.query.secretAPIAccessKey !== process.env.secretAPIAccessKey)
          throw { message: 'Secret API Access Key did not match.' };
 
-      const { title, description, copies, dateAdded } = req.query;
-      const db = firebaseAdmin.firestore();
-      const bookDoc = db.collection('books').doc();
+      const { title, description, copies } = req.query;
+      const bookRef = db.collection('books').doc();
 
-      bookDoc.set({
+      bookRef.set({
          title,
-         description,
-         dateAdded,
+         dateAdded: new Date().getTime(),
+         description:
+            description || 'There is no description given to this book.',
       });
 
-      const copiesIds = await mapAsync(async () => {
-         const copyDoc = bookDoc.collection('copies').doc();
+      const idOfCopies = await mapAsync(async () => {
+         const copyRef = bookRef.collection('copies').doc();
 
-         await copyDoc.set({
+         await copyRef.set({
             status: 'availables',
-            dateAdded,
+            dateAdded: new Date().getTime(),
          });
 
-         return copyDoc.id;
+         return copyRef.id;
       }, Array(parseInt(copies)).fill(1));
 
       res.status(200).json({
-         status: 'success',
-         bookId: bookDoc.id,
+         status: 'fulfilled',
+         bookId: bookRef.id,
          bookTitle: title,
-         copiesIds,
+         idOfCopies,
       });
    } catch (error) {
-      res.end(JSON.stringify({ ...error, status: 'failure' }));
+      res.end(JSON.stringify({ ...error, status: 'rejected' }));
    }
 };

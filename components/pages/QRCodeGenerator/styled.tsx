@@ -1,7 +1,4 @@
 import { Box, Fab, Paper, styled } from '@material-ui/core';
-import { flexCenter } from 'components/layouts/ThemeSetter/mixins';
-
-export const Container = styled(Box)({});
 
 export const ContentContainer = styled(Paper)(
    ({ theme: { spacing, palette } }) => ({
@@ -11,28 +8,10 @@ export const ContentContainer = styled(Paper)(
       maxHeight: 1056,
       margin: 'auto',
       padding: spacing(2),
+      paddingTop: spacing(1),
       backgroundColor: palette.grey[200],
    })
 );
-
-export const ItemContainer = styled(Paper)(({ theme: { spacing } }) => ({
-   ...flexCenter,
-   minHeight: 240,
-   maxHeight: 240,
-   paddingTop: spacing(2.5),
-   flexDirection: 'column',
-}));
-
-export const ItemCaption = styled(Box)(({ theme: { spacing } }) => ({
-   ...flexCenter,
-   paddingTop: spacing(0.75),
-   '& p': {
-      fontSize: 12,
-      fontWeight: 'bold',
-      marginLeft: spacing(1),
-      marginRight: spacing(1),
-   },
-}));
 
 export const PrintButton = styled(Fab)(({ theme: { spacing } }) => ({
    fontSize: 25,

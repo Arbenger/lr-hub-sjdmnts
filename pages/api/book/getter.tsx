@@ -5,7 +5,7 @@ import {
    FilterBy,
    Book,
 } from 'redux/slices/library/types';
-import { firebaseAdmin } from 'firebase/admin';
+import { db } from 'firebase/admin';
 import { mapAsync } from 'lodasync';
 import _ from 'lodash';
 
@@ -32,18 +32,6 @@ export function filterDocsBySearchInput(
       : docs;
 }
 
-export function filterBookBySearchInput(
-   searchInput: string,
-   books: Array<Book>
-) {
-   return searchInput
-      ? books.filter((book) => {
-           const isMatched = book.title.toLowerCase().indexOf(searchInput) > -1;
-           return isMatched;
-        })
-      : books;
-}
-
 export function filterBookBySort(
    sortBy: SortBy,
    sortDirection: SortDirection,
@@ -63,7 +51,6 @@ export default async (req: NextApiRequestCustom, res: NextApiResponse) => {
 
       const { sortBy, sortDirection, searchInput } = req.query;
 
-      const db = firebaseAdmin.firestore();
       const booksRef = db.collection('books');
       const booksSnapshot = await booksRef.get();
 
@@ -92,50 +79,6 @@ export default async (req: NextApiRequestCustom, res: NextApiResponse) => {
          filtered
       );
 
-      // let filtered: Book[] = [
-      //   {
-      //     id: "0hWFq61VP7JKGp0ch4CM",
-      //     title: "English for Academic and Professional Purposes",
-      //     description: "There is no description given to this book.",
-      //     copies: {
-      //       available: 20,
-      //     },
-      //   },
-      //   {
-      //     id: "ssdfasdfsdfsddf",
-      //     title: "CONCEPTUAL MATH AND BEYOND BUSINESS MATHEMATICS",
-      //     description: "There is no description given to this book.",
-      //     copies: {
-      //       available: 30,
-      //     },
-      //   },
-      //   {
-      //     id: "ssdfasdfssdsdfsdf",
-      //     title: "FOUNDATION OF PHILOSOPHY",
-      //     description: "There is no description given to this book.",
-      //     copies: {
-      //       available: 40,
-      //     },
-      //   },
-      //   {
-      //     id: "ssdsfasdasdffsdfsdf",
-      //     title: "FILIPINO SA PILING LARANG Tech-Voc",
-      //     description: "There is no description given to this book.",
-      //     copies: {
-      //       available: 50,
-      //     },
-      //   },
-      //   {
-      //     id: "ssdfassdfadfsdfsdf",
-      //     title: "SENIOR HIGH Conceptual Math & Beyond GENERAL MATHEMATICS",
-      //     description: "There is no description given to this book.",
-      //     copies: {
-      //       available: 60,
-      //     },
-      //   },
-      // ];
-
-      // filtered = filterBookBySearchInput(searchInput, filtered);
       filtered = filterBookBySort(sortBy, sortDirection, filtered);
 
       res.status(200).json({
