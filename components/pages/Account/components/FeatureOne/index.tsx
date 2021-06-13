@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid, GridSize } from '@material-ui/core';
 import { useAppSelector } from 'redux/hooks';
 import { selectAccount } from 'redux/selectors';
 import {
@@ -11,15 +11,49 @@ import {
 
 export default function FeatureOne() {
    const {
-      data: {
-         displayName,
+      info: {
          email,
+         displayName,
          occupation,
          registeredAt,
          photoURL,
          provider,
       },
    } = useAppSelector(selectAccount);
+
+   interface Field {
+      label: string;
+      value: string;
+      size: GridSize;
+   }
+
+   const fields: Field[] = [
+      {
+         label: 'Display Name',
+         value: displayName,
+         size: 12,
+      },
+      {
+         label: 'Email',
+         value: email,
+         size: 12,
+      },
+      {
+         label: 'Occupation',
+         value: occupation,
+         size: 6,
+      },
+      {
+         label: 'Registered At',
+         value: new Date(registeredAt).toDateString(),
+         size: 6,
+      },
+      {
+         label: 'Provider',
+         value: provider,
+         size: 12,
+      },
+   ];
 
    return (
       <Container>
@@ -32,72 +66,25 @@ export default function FeatureOne() {
                         height={150}
                         objectFit="cover"
                         alt="profile-picture"
-                        src={
-                           photoURL !== 'not-applicable' &&
-                           photoURL !== 'Loading'
-                              ? photoURL
-                              : '/images/no-profile-picture.png'
-                        }
+                        src={photoURL || '/images/no-profile-picture.png'}
                         quality={100}
                      />
                   </PictureBorder>
                </PictureContainer>
             </Grid>
 
-            <Grid item xs={12}>
-               <TextField
-                  label="Display Name"
-                  value={displayName}
-                  variant="standard"
-                  InputProps={{
-                     readOnly: true,
-                  }}
-               />
-            </Grid>
-
-            <Grid item xs={12}>
-               <TextField
-                  label="Email"
-                  value={email}
-                  variant="standard"
-                  InputProps={{
-                     readOnly: true,
-                  }}
-               />
-            </Grid>
-
-            <Grid item xs={6}>
-               <TextField
-                  label="Occupation"
-                  value={occupation}
-                  variant="standard"
-                  InputProps={{
-                     readOnly: true,
-                  }}
-               />
-            </Grid>
-
-            <Grid item xs={6}>
-               <TextField
-                  label="Registered At"
-                  value={new Date(registeredAt).toDateString()}
-                  variant="standard"
-                  InputProps={{
-                     readOnly: true,
-                  }}
-               />
-            </Grid>
-
-            <Grid item xs={12}>
-               <TextField
-                  label="Provider"
-                  value={provider}
-                  variant="standard"
-                  InputProps={{
-                     readOnly: true,
-                  }}
-               />
-            </Grid>
+            {fields.map((field) => (
+               <Grid item key={field.label} xs={field.size}>
+                  <TextField
+                     label={field.label}
+                     value={field.value}
+                     variant="standard"
+                     InputProps={{
+                        readOnly: true,
+                     }}
+                  />
+               </Grid>
+            ))}
          </Grid>
       </Container>
    );

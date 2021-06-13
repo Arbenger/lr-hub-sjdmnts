@@ -3,7 +3,7 @@ import themeReducer from './themeSlice';
 import layoutReducer from './layoutSlice';
 import libraryReducer from './slices/library';
 import pageReducer from './pageSlice';
-import accountReducer from './accountSlice';
+import accountReducer from './slices/account';
 import bookDialogReducer from './bookDialogSlice';
 import bookInputerReducer from './slices/bookInputer';
 

@@ -3,12 +3,12 @@ import {
    PageTitle,
    WaveBackground,
 } from 'components/layouts/Page/styled';
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { Grid } from '@material-ui/core';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { Fragment, useEffect } from 'react';
-import { firebaseAdmin } from 'firebase/admin';
+import { auth, db } from 'firebase/admin';
 import { useAppDispatch } from 'redux/hooks';
-import { setData } from 'redux/accountSlice';
+import { fetchAccountInfoByUID } from 'redux/slices/account/thunks';
 
 import nookies from 'nookies';
 import FeatureOne from 'components/pages/Account/components/FeatureOne';
@@ -18,18 +18,28 @@ import withLayout from 'HOC/withLayout';
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
    try {
       const cookies = nookies.get(ctx);
-      const auth = firebaseAdmin.auth();
+
       const token = await auth.verifyIdToken(cookies.token);
       const userRecord = await auth.getUser(token.uid);
 
+      const accountsRef = db.collection('accounts');
+      const accountRef = await accountsRef.doc(userRecord.uid).get();
+
+      if (!accountRef.exists) {
+         await accountsRef.doc(userRecord.uid).set({
+            uid: userRecord.uid,
+            email: userRecord.email,
+            displayName: userRecord.displayName,
+            occupation: 'Unknown',
+            registeredAt: userRecord.metadata.creationTime,
+            photoURL: userRecord.photoURL,
+            provider: userRecord.providerData[0].providerId,
+         });
+      }
+
       return {
          props: {
-            displayName: userRecord.displayName || 'not-applicable',
-            email: userRecord.email || 'not-applicable',
-            occupation: 'Student',
-            registeredAt: userRecord.metadata.creationTime || 'not-applicable',
-            photoURL: userRecord.photoURL || 'not-applicable',
-            provider: userRecord.providerData[0].providerId,
+            accountUID: userRecord.uid,
          },
       };
    } catch (error) {
@@ -42,27 +52,13 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 };
 
 function Account({
-   displayName,
-   email,
-   occupation,
-   registeredAt,
-   photoURL,
-   provider,
+   accountUID,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      dispatch(
-         setData({
-            displayName,
-            email,
-            occupation,
-            registeredAt,
-            photoURL,
-            provider,
-         })
-      );
-   }, [displayName, email, occupation, registeredAt, photoURL, provider]);
+      dispatch(fetchAccountInfoByUID(accountUID));
+   }, [accountUID]);
 
    return (
       <Fragment>

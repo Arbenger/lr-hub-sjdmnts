@@ -13,7 +13,11 @@ if (!firebaseAdmin.apps.length) {
    });
 }
 
-export const db = firebaseAdmin.firestore();
-export const auth = firebaseAdmin.auth();
-
 export { firebaseAdmin };
+
+export const auth = firebaseAdmin.auth();
+export const db = firebaseAdmin.firestore();
+
+// DB COLLECTIONS
+export const accountsRef = db.collection('accounts');
+export const booksRef = db.collection('books');

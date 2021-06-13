@@ -1,84 +1,84 @@
 import {
+   DeactivateAccountIcon,
+   LoadingEllipsisIcon,
+   SignOutIcon,
+   EditAccountIcon,
+} from 'components/Icons';
+import {
    List,
    ListItem,
    ListItemAvatar,
    ListItemText,
    ListSubheader,
 } from '@material-ui/core';
-import { useState } from 'react';
-import { firebaseClient } from 'firebase/client';
+import { useState, ReactNode } from 'react';
+import { authClient } from 'firebase/client';
 import { useRouter } from 'next/router';
 import { useAppDispatch } from 'redux/hooks';
-import { triggerModal } from 'redux/accountSlice';
+import { triggerDialog } from 'redux/slices/account';
 import { Container, Avatar } from './styled';
-import {
-   DeactivateAccountIcon,
-   LoadingEllipsisIcon,
-   SignOutIcon,
-   EditAccountIcon,
-} from 'components/Icons';
-import DeactivateAccountModal from './components/DeactivateAccountModal';
+import DeactivateAccountDialog from './components/DeactivateAccountDialog';
+import RedirectConfirmationDialog from './components/RedirectConfirmationDialog';
 
 export default function FeatureTwo() {
    const router = useRouter();
    const dispatch = useAppDispatch();
    const [isSignOutPending, setIsSignOutPending] = useState(false);
 
-   const handleSignOut = async () => {
-      setIsSignOutPending(true);
-      await firebaseClient.auth().signOut();
-      router.push('/login');
-   };
+   interface Action {
+      text: string;
+      icon: ReactNode;
+      onClick: () => void;
+   }
 
-   const handdleClickDeactivateAccount = () => {
-      dispatch(
-         triggerModal({
-            target: 'deactivateAccount',
-            isOpen: true,
-         })
-      );
-   };
+   const actions: Action[] = [
+      {
+         text: isSignOutPending ? 'Signing Out' : 'Sign Out',
+         icon: isSignOutPending ? <LoadingEllipsisIcon /> : <SignOutIcon />,
+         onClick: async () => {
+            setIsSignOutPending(true);
+            await authClient.signOut();
+            router.push('/login');
+         },
+      },
+      {
+         text: 'Edit Informations',
+         icon: <EditAccountIcon />,
+         onClick: () => {},
+      },
+      {
+         text: 'Deactivate Account',
+         icon: <DeactivateAccountIcon />,
+         onClick: () => {
+            dispatch(
+               triggerDialog({
+                  target: 'deactivateAccount',
+                  state: {
+                     isOpen: true,
+                  },
+               })
+            );
+         },
+      },
+   ];
 
    return (
       <Container>
          <List>
             <ListSubheader>Actions</ListSubheader>
 
-            <ListItem button onClick={handleSignOut}>
-               <ListItemAvatar>
-                  <Avatar>
-                     {isSignOutPending ? (
-                        <LoadingEllipsisIcon />
-                     ) : (
-                        <SignOutIcon />
-                     )}
-                  </Avatar>
-               </ListItemAvatar>
-               <ListItemText
-                  primary={isSignOutPending ? 'Signing Out' : 'Sign Out'}
-               />
-            </ListItem>
-
-            <ListItem button>
-               <ListItemAvatar>
-                  <Avatar>
-                     <EditAccountIcon />
-                  </Avatar>
-               </ListItemAvatar>
-               <ListItemText primary="Edit Informations" />
-            </ListItem>
-
-            <ListItem button onClick={handdleClickDeactivateAccount}>
-               <ListItemAvatar>
-                  <Avatar>
-                     <DeactivateAccountIcon />
-                  </Avatar>
-               </ListItemAvatar>
-               <ListItemText primary="Deactivate Account" />
-            </ListItem>
+            {actions.map((action) => (
+               <ListItem button key={action.text} onClick={action.onClick}>
+                  <ListItemAvatar>
+                     <Avatar>{action.icon}</Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={action.text} />
+               </ListItem>
+            ))}
          </List>
 
-         <DeactivateAccountModal />
+         <DeactivateAccountDialog />
+         <RedirectConfirmationDialog />
       </Container>
    );
 }
