@@ -5,8 +5,9 @@ import {
 } from 'components/layouts/Page/styled';
 import { ContentContainer } from './styled';
 import { Fragment, useEffect } from 'react';
-import { firebaseClient } from 'firebase/client';
 import { useRouter } from 'next/router';
+import { firebaseClient } from 'firebase/client';
+import useAuth from 'firebase/useAuth';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 const uiConfig = {
@@ -20,13 +21,11 @@ const uiConfig = {
 
 export default function Login() {
    const router = useRouter();
-   const auth = firebaseClient.auth();
+   const auth = useAuth();
 
    useEffect(() => {
-      setTimeout(() => {
-         if (auth.currentUser) router.push('/account');
-      }, 1000);
-   }, [auth]);
+      if (auth.user !== null) router.push('/account');
+   }, [auth.user]);
 
    return (
       <Fragment>
