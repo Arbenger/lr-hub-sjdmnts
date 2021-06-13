@@ -9,8 +9,8 @@ import {
    useTheme,
 } from '@material-ui/core';
 import { Fragment } from 'react';
-import { useAppDispatch, useAppSelector } from 'redux/hooks';
-import { changeAppPalette } from 'redux/themeSlice';
+import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { changeAppPalette } from 'services/redux/themeSlice';
 import { AppPaletteKey } from 'components/layouts/ThemeSetter/types';
 import {
    getKeys,
@@ -18,7 +18,7 @@ import {
 } from 'components/layouts/ThemeSetter/utils';
 import { PaletteIcon } from 'components/Icons';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-import { selectTheme } from 'redux/selectors';
+import { selectTheme } from 'services/redux/selectors';
 
 const useStyles = makeStyles(({ spacing }) => {
    const appPalette = getPalettesObjectOfObjects();

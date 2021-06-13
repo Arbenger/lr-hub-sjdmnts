@@ -1,6 +1,6 @@
-import { AuthProvider } from 'firebase/AuthProvider';
+import { AuthProvider } from 'services/firebase/AuthProvider';
 import { Provider } from 'react-redux';
-import { store } from 'redux/store';
+import { store } from 'services/redux/store';
 import ThemeSetter from 'components/layouts/ThemeSetter';
 import 'styles/index.scss';
 

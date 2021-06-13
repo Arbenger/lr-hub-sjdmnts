@@ -1,8 +1,8 @@
 import { Container, WaveBackground, Divider } from './styled';
 import { Grid, Hidden } from '@material-ui/core';
 import { Fragment } from 'react';
-import { useAppSelector } from 'redux/hooks';
-import { selectLayout } from 'redux/selectors';
+import { useAppSelector } from 'services/redux/hooks';
+import { selectLayout } from 'services/redux/selectors';
 import ColumnOne from './components/ColumnOne';
 import ColumnTwo from './components/ColumnTwo';
 import ColumnThree from './components/ColumnThree';

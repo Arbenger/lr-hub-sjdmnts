@@ -1,9 +1,9 @@
 import { Fragment, ReactNode, useEffect, useMemo } from 'react';
-import { useAppDispatch, useAppSelector } from 'redux/hooks';
-import { changeAppPalette } from 'redux/themeSlice';
+import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { changeAppPalette } from 'services/redux/themeSlice';
 import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
-import { selectTheme } from 'redux/selectors';
+import { selectTheme } from 'services/redux/selectors';
 import { getPalettesObjectOfObjects, getStoredKey } from './utils';
 
 interface Props {

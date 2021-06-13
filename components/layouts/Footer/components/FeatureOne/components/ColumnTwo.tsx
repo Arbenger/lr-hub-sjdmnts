@@ -10,7 +10,7 @@ export default function ColumnTwo() {
       },
       {
          title: 'Dashboard',
-         link: '/dashboard',
+         link: '/account/dashboard',
       },
       {
          title: 'Library',

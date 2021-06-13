@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { db } from 'firebase/admin';
+import { db } from 'services/firebase/admin';
 import _ from 'lodash';
 
 interface NextApiRequestCustom extends NextApiRequest {

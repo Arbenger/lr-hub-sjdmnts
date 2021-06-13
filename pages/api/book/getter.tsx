@@ -4,8 +4,8 @@ import {
    SortDirection,
    FilterBy,
    Book,
-} from 'redux/slices/library/types';
-import { db } from 'firebase/admin';
+} from 'services/redux/slices/library/types';
+import { db } from 'services/firebase/admin';
 import { mapAsync } from 'lodasync';
 import _ from 'lodash';
 

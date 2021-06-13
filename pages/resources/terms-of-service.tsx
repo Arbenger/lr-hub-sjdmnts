@@ -1,5 +1,5 @@
-import withLayout from 'HOC/withLayout';
-import TermsOfService from 'components/pages/TermsOfService';
+import withLayout from 'components/HOC/withLayout';
+import TermsOfService from 'components/pages/resources/TermsOfService';
 
 export default withLayout(TermsOfService, {
    pageName: 'terms-of-service',

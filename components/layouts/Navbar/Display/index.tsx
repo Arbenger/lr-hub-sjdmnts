@@ -1,9 +1,10 @@
 import { Container } from './styled';
+
 import { HiMenuAlt2 as MenuIcon } from 'react-icons/hi';
 import { Hidden, IconButton, Typography } from '@material-ui/core';
-import { useAppDispatch, useAppSelector } from 'redux/hooks';
-import { triggerDrawer } from 'redux/layoutSlice';
-import { selectPage } from 'redux/selectors';
+import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { triggerDrawer } from 'services/redux/layoutSlice';
+import { selectPage } from 'services/redux/selectors';
 
 export default function Display() {
    const dispatch = useAppDispatch();

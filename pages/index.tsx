@@ -1,4 +1,4 @@
-import withLayout from 'HOC/withLayout';
+import withLayout from 'components/HOC/withLayout';
 import Home from 'components/pages/Home';
 
 export default withLayout(Home, {

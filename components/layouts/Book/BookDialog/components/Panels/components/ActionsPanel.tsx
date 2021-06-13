@@ -16,8 +16,8 @@ import {
    Divider,
 } from '@material-ui/core';
 import { Fragment, ReactNode } from 'react';
-import { useAppDispatch } from 'redux/hooks';
-import { triggerDialog } from 'redux/bookDialogSlice';
+import { useAppDispatch } from 'services/redux/hooks';
+import { triggerDialog } from 'services/redux/bookDialogSlice';
 
 interface Item {
    title: string;

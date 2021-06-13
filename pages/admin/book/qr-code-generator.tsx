@@ -1,3 +1,3 @@
-import QRCodeGenerator from 'components/pages/QRCodeGenerator';
+import QRCodeGenerator from 'components/pages/admin/book/QRCodeGenerator';
 
 export default QRCodeGenerator;

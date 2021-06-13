@@ -1,7 +1,7 @@
-import withLayout from 'HOC/withLayout';
-import BorrowedBooks from 'components/pages/BorrowedBooks';
+import withLayout from 'components/HOC/withLayout';
+import BorrowedBooks from 'components/pages/book/Borrowed';
 import nookies from 'nookies';
-import { firebaseAdmin } from 'firebase/admin';
+import { firebaseAdmin } from 'services/firebase/admin';
 import { GetServerSidePropsContext } from 'next';
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
@@ -16,7 +16,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
    } catch (error) {
       return {
          redirect: {
-            destination: '/login',
+            destination: '/account/login',
          },
       };
    }

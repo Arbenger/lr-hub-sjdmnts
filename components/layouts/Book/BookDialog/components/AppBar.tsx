@@ -12,9 +12,9 @@ import {
    AppBar as MuiAppBar,
 } from '@material-ui/core';
 import { ChangeEvent } from 'react';
-import { useAppDispatch, useAppSelector } from 'redux/hooks';
-import { selectBookDialog } from 'redux/selectors';
-import { changeTab, Tab as TabType } from 'redux/bookDialogSlice';
+import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { selectBookDialog } from 'services/redux/selectors';
+import { changeTab, Tab as TabType } from 'services/redux/bookDialogSlice';
 
 export default function AppBar() {
    const { breakpoints } = useTheme();

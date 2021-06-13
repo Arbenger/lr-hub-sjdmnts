@@ -1,8 +1,8 @@
 import { GetServerSidePropsContext } from 'next';
-import { auth } from 'firebase/admin';
+import { auth } from 'services/firebase/admin';
 import nookies from 'nookies';
-import withLayout from 'HOC/withLayout';
-import Library from 'components/pages/Library';
+import withLayout from 'components/HOC/withLayout';
+import Library from 'components/pages/book/Library';
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
    try {
@@ -15,7 +15,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
    } catch (error) {
       return {
          redirect: {
-            destination: '/login',
+            destination: '/account/login',
          },
       };
    }

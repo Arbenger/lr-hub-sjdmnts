@@ -1,7 +1,7 @@
 import { Dialog } from '@material-ui/core';
-import { useAppDispatch, useAppSelector } from 'redux/hooks';
-import { selectBookDialog } from 'redux/selectors';
-import { triggerDialog } from 'redux/bookDialogSlice';
+import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { selectBookDialog } from 'services/redux/selectors';
+import { triggerDialog } from 'services/redux/bookDialogSlice';
 import Transition from './components/Transition';
 import AppBar from './components/AppBar';
 import Panels from './components/Panels';

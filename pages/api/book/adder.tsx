@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { db } from 'firebase/admin';
+import { db } from 'services/firebase/admin';
 import { mapAsync } from 'lodasync';
 import _ from 'lodash';
 

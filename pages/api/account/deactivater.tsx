@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { accountsRef, auth } from 'firebase/admin';
+import { accountsRef, auth } from 'services/firebase/admin';
 import jwt from 'jsonwebtoken';
 
 interface NextApiRequestCustom extends NextApiRequest {

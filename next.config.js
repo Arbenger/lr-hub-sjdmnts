@@ -1,9 +1,4 @@
-const withTM = require('next-transpile-modules')([
-   'frappe-charts',
-   'react-frappe-charts',
-   'firebase',
-]);
-module.exports = withTM({
+module.exports = {
    images: {
       domains: ['lh3.googleusercontent.com'],
    },
@@ -18,4 +13,4 @@ module.exports = withTM({
       secretAPIAccessKey:
          'Yin and yang, male and female, strong and weak, rigid and tender, heaven and earth, light and darkness, thunder and lightning, cold and warmth, good and evil... the interplay of opposite principles constitutes the universe',
    },
-});
+};

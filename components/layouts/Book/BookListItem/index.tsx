@@ -1,8 +1,8 @@
 import { ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import { Avatar } from './styled';
-import { useAppDispatch } from 'redux/hooks';
-import { triggerDialog } from 'redux/bookDialogSlice';
-import ReactTimeAgo from 'utils/ReactTimeAgo';
+import { useAppDispatch } from 'services/redux/hooks';
+import { triggerDialog } from 'services/redux/bookDialogSlice';
+import ReactTimeago from 'react-timeago';
 
 interface Props {
    bookTitle: string;
@@ -28,7 +28,7 @@ export default function BookListItem({
          </ListItemAvatar>
          <ListItemText
             primary={bookTitle}
-            secondary={<ReactTimeAgo date={createdAt} />}
+            secondary={<ReactTimeago date={createdAt} />}
          />
       </ListItem>
    );

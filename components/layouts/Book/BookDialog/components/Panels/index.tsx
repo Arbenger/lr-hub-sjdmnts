@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
-import { useAppSelector } from 'redux/hooks';
-import { selectBookDialog } from 'redux/selectors';
-import { Tab as TabType } from 'redux/bookDialogSlice';
+import { useAppSelector } from 'services/redux/hooks';
+import { selectBookDialog } from 'services/redux/selectors';
+import { Tab as TabType } from 'services/redux/bookDialogSlice';
 import SummaryPanel from './components/SummaryPanel/index';
 import QRCodePanel from './components/QRCodePanel';
 import ActionsPanel from './components/ActionsPanel';

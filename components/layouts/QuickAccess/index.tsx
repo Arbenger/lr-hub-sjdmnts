@@ -22,9 +22,9 @@ import {
    Divider,
 } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { useAppDispatch, useAppSelector } from 'redux/hooks';
-import { selectLayout } from 'redux/selectors';
-import { triggerDrawer, triggerQuickAccess } from 'redux/layoutSlice';
+import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { selectLayout } from 'services/redux/selectors';
+import { triggerDrawer, triggerQuickAccess } from 'services/redux/layoutSlice';
 import { Item } from './types';
 import React, { Fragment } from 'react';
 import Link from 'next/link';

@@ -1,9 +1,9 @@
 import { Container, Divider } from './styled';
-import { useAppDispatch, useAppSelector } from 'redux/hooks';
-import { selectLayout } from 'redux/selectors';
+import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { selectLayout } from 'services/redux/selectors';
 import { Fragment, useEffect, useState } from 'react';
 import { Dialog } from '@material-ui/core';
-import { triggerDrawer } from 'redux/layoutSlice';
+import { triggerDrawer } from 'services/redux/layoutSlice';
 
 import Brand from './components/Brand';
 import Lists from './components/Lists';

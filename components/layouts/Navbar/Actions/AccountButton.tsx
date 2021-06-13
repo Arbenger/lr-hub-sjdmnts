@@ -1,5 +1,5 @@
 import { Box } from '@material-ui/core';
-import useAuth from 'firebase/useAuth';
+import useAuth from 'services/firebase/useAuth';
 import Image from 'next/image';
 import Link from 'next/link';
 

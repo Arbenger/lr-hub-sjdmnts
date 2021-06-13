@@ -8,11 +8,11 @@ import {
    MenuContainer,
 } from './styled';
 import { Divider } from '../../styled';
-import { useAppDispatch, useAppSelector } from 'redux/hooks';
-import { selectLayout, selectPage } from 'redux/selectors';
+import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { selectLayout, selectPage } from 'services/redux/selectors';
 import { useState, useEffect, Fragment } from 'react';
 import { Hidden, useTheme } from '@material-ui/core';
-import { triggerDrawer, triggerQuickAccess } from 'redux/layoutSlice';
+import { triggerDrawer, triggerQuickAccess } from 'services/redux/layoutSlice';
 import {
    AccountIcon,
    BookmarkIcon,
@@ -48,7 +48,7 @@ export default function Lists() {
             {
                title: 'Dashboard',
                pageName: 'dashboard',
-               link: '/dashboard',
+               link: '/account/dashboard',
                icon: <DashboardIcon />,
             },
             {
@@ -83,13 +83,13 @@ export default function Lists() {
             {
                title: 'Pending Requests',
                pageName: 'pending-requests',
-               link: '/pending-requests',
+               link: '/account/pending-requests',
                icon: <PendingRequestIcon />,
             },
             {
                title: 'Notifications',
                pageName: 'notifications',
-               link: '/notifications',
+               link: '/account/notifications',
                icon: <NotificationIcon />,
             },
          ],
