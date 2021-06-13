@@ -27,7 +27,10 @@ export default function QRCodeGenerator() {
          <PrintButton
             color="primary"
             aria-label="print"
-            onClick={() => window.print()}
+            onClick={() => {
+               document.title = router.query.bookTitle as string;
+               window.print();
+            }}
          >
             <PrintIcon />
          </PrintButton>
