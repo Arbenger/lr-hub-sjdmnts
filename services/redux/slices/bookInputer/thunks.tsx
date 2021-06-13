@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from 'services/redux/store';
+import signToken from 'utils/jwt/signToken';
 import axios from 'axios';
 
 export const fetchInputBook = createAsyncThunk(
@@ -10,13 +11,14 @@ export const fetchInputBook = createAsyncThunk(
       } = thunkAPI.getState() as RootState;
 
       const response = await axios({
-         url: '/api/book/adder',
+         url: '/api/book/inputer',
          method: 'POST',
          params: {
-            title,
-            copies,
-            description,
-            secretAPIAccessKey: process.env.secretAPIAccessKey,
+            token: signToken({
+               title,
+               copies,
+               description,
+            }),
          },
       });
 
@@ -24,20 +26,11 @@ export const fetchInputBook = createAsyncThunk(
          await axios({
             url: '/api/book/deleter',
             method: 'POST',
-            params: {
-               title,
-               secretAPIAccessKey: process.env.secretAPIAccessKey,
-            },
+            params: { token: signToken({ title }) },
          });
          return alert('Sorry, please try again!');
       }
 
-      const { bookId, bookTitle, idOfCopies } = response.data;
-
-      return {
-         bookId,
-         bookTitle,
-         idOfCopies,
-      };
+      return response.data.payload;
    }
 );

@@ -13,15 +13,15 @@ import {
    EventTracker,
    HoverState,
 } from '@devexpress/dx-react-chart';
-import { getMonthLabels } from 'utils';
 import { Paper, Box } from '@material-ui/core';
+import getMonths from 'utils/getMonths';
 
 const TitleText = (props) => (
    <Title.Text {...props} style={{ marginBottom: 0 }} />
 );
 
 export default function Line() {
-   const labels = getMonthLabels();
+   const labels = getMonths();
    const data = labels.map((label) => ({
       month: label,
       borrowed: Math.round(Math.random() * 10),

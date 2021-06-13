@@ -1,41 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from 'services/redux/store';
+import signToken from 'utils/jwt/signToken';
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
-
-export const fetchDeactivateAccount = createAsyncThunk(
-   'account/deactivateStatus',
-   async (payload, thunkAPI) => {
-      const { account } = thunkAPI.getState() as RootState;
-
-      const response = await axios({
-         url: '/api/account/deactivater',
-         method: 'POST',
-         params: {
-            accountUID: account.info.uid,
-            secretAPIAccessKey: process.env.secretAPIAccessKey,
-         },
-      });
-
-      return {
-         status: response.data.status,
-      };
-   }
-);
 
 export const fetchDeactivateAccountByUID = createAsyncThunk<any, string>(
    'account/deactivateStatus',
    async (accountUID) => {
-      const token = jwt.sign({ accountUID }, process.env.secretAPIAccessKey, {
-         expiresIn: '1h',
-      });
-
       const response = await axios({
          url: '/api/account/deactivater',
          method: 'POST',
-         params: { token },
+         params: {
+            token: signToken({ accountUID }),
+         },
       });
-
       return response.data;
    }
 );
@@ -43,16 +19,13 @@ export const fetchDeactivateAccountByUID = createAsyncThunk<any, string>(
 export const fetchAccountInfoByUID = createAsyncThunk<any, string>(
    'account/fetcInfoStatus',
    async (accountUID) => {
-      const token = jwt.sign({ accountUID }, process.env.secretAPIAccessKey, {
-         expiresIn: '1h',
-      });
-
       const response = await axios({
          url: '/api/account/getter',
          method: 'POST',
-         params: { token },
+         params: {
+            token: signToken({ accountUID }),
+         },
       });
-
       return response.data;
    }
 );

@@ -1,4 +1,4 @@
-export const getMonthLabels = () => {
+export default function getMonths() {
    const currentMonth = new Date().getMonth();
    let months = [
       'JAN',
@@ -19,4 +19,4 @@ export const getMonthLabels = () => {
       months.unshift(removedValue);
    }
    return months;
-};
+}

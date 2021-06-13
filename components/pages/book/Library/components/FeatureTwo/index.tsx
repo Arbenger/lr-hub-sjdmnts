@@ -1,41 +1,15 @@
 import { Grid, Box } from '@material-ui/core';
 import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { useEffect } from 'react';
 import { selectLibrary } from 'services/redux/selectors';
-import { setBooks, setIsLoading } from 'services/redux/slices/library';
-import { useCallback, useEffect } from 'react';
-import axios from 'axios';
+import { fetchBook } from 'services/redux/slices/library/thunks';
 import BookSummary from './components/BookSummary';
 import BookLoading from './components/BookLoading';
 import BookEmpty from './components/BookEmpty';
-import { fetchBook } from 'services/redux/slices/library/thunks';
 
 export default function FeatureTwo() {
    const dispatch = useAppDispatch();
    const state = useAppSelector(selectLibrary);
-
-   // const fetchBooks = useCallback(async () => {
-   //   try {
-   //     dispatch(setIsLoading(true));
-
-   //     const response = await axios({
-   //       url: "/api/book/getter",
-   //       method: "POST",
-   //       params: {
-   //         secretAPIAccessKey: process.env.secretAPIAccessKey,
-   //       },
-   //     });
-   //     const { status, books } = response.data;
-
-   //     if (books.length && status === "success")
-   //       return dispatch(setBooks(response.data.books));
-
-   //     throw "No books retrieved.";
-   //   } catch (error) {
-   //     console.log(error);
-   //   } finally {
-   //     dispatch(setIsLoading(false));
-   //   }
-   // }, []);
 
    useEffect(() => {
       if (!state.books.length) dispatch(fetchBook());

@@ -1,28 +1,27 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { RootState } from 'services/redux/store';
+import signToken from 'utils/jwt/signToken';
+import axios from 'axios';
 
 export const fetchBook = createAsyncThunk(
    'library/searchStatus',
    async (none, thunkAPI) => {
-      const {
-         library: { searchInput, sortBy, sortDirection, filterBy },
-      } = thunkAPI.getState() as RootState;
+      const { library } = thunkAPI.getState() as RootState;
+      const { searchInput, sortBy, sortDirection, filterBy } = library;
 
       const response = await axios({
          url: '/api/book/getter',
          method: 'POST',
          params: {
-            searchInput,
-            sortBy,
-            sortDirection,
-            filterBy,
-            secretAPIAccessKey: process.env.secretAPIAccessKey,
+            token: signToken({
+               sortBy,
+               filterBy,
+               searchInput,
+               sortDirection,
+            }),
          },
       });
 
-      if (response.data.status === 'failure') return { books: [] };
-
-      return { books: response.data.books };
+      return response.data;
    }
 );

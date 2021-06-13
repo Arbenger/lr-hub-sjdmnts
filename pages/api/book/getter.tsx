@@ -1,23 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import {
    SortBy,
    SortDirection,
-   FilterBy,
    Book,
 } from 'services/redux/slices/library/types';
-import { db } from 'services/firebase/admin';
-import { mapAsync } from 'lodasync';
+import { NextApiResponse } from 'next';
+import { NextApiRequestWithToken } from 'types';
+import { booksRef } from 'services/firebase/admin';
+import verifyToken from 'utils/jwt/verifyToken';
 import _ from 'lodash';
-
-interface NextApiRequestCustom extends NextApiRequest {
-   query: {
-      sortBy: SortBy;
-      sortDirection: SortDirection;
-      filterBy: FilterBy;
-      searchInput: string;
-      secretAPIAccessKey: string;
-   };
-}
 
 export function filterDocsBySearchInput(
    searchInput: string,
@@ -38,54 +28,39 @@ export function filterBookBySort(
    books: Array<Book>
 ) {
    if (sortBy === 'availableCopies') {
-      return _.orderBy(books, (book) => book.copies.available, [sortDirection]);
+      return _.orderBy(books, (book) => book.statistics.available, [
+         sortDirection,
+      ]);
    } else {
       return _.orderBy(books, (book) => book[sortBy], [sortDirection]);
    }
 }
 
-export default async (req: NextApiRequestCustom, res: NextApiResponse) => {
+export default async (req: NextApiRequestWithToken, res: NextApiResponse) => {
    try {
-      if (req.query.secretAPIAccessKey !== process.env.secretAPIAccessKey)
-         throw { message: 'Secret API Access Key did not match.' };
-
-      const { sortBy, sortDirection, searchInput } = req.query;
-
-      const booksRef = db.collection('books');
+      const decodedToken = verifyToken(req.query.token);
+      const { sortBy, sortDirection, searchInput } = decodedToken;
       const booksSnapshot = await booksRef.get();
-
       let filtered = [];
 
       filtered = filterDocsBySearchInput(searchInput, booksSnapshot.docs);
-
-      filtered = await mapAsync(
-         async (doc: FirebaseFirestore.QueryDocumentSnapshot) => {
+      filtered = await Promise.all(
+         filtered.map(async (doc: FirebaseFirestore.QueryDocumentSnapshot) => {
             const { id } = doc;
-            const { title, description } = doc.data();
-
-            const copiesRef = booksRef.doc(doc.id).collection('copies');
-            const copiesSnapshot = await copiesRef.get();
-            const copies = {
-               available: copiesSnapshot.docs.length,
-            };
+            const { title, description, statistics } = doc.data();
 
             return {
                id,
                title,
                description,
-               copies,
+               statistics,
             };
-         },
-         filtered
+         })
       );
-
       filtered = filterBookBySort(sortBy, sortDirection, filtered);
 
-      res.status(200).json({
-         status: 'success',
-         books: filtered,
-      });
+      res.json({ status: 'fulfilled', payload: filtered });
    } catch (error) {
-      res.end(JSON.stringify({ ...error, status: 'failure' }));
+      res.json({ status: 'rejected', ...error });
    }
 };

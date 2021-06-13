@@ -39,7 +39,7 @@ export default function BookSummary({ book }: Props) {
                <Title>{book.title}</Title>
 
                <Subtitle variant="body2">
-                  {book.copies.available} available copies
+                  {book.statistics.available} available copies
                </Subtitle>
 
                <ActionsContainer>

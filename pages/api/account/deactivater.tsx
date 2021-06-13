@@ -1,26 +1,17 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
+import { NextApiRequestWithToken } from 'types';
 import { accountsRef, auth } from 'services/firebase/admin';
-import jwt from 'jsonwebtoken';
+import verifyToken from 'utils/jwt/verifyToken';
 
-interface NextApiRequestCustom extends NextApiRequest {
-   query: {
-      token: string;
-   };
-}
-
-export default async (req: NextApiRequestCustom, res: NextApiResponse) => {
+export default async (req: NextApiRequestWithToken, res: NextApiResponse) => {
    try {
-      const decodedToken = jwt.verify(
-         req.query.token,
-         process.env.secretAPIAccessKey
-      ) as any;
+      const decodedToken = verifyToken(req.query.token);
 
       await auth.deleteUser(decodedToken.accountUID);
-
       await accountsRef.doc(decodedToken.accountUID).delete();
 
-      res.status(200).json({ status: 'fulfilled' });
+      res.json({ status: 'fulfilled' });
    } catch (error) {
-      res.end(JSON.stringify({ status: 'rejected', ...error }));
+      res.json({ status: 'rejected', ...error });
    }
 };

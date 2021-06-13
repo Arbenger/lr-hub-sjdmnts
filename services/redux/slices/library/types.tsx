@@ -6,10 +6,10 @@ export interface Book {
    id: string;
    title: string;
    description: string;
-   copies: {
+   statistics: {
       available: number;
-      borrowed?: number;
-      lost?: number;
+      borrowed: number;
+      lost: number;
    };
 }
 
@@ -18,6 +18,6 @@ export interface LibraryState {
    sortDirection: SortDirection;
    filterBy: FilterBy;
    searchInput: string;
-   books: Book[];
    isLoading: boolean;
+   books: Book[];
 }

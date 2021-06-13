@@ -38,13 +38,11 @@ const librarySlice = createSlice({
       builder.addCase(fetchBook.pending, (state) => {
          state.isLoading = true;
       });
-      builder.addCase(
-         fetchBook.fulfilled,
-         (state, action: PayloadAction<{ books: Book[] }>) => {
-            state.isLoading = false;
-            state.books = action.payload.books;
-         }
-      );
+      builder.addCase(fetchBook.fulfilled, (state, action) => {
+         const { status, payload } = action.payload;
+         state.books = status === 'fulfilled' ? payload : [];
+         state.isLoading = false;
+      });
       builder.addCase(fetchBook.rejected, (state) => {
          state.isLoading = false;
       });
