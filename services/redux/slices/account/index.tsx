@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchAccountInfoByUID, fetchDeactivateAccountByUID } from './thunks';
+import {
+   fetchAccountInfoByUID,
+   fetchDeactivateAccountByUID,
+   fetchEditAccountByUID,
+} from './thunks';
 import { AccountState, TriggerDialogPayload } from './types';
 
 const initialState: AccountState = {
@@ -13,17 +17,22 @@ const initialState: AccountState = {
       provider: '',
    },
    dialogs: {
-      deactivateAccount: {
+      editAccount: {
          isOpen: false,
          isLoading: false,
       },
-      editAccount: {
+      editAccountFulfilled: {
+         isOpen: false,
+      },
+      editAccountRejected: {
+         isOpen: false,
+      },
+      deactivateAccount: {
          isOpen: false,
          isLoading: false,
       },
       redirect: {
          isOpen: false,
-         isLoading: false,
       },
    },
 };
@@ -43,6 +52,24 @@ const accountSlice = createSlice({
       },
    },
    extraReducers: (builder) => {
+      // FETCH EDIT ACCOUNT BY UID
+      builder.addCase(fetchEditAccountByUID.pending, (state) => {
+         state.dialogs.editAccount.isLoading = true;
+      });
+      builder.addCase(fetchEditAccountByUID.fulfilled, (state, action) => {
+         state.dialogs.editAccount.isLoading = false;
+         state.dialogs.editAccount.isOpen = false;
+
+         if (action.payload.status === 'fulfilled')
+            state.dialogs.editAccountFulfilled.isOpen = true;
+         if (action.payload.status === 'rejected')
+            state.dialogs.editAccountRejected.isOpen = true;
+      });
+      builder.addCase(fetchEditAccountByUID.rejected, (state) => {
+         state.dialogs.editAccount.isLoading = false;
+         state.dialogs.editAccount.isOpen = false;
+      });
+
       // FETCH DEACTIVATE ACCOUNT BY UID
       builder.addCase(fetchDeactivateAccountByUID.pending, (state) => {
          state.dialogs.deactivateAccount.isLoading = true;

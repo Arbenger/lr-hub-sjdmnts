@@ -1,8 +1,13 @@
-export type Dialog = 'deactivateAccount' | 'editAccount' | 'redirect';
+export type Dialog =
+   | 'deactivateAccount'
+   | 'editAccount'
+   | 'editAccountFulfilled'
+   | 'editAccountRejected'
+   | 'redirect';
 
 export type DialogState = {
    isOpen: boolean;
-   isLoading: boolean;
+   isLoading?: boolean;
 };
 
 export interface TriggerDialogPayload {
@@ -23,9 +28,12 @@ export interface AccountInfo {
 export interface AccountState {
    info: AccountInfo;
    dialogs: {
-      [key in Dialog]: {
-         isOpen: boolean;
-         isLoading: boolean;
-      };
+      [key in Dialog]: DialogState;
    };
+}
+
+export interface FetchEditAccountByUIDPayload {
+   accountUID: string;
+   displayName: string;
+   occupation: string;
 }

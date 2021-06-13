@@ -17,6 +17,9 @@ import { useRouter } from 'next/router';
 import { useAppDispatch } from 'services/redux/hooks';
 import { triggerDialog } from 'services/redux/slices/account';
 import { Container, Avatar } from './styled';
+import EditAccountDialog from './components/EditAccountDialog';
+import EditAccountFulfilledDialog from './components/EditAccountFulfilledDialog';
+import EditAccountRejectedDialog from './components/EditAccountRejectedDialog';
 import DeactivateAccountDialog from './components/DeactivateAccountDialog';
 import RedirectConfirmationDialog from './components/RedirectConfirmationDialog';
 
@@ -44,7 +47,16 @@ export default function FeatureTwo() {
       {
          text: 'Edit Informations',
          icon: <EditAccountIcon />,
-         onClick: () => {},
+         onClick: () => {
+            dispatch(
+               triggerDialog({
+                  target: 'editAccount',
+                  state: {
+                     isOpen: true,
+                  },
+               })
+            );
+         },
       },
       {
          text: 'Deactivate Account',
@@ -77,6 +89,9 @@ export default function FeatureTwo() {
             ))}
          </List>
 
+         <EditAccountDialog />
+         <EditAccountFulfilledDialog />
+         <EditAccountRejectedDialog />
          <DeactivateAccountDialog />
          <RedirectConfirmationDialog />
       </Container>

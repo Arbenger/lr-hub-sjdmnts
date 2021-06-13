@@ -14,7 +14,7 @@ import { clearAccountInfo, triggerDialog } from 'services/redux/slices/account';
 import { authClient } from 'services/firebase/client';
 import { fetchDeactivateAccountByUID } from 'services/redux/slices/account/thunks';
 
-export default function DeactivateAccountModal() {
+export default function DeactivateAccountDialog() {
    const dispatch = useAppDispatch();
    const state = useAppSelector(selectAccount);
    const { isOpen, isLoading } = state.dialogs.deactivateAccount;
