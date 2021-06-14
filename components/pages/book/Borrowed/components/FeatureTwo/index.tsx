@@ -1,28 +1,25 @@
-import { useEffect, useState } from 'react';
+import { Paper, Box, useTheme, Typography } from '@material-ui/core';
 import dynamic from 'next/dynamic';
-import getMonths from 'utils/getMonths';
 
-const Line = dynamic(() => import('components/charts/Line'), { ssr: false });
+const StatisticsChart = dynamic(() => import('./components/StatisticsChart'), {
+   ssr: false,
+});
 
 export default function FeatureTwo() {
-   const [data, setData] = useState([]);
-
-   useEffect(() => {
-      const labels = getMonths();
-      const data = labels.map((label) => ({
-         key: label,
-         value: Math.round(Math.random() * 10),
-      }));
-      setData(data);
-   }, []);
-
+   const { breakpoints } = useTheme();
    return (
-      <Line
-         data={data}
-         height={400}
-         title="Statistics"
-         valueField="value"
-         argumentField="key"
-      />
+      <Paper>
+         <Box overflow="auto">
+            <Box
+               padding={2}
+               paddingTop={1}
+               paddingBottom={0}
+               minWidth={breakpoints.values.sm}
+            >
+               <Typography variant="h6">Statistics</Typography>
+               <StatisticsChart />
+            </Box>
+         </Box>
+      </Paper>
    );
 }

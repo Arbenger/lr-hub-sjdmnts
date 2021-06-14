@@ -5,6 +5,7 @@ import {
 } from 'components/layouts/Page/styled';
 import { Grid } from '@material-ui/core';
 import { Fragment } from 'react';
+import dynamic from 'next/dynamic';
 import FeatureOne from './components/FeatureOne';
 import FeatureTwo from './components/FeatureTwo';
 

@@ -68,7 +68,7 @@ export default function FullScreenDialog() {
       },
       {
          title: 'Penalties',
-         link: '/penalties',
+         link: '/account/penalties',
          icon: <PenaltyIcon />,
       },
    ];
