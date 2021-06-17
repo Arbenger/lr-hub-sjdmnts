@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './slices/user';
 import themeReducer from './themeSlice';
 import layoutReducer from './layoutSlice';
 import libraryReducer from './slices/library';
@@ -9,6 +10,7 @@ import bookInputerReducer from './slices/bookInputer';
 
 export const store = configureStore({
    reducer: {
+      user: userReducer,
       theme: themeReducer,
       page: pageReducer,
       layout: layoutReducer,

@@ -11,12 +11,13 @@ import {
    ListItemText,
    ListSubheader,
 } from '@material-ui/core';
-import { useState, ReactNode } from 'react';
-import { authClient } from 'services/firebase/client';
+import { Container, Avatar } from './styled';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { authClient } from 'services/firebase/client';
 import { useAppDispatch } from 'services/redux/hooks';
 import { triggerDialog } from 'services/redux/slices/account';
-import { Container, Avatar } from './styled';
+
 import EditAccountDialog from './components/EditAccountDialog';
 import EditAccountFulfilledDialog from './components/EditAccountFulfilledDialog';
 import EditAccountRejectedDialog from './components/EditAccountRejectedDialog';
@@ -28,13 +29,7 @@ export default function FeatureTwo() {
    const dispatch = useAppDispatch();
    const [isSignOutPending, setIsSignOutPending] = useState(false);
 
-   interface Action {
-      text: string;
-      icon: ReactNode;
-      onClick: () => void;
-   }
-
-   const actions: Action[] = [
+   const actions = [
       {
          text: isSignOutPending ? 'Signing Out' : 'Sign Out',
          icon: isSignOutPending ? <LoadingEllipsisIcon /> : <SignOutIcon />,
@@ -50,7 +45,7 @@ export default function FeatureTwo() {
          onClick: () => {
             dispatch(
                triggerDialog({
-                  target: 'editAccount',
+                  dialog: 'edit',
                   state: {
                      isOpen: true,
                   },
@@ -64,7 +59,7 @@ export default function FeatureTwo() {
          onClick: () => {
             dispatch(
                triggerDialog({
-                  target: 'deactivateAccount',
+                  dialog: 'deactivate',
                   state: {
                      isOpen: true,
                   },

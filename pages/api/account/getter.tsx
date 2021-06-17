@@ -1,16 +1,20 @@
 import { NextApiResponse } from 'next';
 import { NextApiRequestWithToken } from 'types';
-import { accountsRef } from 'services/firebase/admin';
+import { usersRef } from 'services/firebase/admin';
+import axios from 'axios';
+import signToken from 'utils/jwt/signToken';
 import verifyToken from 'utils/jwt/verifyToken';
 
 export default async (req: NextApiRequestWithToken, res: NextApiResponse) => {
    try {
       const decodedToken = verifyToken(req.query.token);
-      const accountDoc = await accountsRef.doc(decodedToken.accountUID).get();
+      const { uid } = decodedToken;
+      const userRef = usersRef.doc(uid);
+      const userDoc = await userRef.get();
 
       res.json({
          status: 'fulfilled',
-         accountInfo: accountDoc.data(),
+         payload: userDoc.data(),
       });
    } catch (error) {
       res.json({ status: 'rejected', error });

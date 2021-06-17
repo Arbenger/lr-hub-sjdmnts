@@ -1,6 +1,3 @@
-import { Grid, GridSize } from '@material-ui/core';
-import { useAppSelector } from 'services/redux/hooks';
-import { selectAccount } from 'services/redux/selectors';
 import {
    Container,
    PictureContainer,
@@ -8,49 +5,37 @@ import {
    Picture,
    TextField,
 } from './styled';
+import { Grid, GridSize } from '@material-ui/core';
+import { useAppSelector } from 'services/redux/hooks';
+import { selectUser } from 'services/redux/selectors';
 
 export default function FeatureOne() {
-   const {
-      info: {
-         email,
-         displayName,
-         occupation,
-         registeredAt,
-         photoURL,
-         provider,
-      },
-   } = useAppSelector(selectAccount);
+   const { info } = useAppSelector(selectUser);
 
-   interface Field {
-      label: string;
-      value: string;
-      size: GridSize;
-   }
-
-   const fields: Field[] = [
+   const fields = [
       {
          label: 'Display Name',
-         value: displayName,
+         value: info.displayName,
          size: 12,
       },
       {
          label: 'Email',
-         value: email,
+         value: info.email,
          size: 12,
       },
       {
          label: 'Occupation',
-         value: occupation,
+         value: info.occupation,
          size: 6,
       },
       {
          label: 'Registered At',
-         value: new Date(registeredAt).toDateString(),
+         value: new Date(info.registeredAt).toDateString(),
          size: 6,
       },
       {
          label: 'Provider',
-         value: provider,
+         value: info.provider,
          size: 12,
       },
    ];
@@ -66,7 +51,7 @@ export default function FeatureOne() {
                         height={150}
                         objectFit="cover"
                         alt="profile-picture"
-                        src={photoURL || '/images/no-profile-picture.png'}
+                        src={info.photoURL}
                         quality={100}
                      />
                   </PictureBorder>
@@ -74,7 +59,7 @@ export default function FeatureOne() {
             </Grid>
 
             {fields.map((field) => (
-               <Grid item key={field.label} xs={field.size}>
+               <Grid item key={field.label} xs={field.size as GridSize}>
                   <TextField
                      label={field.label}
                      value={field.value}

@@ -2,7 +2,7 @@ import { Box, styled, Typography } from '@material-ui/core';
 import {
    flexCenter,
    flexStartCenter,
-} from 'components/layouts/ThemeSetter/mixins';
+} from 'components/wrapper/ThemeWrapper/mixins';
 
 export const Container = styled(Box)(({ theme: { palette } }) => ({
    color: palette.common.white,

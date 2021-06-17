@@ -1,5 +1,9 @@
 import { styled, Box, Typography } from '@material-ui/core';
-import { flexCenter, flexStartCenter } from '../../../ThemeSetter/mixins';
+
+import {
+   flexCenter,
+   flexStartCenter,
+} from '../../../../wrapper/ThemeWrapper/mixins';
 
 export const Container = styled(Box)(({ theme: { spacing, palette } }) => ({
    ...flexStartCenter,

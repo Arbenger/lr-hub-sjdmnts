@@ -10,7 +10,7 @@ interface Props {
    children: ReactNode;
 }
 
-const ThemeSetter = ({ children }: Props) => {
+const ThemeWrapper = ({ children }: Props) => {
    const dispatch = useAppDispatch();
    const { appPalette } = useAppSelector(selectTheme);
    const palettes = getPalettesObjectOfObjects();
@@ -55,4 +55,4 @@ const ThemeSetter = ({ children }: Props) => {
    );
 };
 
-export default ThemeSetter;
+export default ThemeWrapper;

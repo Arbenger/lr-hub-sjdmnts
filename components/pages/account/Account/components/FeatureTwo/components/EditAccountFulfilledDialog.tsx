@@ -12,12 +12,13 @@ import { triggerDialog } from 'services/redux/slices/account';
 
 export default function EditAccountFulfilledDialog() {
    const dispatch = useAppDispatch();
-   const { dialogs } = useAppSelector(selectAccount);
+   const account = useAppSelector(selectAccount);
+   const { isOpen } = account.dialogs.editFulfilled;
 
    const handleClose = () => {
       dispatch(
          triggerDialog({
-            target: 'editAccountFulfilled',
+            dialog: 'editFulfilled',
             state: {
                isOpen: false,
             },
@@ -26,7 +27,7 @@ export default function EditAccountFulfilledDialog() {
    };
 
    return (
-      <Dialog open={dialogs.editAccountFulfilled.isOpen} onClose={handleClose}>
+      <Dialog open={isOpen} onClose={handleClose}>
          <DialogTitle>Notification</DialogTitle>
 
          <DialogContent>

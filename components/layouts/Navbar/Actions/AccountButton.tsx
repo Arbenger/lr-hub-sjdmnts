@@ -1,18 +1,11 @@
 import { Box } from '@material-ui/core';
-import useAuth from 'services/firebase/useAuth';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useAppSelector } from 'services/redux/hooks';
+import { selectUser } from 'services/redux/selectors';
 
 export default function AccountButton() {
-   const auth = useAuth();
-
-   const getPhotoURL = () => {
-      try {
-         return auth.user.photoURL || '/images/no-profile-picture.png';
-      } catch (error) {
-         return '/images/no-profile-picture.png';
-      }
-   };
+   const { info } = useAppSelector(selectUser);
 
    return (
       <Link href="/account">
@@ -27,7 +20,7 @@ export default function AccountButton() {
                width={35}
                height={35}
                objectFit="cover"
-               src={getPhotoURL()}
+               src={info.photoURL}
             />
          </Box>
       </Link>

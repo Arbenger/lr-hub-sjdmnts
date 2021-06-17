@@ -11,11 +11,11 @@ import {
 import { Fragment } from 'react';
 import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
 import { changeAppPalette } from 'services/redux/themeSlice';
-import { AppPaletteKey } from 'components/layouts/ThemeSetter/types';
+import { AppPaletteKey } from 'components/wrapper/ThemeWrapper/types';
 import {
    getKeys,
    getPalettesObjectOfObjects,
-} from 'components/layouts/ThemeSetter/utils';
+} from 'components/wrapper/ThemeWrapper/utils';
 import { PaletteIcon } from 'components/Icons';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import { selectTheme } from 'services/redux/selectors';

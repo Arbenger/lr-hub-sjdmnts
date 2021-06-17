@@ -4,11 +4,9 @@ import {
    WaveBackground,
 } from 'components/layouts/Page/styled';
 import { Grid } from '@material-ui/core';
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { Fragment, useEffect } from 'react';
-import { auth, db } from 'services/firebase/admin';
-import { useAppDispatch } from 'services/redux/hooks';
-import { fetchAccountInfoByUID } from 'services/redux/slices/account/thunks';
+import { Fragment } from 'react';
+import { GetServerSidePropsContext } from 'next';
+import { auth, usersRef } from 'services/firebase/admin';
 
 import nookies from 'nookies';
 import FeatureOne from 'components/pages/account/Account/components/FeatureOne';
@@ -18,15 +16,13 @@ import withLayout from 'components/HOC/withLayout';
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
    try {
       const cookies = nookies.get(ctx);
-
       const token = await auth.verifyIdToken(cookies.token);
       const userRecord = await auth.getUser(token.uid);
+      const userRef = usersRef.doc(userRecord.uid);
+      const userDoc = await userRef.get();
 
-      const accountsRef = db.collection('accounts');
-      const accountRef = await accountsRef.doc(userRecord.uid).get();
-
-      if (!accountRef.exists) {
-         await accountsRef.doc(userRecord.uid).set({
+      if (!userDoc.exists) {
+         await userRef.set({
             uid: userRecord.uid,
             email: userRecord.email,
             displayName: userRecord.displayName,
@@ -38,9 +34,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
       }
 
       return {
-         props: {
-            accountUID: userRecord.uid,
-         },
+         props: {},
       };
    } catch (error) {
       return {
@@ -51,15 +45,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
    }
 };
 
-function Account({
-   accountUID,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-   const dispatch = useAppDispatch();
-
-   useEffect(() => {
-      dispatch(fetchAccountInfoByUID(accountUID));
-   }, [accountUID]);
-
+function Account() {
    return (
       <Fragment>
          <WaveBackground />

@@ -1,39 +1,23 @@
 export type Dialog =
-   | 'deactivateAccount'
-   | 'editAccount'
-   | 'editAccountFulfilled'
-   | 'editAccountRejected'
+   | 'edit'
+   | 'deactivate'
+   | 'editFulfilled'
+   | 'editRejected'
    | 'redirect';
 
-export type DialogState = {
+export type DialogState = Partial<{
    isOpen: boolean;
-   isLoading?: boolean;
+}>;
+
+export type Dialogs = {
+   [key in Dialog]: DialogState;
 };
 
 export interface TriggerDialogPayload {
-   target: Dialog;
-   state: Partial<DialogState>;
-}
-
-export interface AccountInfo {
-   uid: string;
-   email: string;
-   displayName: string;
-   occupation: string;
-   registeredAt: string;
-   photoURL: string;
-   provider: string;
+   dialog: Dialog;
+   state: DialogState;
 }
 
 export interface AccountState {
-   info: AccountInfo;
-   dialogs: {
-      [key in Dialog]: DialogState;
-   };
-}
-
-export interface FetchEditAccountByUIDPayload {
-   accountUID: string;
-   displayName: string;
-   occupation: string;
+   dialogs: Dialogs;
 }

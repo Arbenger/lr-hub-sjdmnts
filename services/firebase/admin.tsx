@@ -1,5 +1,4 @@
 import firebaseAdmin from 'firebase-admin';
-
 import serviceAccount from './secret.json';
 
 if (!firebaseAdmin.apps.length) {
@@ -19,5 +18,5 @@ export const auth = firebaseAdmin.auth();
 export const db = firebaseAdmin.firestore();
 
 // DB COLLECTIONS
-export const accountsRef = db.collection('accounts');
+export const usersRef = db.collection('users');
 export const booksRef = db.collection('books');

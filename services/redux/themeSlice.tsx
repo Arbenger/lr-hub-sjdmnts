@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppPaletteKey } from 'components/layouts/ThemeSetter/types';
-import { applyKey } from 'components/layouts/ThemeSetter/utils';
+import { AppPaletteKey } from 'components/wrapper/ThemeWrapper/types';
+import { applyKey } from 'components/wrapper/ThemeWrapper/utils';
 
 interface InitialState {
    appPalette: {

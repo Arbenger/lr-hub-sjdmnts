@@ -15,7 +15,7 @@
          "splitTerminals": [
             {
                "name": "EMULATOR",
-               "commands": ["cd ../lr-hub-emulator", "npm start"]
+               "commands": ["cd ../emulator", "npm start"]
             }
          ]
       },

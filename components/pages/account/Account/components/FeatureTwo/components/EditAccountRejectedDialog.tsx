@@ -12,12 +12,13 @@ import { triggerDialog } from 'services/redux/slices/account';
 
 export default function EditAccountRejectedDialog() {
    const dispatch = useAppDispatch();
-   const { dialogs } = useAppSelector(selectAccount);
+   const account = useAppSelector(selectAccount);
+   const { isOpen } = account.dialogs.editRejected;
 
    const handleClose = () => {
       dispatch(
          triggerDialog({
-            target: 'editAccountRejected',
+            dialog: 'editRejected',
             state: {
                isOpen: false,
             },
@@ -26,7 +27,7 @@ export default function EditAccountRejectedDialog() {
    };
 
    return (
-      <Dialog open={dialogs.editAccountRejected.isOpen} onClose={handleClose}>
+      <Dialog open={isOpen} onClose={handleClose}>
          <DialogTitle>Notification</DialogTitle>
 
          <DialogContent>

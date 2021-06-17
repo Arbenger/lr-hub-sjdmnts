@@ -7,7 +7,8 @@ import { ContentContainer } from './styled';
 import { Fragment, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { firebaseClient, authClient } from 'services/firebase/client';
-import useAuth from 'services/firebase/useAuth';
+import { useAppSelector } from 'services/redux/hooks';
+import { selectUser } from 'services/redux/selectors';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 const uiConfig = {
@@ -21,11 +22,11 @@ const uiConfig = {
 
 export default function Login() {
    const router = useRouter();
-   const auth = useAuth();
+   const user = useAppSelector(selectUser);
 
    useEffect(() => {
-      if (auth.user !== null) router.push('/account');
-   }, [auth.user]);
+      if (user.info.uid !== '') router.push('/account');
+   }, [user.info.uid]);
 
    return (
       <Fragment>

@@ -13,21 +13,24 @@ import {
 } from '@material-ui/core';
 import { useState, FormEvent, ChangeEvent, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
-import { selectAccount } from 'services/redux/selectors';
+import { selectAccount, selectUser } from 'services/redux/selectors';
 import { triggerDialog } from 'services/redux/slices/account';
-import { fetchEditAccountByUID } from 'services/redux/slices/account/thunks';
+import { editUser } from 'services/redux/slices/user/thunks';
 
 export default function EditAccountDialog() {
    const dispatch = useAppDispatch();
-   const { info, dialogs } = useAppSelector(selectAccount);
-   const { isOpen, isLoading } = dialogs.editAccount;
+   const user = useAppSelector(selectUser);
+   const account = useAppSelector(selectAccount);
+   const { info } = user;
+   const { isPending } = user.thunks.edit;
+   const { isOpen } = account.dialogs.edit;
    const [displayName, setDisplayName] = useState(info.displayName);
    const [occupation, setOccupation] = useState(info.occupation);
 
    useEffect(() => {
-      setDisplayName(info.displayName);
-      setOccupation(info.occupation);
-   }, [info]);
+      setDisplayName(user.info.displayName);
+      setOccupation(user.info.occupation);
+   }, [user.info]);
 
    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target;
@@ -39,7 +42,7 @@ export default function EditAccountDialog() {
    const handleClose = () => {
       dispatch(
          triggerDialog({
-            target: 'editAccount',
+            dialog: 'edit',
             state: {
                isOpen: false,
             },
@@ -52,15 +55,36 @@ export default function EditAccountDialog() {
 
       if (occupation !== info.occupation || displayName !== info.displayName) {
          const response = await dispatch(
-            fetchEditAccountByUID({
-               accountUID: info.uid,
+            editUser({
+               uid: info.uid,
                displayName,
                occupation,
             })
          );
+
          if (response.payload.status === 'rejected') {
             setDisplayName(info.displayName);
             setOccupation(info.occupation);
+
+            dispatch(
+               triggerDialog({
+                  dialog: 'editRejected',
+                  state: {
+                     isOpen: true,
+                  },
+               })
+            );
+         } else {
+            handleClose();
+
+            dispatch(
+               triggerDialog({
+                  dialog: 'editFulfilled',
+                  state: {
+                     isOpen: true,
+                  },
+               })
+            );
          }
       }
    };
@@ -113,11 +137,11 @@ export default function EditAccountDialog() {
                   disabled={
                      (occupation === info.occupation &&
                         displayName === info.displayName) ||
-                     isLoading ||
+                     isPending ||
                      !displayName
                   }
                >
-                  {isLoading ? '...' : 'Submit'}
+                  {isPending ? '...' : 'Submit'}
                </Button>
             </DialogActions>
          </form>

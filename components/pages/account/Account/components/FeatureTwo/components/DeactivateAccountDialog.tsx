@@ -8,30 +8,32 @@ import {
    TextField,
 } from '@material-ui/core';
 import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
-import { selectAccount } from 'services/redux/selectors';
+import { selectAccount, selectUser } from 'services/redux/selectors';
 import { ChangeEvent, useState } from 'react';
-import { clearAccountInfo, triggerDialog } from 'services/redux/slices/account';
+import { triggerDialog } from 'services/redux/slices/account';
 import { authClient } from 'services/firebase/client';
-import { fetchDeactivateAccountByUID } from 'services/redux/slices/account/thunks';
+import { deactivateUser } from 'services/redux/slices/user/thunks';
 
 export default function DeactivateAccountDialog() {
    const dispatch = useAppDispatch();
-   const state = useAppSelector(selectAccount);
-   const { isOpen, isLoading } = state.dialogs.deactivateAccount;
-   const [isInputMatched, setIsInputMatched] = useState(false);
+   const user = useAppSelector(selectUser);
+   const account = useAppSelector(selectAccount);
+   const { info } = user;
+   const { isOpen } = account.dialogs.deactivate;
+   const { isPending } = user.thunks.deactivate;
    const [input, setInput] = useState('');
+   const [isMatched, setIsMatched] = useState(false);
 
-   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value;
-      setInput(value);
-      setIsInputMatched(value === 'DEACTIVATE ACCOUNT');
+   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+      setInput(target.value);
+      setIsMatched(target.value === 'DEACTIVATE ACCOUNT');
    };
 
    const handleClose = () => {
       setInput('');
       dispatch(
          triggerDialog({
-            target: 'deactivateAccount',
+            dialog: 'deactivate',
             state: {
                isOpen: false,
             },
@@ -40,27 +42,16 @@ export default function DeactivateAccountDialog() {
    };
 
    const handleContinue = async () => {
-      const response = await dispatch(
-         fetchDeactivateAccountByUID(state.info.uid)
-      );
+      const response = await dispatch(deactivateUser(info.uid));
 
       if (response.payload.status === 'fulfilled') {
          await authClient.signOut();
 
-         dispatch(clearAccountInfo());
+         handleClose();
 
          dispatch(
             triggerDialog({
-               target: 'deactivateAccount',
-               state: {
-                  isOpen: false,
-               },
-            })
-         );
-
-         dispatch(
-            triggerDialog({
-               target: 'redirect',
+               dialog: 'redirect',
                state: {
                   isOpen: true,
                },
@@ -99,11 +90,11 @@ export default function DeactivateAccountDialog() {
             <Button
                color="primary"
                variant="contained"
-               disabled={!isInputMatched || isLoading}
+               disabled={!isMatched || isPending}
                onClick={handleContinue}
                autoFocus
             >
-               {isLoading ? '...' : 'Continue'}
+               {isPending ? '...' : 'Continue'}
             </Button>
          </DialogActions>
       </Dialog>
