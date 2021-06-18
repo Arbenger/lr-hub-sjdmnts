@@ -1,36 +1,65 @@
+import {
+   BOOK_DELETER_URL,
+   BOOK_INPUTER_URL,
+   FULFILLED,
+   REJECTED,
+} from 'utils/variables';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from 'services/redux/store';
+import { UploadCoverPayload, UploadMetaDataPayload } from './types';
+import { storageRef } from 'services/firebase/client';
 import signToken from 'utils/jwt/signToken';
 import axios from 'axios';
 
-export const fetchInputBook = createAsyncThunk(
-   'bookInputer/inputStatus',
-   async (none, thunkAPI) => {
-      const {
-         bookInputer: { title, description, copies },
-      } = thunkAPI.getState() as RootState;
+export const uploadMetaData = createAsyncThunk<any, UploadMetaDataPayload>(
+   'bookInputer/uploadMetaDataStatus',
+   async (payload) => {
+      const { title, copies, description, dateAdded } = payload;
 
       const response = await axios({
-         url: '/api/book/inputer',
-         method: 'POST',
+         url: BOOK_INPUTER_URL,
          params: {
             token: signToken({
                title,
                copies,
                description,
+               dateAdded,
             }),
          },
       });
 
-      if (response.data.status === 'failure') {
+      if (response.data.status === REJECTED) {
          await axios({
-            url: '/api/book/deleter',
-            method: 'POST',
-            params: { token: signToken({ title }) },
+            url: BOOK_DELETER_URL,
+            params: {
+               token: signToken({ title }),
+            },
          });
-         return alert('Sorry, please try again!');
       }
 
-      return response.data.payload;
+      return response.data;
+   }
+);
+
+export const uploadCover = createAsyncThunk<any, UploadCoverPayload>(
+   'bookInputer/uploadCoverStatus',
+   async (payload) => {
+      try {
+         const { id, file } = payload;
+
+         const coverRef = storageRef.child(`bookCovers/${id}.png`);
+
+         const ONE_WEEK = 86400000 * 7;
+
+         await coverRef.put(file, {
+            contentType: 'image/png',
+            cacheControl: `public,max-age=${ONE_WEEK}`,
+         });
+
+         const url = await coverRef.getDownloadURL();
+
+         return { status: FULFILLED, data: { url } };
+      } catch (error) {
+         return { status: REJECTED, ...error };
+      }
    }
 );

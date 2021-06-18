@@ -7,6 +7,7 @@ export interface Book {
    title: string;
    description: string;
    statistics: {
+      total: number;
       available: number;
       borrowed: number;
       lost: number;

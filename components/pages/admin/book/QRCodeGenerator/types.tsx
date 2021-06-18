@@ -1,7 +1,7 @@
 export interface Query {
    bookId: string;
    bookTitle: string;
-   idOfCopies: string[];
+   copiesIds: string[];
 }
 export interface BookCopy {
    copyId: string;

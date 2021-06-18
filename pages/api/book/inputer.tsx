@@ -1,53 +1,60 @@
+import { AVAILABLE, FULFILLED, REJECTED } from 'utils/variables';
 import { NextApiResponse } from 'next';
 import { NextApiRequestWithToken } from 'types';
-import { booksRef } from 'services/firebase/admin';
+import { booksRef, linksRef } from 'services/firebase/admin';
 import verifyToken from 'utils/jwt/verifyToken';
 import _ from 'lodash';
 
 export default async (req: NextApiRequestWithToken, res: NextApiResponse) => {
    try {
       const decodedToken = verifyToken(req.query.token);
-      const { title, description, copies } = decodedToken;
-      const dateAdded = Date.now();
+      const { title, description, dateAdded, copies } = decodedToken;
+
       const bookRef = booksRef.doc();
       const copiesRef = bookRef.collection('copies');
 
-      bookRef.set({
+      await bookRef.set({
          title,
+         description,
          dateAdded,
-         description:
-            description || 'There was no description given to this book.',
          statistics: {
+            total: parseInt(copies),
             available: parseInt(copies),
             borrowed: 0,
             lost: 0,
          },
       });
 
-      const idOfCopies = await Promise.all(
-         Array(parseInt(copies))
-            .fill(null)
-            .map(async () => {
-               const copyRef = copiesRef.doc();
+      const array = Array(parseInt(copies)).fill(null);
 
-               await copyRef.set({
-                  status: 'available',
-                  dateAdded,
-               });
+      const copiesIds = await Promise.all(
+         array.map(async () => {
+            const copyRef = copiesRef.doc();
+            await copyRef.set({
+               status: AVAILABLE,
+               dateAdded,
+            });
 
-               return copyRef.id;
-            })
+            const linkRef = linksRef.doc(copyRef.id);
+            await linkRef.set({
+               type: 'book-copy',
+               id: copyRef.id,
+               originId: bookRef.id,
+            });
+
+            return copyRef.id;
+         })
       );
 
       res.json({
-         status: 'fulfilled',
-         payload: {
+         status: FULFILLED,
+         data: {
             bookId: bookRef.id,
-            bookTitle: decodedToken.title,
-            idOfCopies,
+            bookTitle: title,
+            copiesIds,
          },
       });
    } catch (error) {
-      res.json({ status: 'rejected', ...error });
+      res.json({ status: REJECTED, ...error });
    }
 };

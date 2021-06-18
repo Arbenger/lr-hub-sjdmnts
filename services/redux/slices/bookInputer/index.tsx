@@ -1,24 +1,33 @@
+import {
+   Data,
+   BookInputerState,
+   TriggerDialogPayload,
+   TriggerPendingPayload,
+} from './types';
+import { uploadCover, uploadMetaData } from './thunks';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { BookInputerState, FetchedData, TriggerDialogPayload } from './types';
-import { fetchInputBook } from './thunks';
+import { FULFILLED, NO_IMAGE } from 'utils/variables';
 
 const initialState: BookInputerState = {
-   title: '',
-   copies: 0,
-   description: '',
-   isLoading: false,
-   dialogs: {
-      proceed: {
-         isOpen: false,
-      },
-      print: {
-         isOpen: false,
-      },
+   data: {
+      title: '',
+      copies: 0,
+      description: '',
+      tmpPath: NO_IMAGE,
    },
    fetchedData: {
       bookId: '',
       bookTitle: '',
-      idOfCopies: [],
+      copiesIds: [],
+   },
+   pendings: {
+      uploadingMetaData: false,
+      uploadingCover: false,
+   },
+   dialogs: {
+      metaData: false,
+      cover: false,
+      print: false,
    },
 };
 
@@ -26,38 +35,55 @@ const bookInputerSlice = createSlice({
    name: 'bookInputer',
    initialState,
    reducers: {
-      setTitle(state, action: PayloadAction<string>) {
-         state.title = action.payload;
+      setData(state, action: PayloadAction<Partial<Data>>) {
+         Object.keys(action.payload).map(
+            (key) => (state.data[key] = action.payload[key])
+         );
       },
-      setCopies(state, action: PayloadAction<number>) {
-         state.copies = action.payload;
+      clearData({ data }) {
+         Object.keys(data).map((key) => {
+            data[key] = typeof data[key] === 'number' ? 0 : '';
+            if (key === 'tmpPath') data[key] = NO_IMAGE;
+         });
       },
-      setDescription(state, action: PayloadAction<string>) {
-         state.description = action.payload;
+      triggerPending(state, action: PayloadAction<TriggerPendingPayload>) {
+         const { pending, isPending } = action.payload;
+         state.pendings[pending] = isPending;
       },
-      triggerDialog(state, { payload }: PayloadAction<TriggerDialogPayload>) {
-         const { target, action } = payload;
-         state.dialogs[target].isOpen = action === 'open';
+      triggerDialog(state, action: PayloadAction<TriggerDialogPayload>) {
+         const { dialog, isOpen } = action.payload;
+         state.dialogs[dialog] = isOpen;
       },
    },
    extraReducers: (builder) => {
-      builder.addCase(fetchInputBook.pending, (state) => {
-         state.isLoading = true;
+      // UPLOAD METADATA THUNK
+      builder.addCase(uploadMetaData.pending, (state) => {
+         state.pendings.uploadingMetaData = true;
       });
-      builder.addCase(fetchInputBook.fulfilled, (state, action) => {
-         state.title = '';
-         state.description = '';
-         state.copies = 0;
-         state.isLoading = false;
-         state.dialogs.print.isOpen = true;
-         state.fetchedData = action.payload as FetchedData;
+      builder.addCase(uploadMetaData.fulfilled, (state, action) => {
+         state.pendings.uploadingMetaData = false;
+
+         if (action.payload.status === FULFILLED) {
+            state.fetchedData = action.payload.data;
+         }
       });
-      builder.addCase(fetchInputBook.rejected, (state) => {
-         state.isLoading = false;
+      builder.addCase(uploadMetaData.rejected, (state) => {
+         state.pendings.uploadingMetaData = false;
+      });
+
+      // UPLOAD COVER THUNK
+      builder.addCase(uploadCover.pending, (state) => {
+         state.pendings.uploadingCover = true;
+      });
+      builder.addCase(uploadCover.fulfilled, (state) => {
+         state.pendings.uploadingCover = false;
+      });
+      builder.addCase(uploadCover.rejected, (state) => {
+         state.pendings.uploadingCover = false;
       });
    },
 });
 
-export const { setTitle, setCopies, setDescription, triggerDialog } =
+export const { setData, clearData, triggerPending, triggerDialog } =
    bookInputerSlice.actions;
 export default bookInputerSlice.reducer;

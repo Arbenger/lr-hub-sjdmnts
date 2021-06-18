@@ -20,3 +20,4 @@ export const db = firebaseAdmin.firestore();
 // DB COLLECTIONS
 export const usersRef = db.collection('users');
 export const booksRef = db.collection('books');
+export const linksRef = db.collection('links');

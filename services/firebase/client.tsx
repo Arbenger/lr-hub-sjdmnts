@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/storage';
 
 if (!firebase.apps.length) {
    firebase.initializeApp({
@@ -15,3 +16,5 @@ if (!firebase.apps.length) {
 
 export const firebaseClient = firebase;
 export const authClient = firebase.auth();
+export const storageClient = firebase.storage();
+export const storageRef = storageClient.ref();
