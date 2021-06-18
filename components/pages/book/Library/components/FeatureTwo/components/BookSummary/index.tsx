@@ -12,22 +12,46 @@ import {
    ActionsContainer,
    ActionsWrapper,
 } from './styled';
+import { useEffect, useMemo } from 'react';
+import { NO_IMAGE } from 'utils/variables';
 import { Grid, IconButton } from '@material-ui/core';
 import { Book } from 'services/redux/slices/library/types';
+import { storageRef } from 'services/firebase/client';
 import Image from 'next/image';
+import { useState } from 'react';
 
 interface Props {
    book: Book;
 }
 
 export default function BookSummary({ book }: Props) {
+   const [url, setURL] = useState(NO_IMAGE);
+
+   useEffect(() => {
+      let isMounted = true;
+
+      (async () => {
+         try {
+            const coverRef = storageRef.child(`bookCovers/${book.id}.png`);
+            const url = await coverRef.getDownloadURL();
+            isMounted && setURL(url);
+         } catch (error) {
+            isMounted && setURL(NO_IMAGE);
+         }
+      })();
+
+      return () => {
+         isMounted = false;
+      };
+   }, [book.id]);
+
    return (
       <Container>
          <Grid container spacing={2}>
             <Grid item xs={5}>
                <Cover>
                   <Image
-                     src={`/images/book-cover-1.png`}
+                     src={url}
                      width="auto"
                      height="auto"
                      objectFit="cover"
