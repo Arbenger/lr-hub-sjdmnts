@@ -16,7 +16,8 @@ export function filterDocsBySearchInput(
    return searchInput
       ? docs.filter((doc) => {
            const { title } = doc.data();
-           const isMatched = title.toLowerCase().indexOf(searchInput) > -1;
+           const isMatched =
+              title.toLowerCase().indexOf(searchInput.toLowerCase()) > -1;
            return isMatched;
         })
       : docs;

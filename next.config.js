@@ -1,6 +1,10 @@
 module.exports = {
    images: {
-      domains: ['lh3.googleusercontent.com', 'firebasestorage.googleapis.com'],
+      domains: [
+         'lh3.googleusercontent.com',
+         'firebasestorage.googleapis.com',
+         'localhost',
+      ],
    },
    env: {
       apiKey: 'AIzaSyBFeM2425df_f9d24TDxJqzRy4Lp8Cgo0w',
