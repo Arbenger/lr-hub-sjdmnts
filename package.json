@@ -42,6 +42,7 @@
       "@types/firebase": "^3.2.1",
       "@types/jsonwebtoken": "^8.5.1",
       "@types/lodash": "^4.14.170",
+      "@types/material-ui": "^0.21.8",
       "@types/qrcode.react": "^1.0.1",
       "@types/react": "^17.0.5",
       "@types/react-timeago": "^4.1.2",
