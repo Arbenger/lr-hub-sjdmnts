@@ -35,13 +35,14 @@ export default function PrintConfirmationDialog({ fileRef }: Props) {
    };
 
    const handleConfirm = async () => {
-      await router.push({
+      handleClose();
+
+      router.push({
          pathname: '/admin/book/qr-code-generator',
          query: {
             ...fetchedData,
          },
       });
-      handleClose();
    };
 
    return (
@@ -55,7 +56,7 @@ export default function PrintConfirmationDialog({ fileRef }: Props) {
          </DialogContent>
 
          <DialogActions>
-            <Button color="primary" variant="contained" onClick={handleClose}>
+            <Button color="primary" onClick={handleClose}>
                Cancel
             </Button>
 

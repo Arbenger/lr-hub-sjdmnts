@@ -79,7 +79,6 @@ export default function MetaDataDialog({ fileRef }: Props) {
          <DialogActions>
             <Button
                color="primary"
-               variant="contained"
                onClick={handleClose}
                disabled={pendings.uploadingMetaData}
             >

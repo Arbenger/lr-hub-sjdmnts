@@ -63,7 +63,6 @@ export default function CoverDialog({ fileRef }: Props) {
          <DialogActions>
             <Button
                color="primary"
-               variant="contained"
                onClick={handleClose}
                disabled={pendings.uploadingCover}
             >

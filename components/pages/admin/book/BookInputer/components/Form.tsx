@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
 import { selectBookInputer } from 'services/redux/selectors';
 import { AiOutlineFileAdd as FileAddIcon } from 'react-icons/ai';
 import { ChangeEvent, FormEvent, RefObject, useMemo } from 'react';
+import { NO_IMAGE } from 'utils/variables';
 import Image from 'next/image';
 
 interface Props {
@@ -61,6 +62,9 @@ export default function Form({ fileRef }: Props) {
    }, [data.title]);
 
    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+      if (!event.target.files.length)
+         return dispatch(setData({ tmpPath: NO_IMAGE }));
+
       const tmpPath = URL.createObjectURL(event.target.files[0]);
       dispatch(setData({ tmpPath }));
    };
