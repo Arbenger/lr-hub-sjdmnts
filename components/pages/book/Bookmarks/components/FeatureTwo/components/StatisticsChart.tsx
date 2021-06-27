@@ -7,13 +7,13 @@ import getMonths from 'utils/getMonths';
 
 export default function StatisticsChart() {
    const { spacing } = useTheme();
-   const { appPalette } = useAppSelector(selectTheme);
+   const theme = useAppSelector(selectTheme);
 
    const data: Chartist.IChartistData = {
       labels: getMonths(),
       series: [
          {
-            className: `ct-series-_${appPalette.current}`,
+            className: `ct-series-_${theme.current}`,
             data: [10, 5, 3, 5, 4, 5, 6, 2, 0, 2, 3, 6],
          },
       ],

@@ -6,66 +6,58 @@ import {
    Paper,
    Popover,
    Tooltip,
-   useTheme,
 } from '@material-ui/core';
-import { Fragment } from 'react';
-import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
-import { changeAppPalette } from 'services/redux/themeSlice';
-import { AppPaletteKey } from 'components/wrapper/ThemeWrapper/types';
 import {
    getKeys,
    getPalettesObjectOfObjects,
-} from 'components/wrapper/ThemeWrapper/utils';
-import { PaletteIcon } from 'components/Icons';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+} from 'components/wrappers/ThemeWrapper/utils';
+import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { changePalette } from 'services/redux/slices/theme';
 import { selectTheme } from 'services/redux/selectors';
-
-const useStyles = makeStyles(({ spacing }) => {
-   const appPalette = getPalettesObjectOfObjects();
-   const appPaletteStyles = (() => {
-      const keys = getKeys();
-      let properties = {};
-
-      keys.forEach((item) => {
-         const palette = appPalette[item];
-         properties[`&.${item}`] = {
-            backgroundColor: palette.main,
-            "&:hover, &[data-active='true']": {
-               borderColor: palette.dark,
-            },
-         };
-      });
-      return properties;
-   })();
-
-   return {
-      root: {
-         maxWidth: 160,
-         padding: spacing(1),
-      },
-      paletteItem: {
-         width: 30,
-         height: 30,
-         borderRadius: 5,
-         borderWidth: 4,
-         borderStyle: 'solid',
-         borderColor: 'transparent',
-         cursor: 'pointer',
-         ...appPaletteStyles,
-      },
-   };
-});
+import { PaletteIcon } from 'components/Icons';
+import { Fragment } from 'react';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 
 export default function PaletteButton() {
+   const themeRedux = useAppSelector(selectTheme);
    const dispatch = useAppDispatch();
-   const theme = useTheme();
-   const classes = useStyles();
    const appPaletteKeys = getKeys();
-   const { appPalette } = useAppSelector(selectTheme);
 
-   const handleItemClick = (item: AppPaletteKey) => {
-      dispatch(changeAppPalette(item));
-   };
+   const classes = makeStyles(({ spacing }) => {
+      const appPalette = getPalettesObjectOfObjects();
+      const appPaletteStyles = (() => {
+         const keys = getKeys();
+         let properties = {};
+
+         keys.forEach((item) => {
+            const palette = appPalette[item];
+            properties[`&.${item}`] = {
+               backgroundColor: palette.main,
+               "&:hover, &[data-active='true']": {
+                  borderColor: palette.dark,
+               },
+            };
+         });
+         return properties;
+      })();
+
+      return {
+         root: {
+            maxWidth: 160,
+            padding: spacing(1),
+         },
+         paletteItem: {
+            width: 30,
+            height: 30,
+            borderRadius: 5,
+            borderWidth: 4,
+            borderStyle: 'solid',
+            borderColor: 'transparent',
+            cursor: 'pointer',
+            ...appPaletteStyles,
+         },
+      };
+   })();
 
    return (
       <PopupState variant="popover" popupId="palettte-selector">
@@ -98,8 +90,8 @@ export default function PaletteButton() {
                               <Tooltip title={key} aria-label={key}>
                                  <Box
                                     className={`${classes.paletteItem} ${key}`}
-                                    data-active={appPalette.current === key}
-                                    onClick={() => handleItemClick(key)}
+                                    data-active={themeRedux.current === key}
+                                    onClick={() => dispatch(changePalette(key))}
                                  />
                               </Tooltip>
                            </Grid>

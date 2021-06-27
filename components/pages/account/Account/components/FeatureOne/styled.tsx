@@ -4,7 +4,7 @@ import {
    styled,
    TextField as MuiTextField,
 } from '@material-ui/core';
-import { flexCenter } from 'components/wrapper/ThemeWrapper/mixins';
+import { flexCenter } from 'components/wrappers/ThemeWrapper/mixins';
 import Image from 'next/image';
 
 export const Container = styled(Paper)(({ theme: { spacing } }) => ({

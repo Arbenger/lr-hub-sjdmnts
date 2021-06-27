@@ -1,8 +1,7 @@
-import withLayout from 'components/HOC/withLayout';
-import Login from 'components/pages/account/Login';
-import nookies from 'nookies';
 import { firebaseAdmin } from 'services/firebase/admin';
 import { GetServerSidePropsContext } from 'next';
+import nookies from 'nookies';
+import Login from 'components/pages/account/Login';
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
    try {
@@ -11,9 +10,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
       const token = await auth.verifyIdToken(cookies.token);
       const userRecord = await auth.getUser(token.uid);
 
-      const { uid } = userRecord;
-
-      if (uid) {
+      if (userRecord.uid) {
          return {
             redirect: {
                destination: '/account',
@@ -29,7 +26,4 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
    }
 };
 
-export default withLayout(Login, {
-   pageName: 'login',
-   pageTitle: 'Login',
-});
+export default Login;

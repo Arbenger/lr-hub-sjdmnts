@@ -3,7 +3,7 @@ import { styled, Box, Typography } from '@material-ui/core';
 import {
    flexCenter,
    flexStartCenter,
-} from '../../../../wrapper/ThemeWrapper/mixins';
+} from '../../../../wrappers/ThemeWrapper/mixins';
 
 export const Container = styled(Box)(({ theme: { spacing, palette } }) => ({
    ...flexStartCenter,

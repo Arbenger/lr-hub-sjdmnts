@@ -4,10 +4,10 @@ import {
    WaveBackground,
 } from 'components/layouts/Page/styled';
 import { Grid } from '@material-ui/core';
-import { Fragment } from 'react';
+import dynamic from 'next/dynamic';
 import FeatureOne from './components/FeatureOne';
 import FeatureThree from './components/FeatureThree';
-import dynamic from 'next/dynamic';
+import LayoutWrapper from 'components/wrappers/LayoutWrapper';
 
 const FeatureTwo = dynamic(() => import('./components/FeatureTwo'), {
    ssr: false,
@@ -15,7 +15,7 @@ const FeatureTwo = dynamic(() => import('./components/FeatureTwo'), {
 
 export default function Dashboard() {
    return (
-      <Fragment>
+      <LayoutWrapper pageName="dashboard" pageTitle="Dashboard">
          <WaveBackground />
          <PageContainer maxWidth="lg">
             <PageTitle variant="h4">Dashboard</PageTitle>
@@ -31,6 +31,6 @@ export default function Dashboard() {
                </Grid>
             </Grid>
          </PageContainer>
-      </Fragment>
+      </LayoutWrapper>
    );
 }

@@ -4,11 +4,11 @@ import {
    PageTitle,
 } from 'components/layouts/Page/styled';
 import { ContentContainer, ContentText } from './styled';
-import { Fragment } from 'react';
+import LayoutWrapper from 'components/wrappers/LayoutWrapper';
 
 export default function PrivacyPolicy() {
    return (
-      <Fragment>
+      <LayoutWrapper pageName="privacy-policy" pageTitle="Privacy Policy">
          <WaveBackground />
          <PageContainer maxWidth="lg">
             <PageTitle variant="h4">Privacy Policy</PageTitle>
@@ -58,6 +58,6 @@ export default function PrivacyPolicy() {
                </ContentText>
             </ContentContainer>
          </PageContainer>
-      </Fragment>
+      </LayoutWrapper>
    );
 }

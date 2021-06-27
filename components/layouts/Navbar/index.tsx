@@ -1,13 +1,13 @@
 import { Toolbar } from '@material-ui/core';
 import { AppBar } from './styled';
 import { useAppSelector } from 'services/redux/hooks';
-import { selectLayout } from 'services/redux/selectors';
+import { selectDrawer } from 'services/redux/selectors';
 import AppBarScroll from './AppBarScroll';
 import Display from './Display';
 import Actions from './Actions';
 
 export default function Navbar() {
-   const { drawer } = useAppSelector(selectLayout);
+   const drawer = useAppSelector(selectDrawer);
 
    return (
       <AppBarScroll>

@@ -1,22 +1,18 @@
 import { Container, Divider } from './styled';
 import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
-import { selectLayout } from 'services/redux/selectors';
+import { selectDrawer } from 'services/redux/selectors';
+import { triggerDrawer } from 'services/redux/slices/drawer';
 import { Fragment, useEffect, useState } from 'react';
 import { Dialog } from '@material-ui/core';
-import { triggerDrawer } from 'services/redux/layoutSlice';
 
 import Brand from './components/Brand';
 import Lists from './components/Lists';
 import Action from './components/Action';
 
 export default function Drawer() {
-   const { drawer } = useAppSelector(selectLayout);
    const dispatch = useAppDispatch();
+   const drawer = useAppSelector(selectDrawer);
    const [width, setWidth] = useState(0);
-
-   const handleClose = () => {
-      dispatch(triggerDrawer('close'));
-   };
 
    useEffect(() => {
       function observeWidth() {
@@ -37,7 +33,7 @@ export default function Drawer() {
       <Fragment>
          <Dialog
             open={drawer.isOpen && width <= 960}
-            onClose={handleClose}
+            onClose={() => dispatch(triggerDrawer('close'))}
             style={{ zIndex: 1150 }}
          />
          <Container data-is-open={drawer.isOpen}>

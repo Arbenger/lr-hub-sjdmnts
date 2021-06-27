@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import { store } from 'services/redux/store';
-import AuthWrapper from 'components/wrapper/AuthWrapper';
-import ThemeWrapper from 'components/wrapper/ThemeWrapper';
+import AuthWrapper from 'components/wrappers/AuthWrapper';
+import ThemeWrapper from 'components/wrappers/ThemeWrapper';
 import 'styles/index.scss';
 
 function MyApp({ Component, pageProps }) {

@@ -3,14 +3,14 @@ import {
    PageTitle,
    WaveBackground,
 } from 'components/layouts/Page/styled';
+import { Grid } from '@material-ui/core';
 import FeatureOne from './components/FeatureOne';
 import FeatureTwo from './components/FeatureTwo';
-import { Grid } from '@material-ui/core';
-import { Fragment } from 'react';
+import LayoutWrapper from 'components/wrappers/LayoutWrapper';
 
 export default function Library() {
    return (
-      <Fragment>
+      <LayoutWrapper pageName="library" pageTitle="Library">
          <WaveBackground />
          <PageContainer maxWidth="lg">
             <PageTitle variant="h4">Library</PageTitle>
@@ -23,6 +23,6 @@ export default function Library() {
                </Grid>
             </Grid>
          </PageContainer>
-      </Fragment>
+      </LayoutWrapper>
    );
 }

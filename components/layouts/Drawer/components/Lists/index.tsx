@@ -7,12 +7,6 @@ import {
    MenuTitle,
    MenuContainer,
 } from './styled';
-import { Divider } from '../../styled';
-import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
-import { selectLayout, selectPage } from 'services/redux/selectors';
-import { useState, useEffect, Fragment } from 'react';
-import { Hidden, useTheme } from '@material-ui/core';
-import { triggerDrawer, triggerQuickAccess } from 'services/redux/layoutSlice';
 import {
    AccountIcon,
    BookmarkIcon,
@@ -25,14 +19,26 @@ import {
    ArrowLeftIcon,
    ArrowRightIcon,
 } from 'components/Icons';
+import { Divider } from '../../styled';
+import {
+   selectDrawer,
+   selectQuickAccess,
+   selectPage,
+} from 'services/redux/selectors';
+import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
+import { useState, useEffect, Fragment } from 'react';
+import { Hidden, useTheme } from '@material-ui/core';
+import { triggerDrawer } from 'services/redux/slices/drawer';
+import { triggerQuickAccess } from 'services/redux/slices/quickAccess';
+
 import { List } from './types';
 import Link from 'next/link';
 
 export default function Lists() {
    const dispatch = useAppDispatch();
    const page = useAppSelector(selectPage);
+   const drawer = useAppSelector(selectDrawer);
    const { breakpoints } = useTheme();
-   const { drawer } = useAppSelector(selectLayout);
    const [navbarHeight, setNavbarHeight] = useState<number>();
 
    const lists: List[] = [

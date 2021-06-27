@@ -1,8 +1,9 @@
 import { Box, styled, Typography } from '@material-ui/core';
+
 import {
    flexCenter,
    flexStartCenter,
-} from 'components/wrapper/ThemeWrapper/mixins';
+} from 'components/wrappers/ThemeWrapper/mixins';
 
 export const Container = styled(Box)(({ theme: { palette } }) => ({
    color: palette.common.white,

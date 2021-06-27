@@ -23,8 +23,9 @@ import {
 } from '@material-ui/core';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
-import { selectLayout } from 'services/redux/selectors';
-import { triggerDrawer, triggerQuickAccess } from 'services/redux/layoutSlice';
+import { selectQuickAccess } from 'services/redux/selectors';
+import { triggerQuickAccess } from 'services/redux/slices/quickAccess';
+import { triggerDrawer } from 'services/redux/slices/drawer';
 import { Item } from './types';
 import React, { Fragment } from 'react';
 import Link from 'next/link';
@@ -38,7 +39,7 @@ const Transition = React.forwardRef(function Transition(
 
 export default function FullScreenDialog() {
    const dispatch = useAppDispatch();
-   const { quickAccess } = useAppSelector(selectLayout);
+   const quickAccess = useAppSelector(selectQuickAccess);
 
    const items: Item[] = [
       {

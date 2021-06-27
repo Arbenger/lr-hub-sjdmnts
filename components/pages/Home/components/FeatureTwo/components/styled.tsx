@@ -1,5 +1,5 @@
 import { Paper, Typography, styled, Box } from '@material-ui/core';
-import { flexCenter } from 'components/wrapper/ThemeWrapper/mixins';
+import { flexCenter } from 'components/wrappers/ThemeWrapper/mixins';
 
 export const RootContainer = styled(Box)(
    ({ theme: { spacing, breakpoints } }) => ({

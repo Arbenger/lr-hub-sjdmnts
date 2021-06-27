@@ -1,23 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit';
+import themeReducer from './slices/theme';
+import pageReducer from './slices/page';
+import drawerReducer from './slices/drawer';
+import quickAccessReducer from './slices/quickAccess';
 import userReducer from './slices/user';
-import themeReducer from './themeSlice';
-import layoutReducer from './layoutSlice';
-import libraryReducer from './slices/library';
-import pageReducer from './pageSlice';
 import accountReducer from './slices/account';
-import bookDialogReducer from './bookDialogSlice';
-import bookInputerReducer from './slices/bookInputer';
+import libraryReducer from './slices/library';
+import bookAdderReducer from './slices/bookAdder';
 
 export const store = configureStore({
    reducer: {
-      user: userReducer,
       theme: themeReducer,
       page: pageReducer,
-      layout: layoutReducer,
-      library: libraryReducer,
+      drawer: drawerReducer,
+      quickAccess: quickAccessReducer,
+      user: userReducer,
       account: accountReducer,
-      bookDialog: bookDialogReducer,
-      bookInputer: bookInputerReducer,
+      library: libraryReducer,
+      bookAdder: bookAdderReducer,
    },
 });
 

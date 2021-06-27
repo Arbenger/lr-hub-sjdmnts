@@ -1,17 +1,7 @@
-import {
-   PageContainer,
-   PageTitle,
-   WaveBackground,
-} from 'components/layouts/Page/styled';
-import { Grid } from '@material-ui/core';
-import { Fragment } from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { auth, usersRef } from 'services/firebase/admin';
-
 import nookies from 'nookies';
-import FeatureOne from 'components/pages/account/Account/components/FeatureOne';
-import FeatureTwo from 'components/pages/account/Account/components/FeatureTwo';
-import withLayout from 'components/HOC/withLayout';
+import Account from 'components/pages/account/Account';
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
    try {
@@ -45,27 +35,4 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
    }
 };
 
-function Account() {
-   return (
-      <Fragment>
-         <WaveBackground />
-         <PageContainer maxWidth="lg">
-            <PageTitle variant="h4">Account</PageTitle>
-
-            <Grid container spacing={2}>
-               <Grid item xs={12} sm={7}>
-                  <FeatureOne />
-               </Grid>
-               <Grid item xs={12} sm={5}>
-                  <FeatureTwo />
-               </Grid>
-            </Grid>
-         </PageContainer>
-      </Fragment>
-   );
-}
-
-export default withLayout(Account, {
-   pageName: 'account',
-   pageTitle: 'Account',
-});
+export default Account;

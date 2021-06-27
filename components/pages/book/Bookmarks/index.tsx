@@ -4,14 +4,13 @@ import {
    PageTitle,
 } from 'components/layouts/Page/styled';
 import { Grid } from '@material-ui/core';
-import { Fragment } from 'react';
-import dynamic from 'next/dynamic';
 import FeatureOne from './components/FeatureOne';
 import FeatureTwo from './components/FeatureTwo';
+import LayoutWrapper from 'components/wrappers/LayoutWrapper';
 
 export default function Bookmarks() {
    return (
-      <Fragment>
+      <LayoutWrapper pageName="bookmarks" pageTitle="Bookmarks">
          <WaveBackground />
          <PageContainer maxWidth="lg">
             <PageTitle variant="h4">Bookmarks</PageTitle>
@@ -20,14 +19,10 @@ export default function Bookmarks() {
                   <FeatureOne />
                </Grid>
                <Grid item xs={12} md={6}>
-                  <Grid container spacing={2}>
-                     <Grid item xs={12}>
-                        <FeatureTwo />
-                     </Grid>
-                  </Grid>
+                  <FeatureTwo />
                </Grid>
             </Grid>
          </PageContainer>
-      </Fragment>
+      </LayoutWrapper>
    );
 }

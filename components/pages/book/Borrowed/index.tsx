@@ -4,13 +4,13 @@ import {
    PageTitle,
 } from 'components/layouts/Page/styled';
 import { Grid } from '@material-ui/core';
-import { Fragment } from 'react';
 import FeatureOne from './components/FeatureOne';
 import FeatureTwo from './components/FeatureTwo';
+import LayoutWrapper from 'components/wrappers/LayoutWrapper';
 
 export default function BorrowedBooks() {
    return (
-      <Fragment>
+      <LayoutWrapper pageName="borrowed-books" pageTitle="Borrowed Books">
          <WaveBackground />
          <PageContainer maxWidth="lg">
             <PageTitle variant="h4">Borrowed Books</PageTitle>
@@ -19,14 +19,10 @@ export default function BorrowedBooks() {
                   <FeatureOne />
                </Grid>
                <Grid item xs={12} md={6}>
-                  <Grid container spacing={2}>
-                     <Grid item xs={12}>
-                        <FeatureTwo />
-                     </Grid>
-                  </Grid>
+                  <FeatureTwo />
                </Grid>
             </Grid>
          </PageContainer>
-      </Fragment>
+      </LayoutWrapper>
    );
 }

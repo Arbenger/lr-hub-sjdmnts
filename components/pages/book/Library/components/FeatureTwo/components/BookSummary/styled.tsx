@@ -1,5 +1,5 @@
 import { Box, Paper, styled, Typography } from '@material-ui/core';
-import { flexCenter } from 'components/wrapper/ThemeWrapper/mixins';
+import { flexCenter } from 'components/wrappers/ThemeWrapper/mixins';
 
 export const Container = styled(Paper)(({ theme: { spacing } }) => ({
    padding: spacing(2),

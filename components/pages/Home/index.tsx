@@ -1,12 +1,12 @@
-import { Fragment } from 'react';
+import LayoutWrapper from 'components/wrappers/LayoutWrapper';
 import FeatureOne from './components/FeatureOne';
 import FeatureTwo from './components/FeatureTwo';
 
 export default function Home() {
    return (
-      <Fragment>
+      <LayoutWrapper pageName="home" pageTitle="Home">
          <FeatureOne />
          <FeatureTwo />
-      </Fragment>
+      </LayoutWrapper>
    );
 }

@@ -1,5 +1,5 @@
 import { styled, Box } from '@material-ui/core';
-import { flexEndCenter } from 'components/wrapper/ThemeWrapper/mixins';
+import { flexEndCenter } from 'components/wrappers/ThemeWrapper/mixins';
 
 export const Container = styled(Box)(
    ({ theme: { palette, spacing, transitions } }) => ({

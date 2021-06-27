@@ -9,12 +9,12 @@ import {
 import { ItemContainer, ItemCaption, ItemDisplay } from './styled';
 import { Box, Grid, Typography } from '@material-ui/core';
 import { useAppSelector } from 'services/redux/hooks';
-import { selectLayout } from 'services/redux/selectors';
+import { selectDrawer } from 'services/redux/selectors';
 import { Item } from './types';
 import Link from 'next/link';
 
 export default function FeatureOne() {
-   const { drawer } = useAppSelector(selectLayout);
+   const drawer = useAppSelector(selectDrawer);
    const items: Item[] = [
       {
          title: 'Borrowed Books',

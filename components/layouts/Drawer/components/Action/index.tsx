@@ -1,27 +1,20 @@
 import { Container } from './styled';
 import { Hidden, IconButton } from '@material-ui/core';
 import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
-import { selectLayout } from 'services/redux/selectors';
-import { triggerDrawer } from 'services/redux/layoutSlice';
+import { selectDrawer } from 'services/redux/selectors';
 import { ArrowRightIcon } from 'components/Icons';
+import { triggerDrawer } from 'services/redux/slices/drawer';
 
 export default function Action() {
    const dispatch = useAppDispatch();
-   const {
-      drawer: { isOpen },
-   } = useAppSelector(selectLayout);
-
-   const handleClick = () => {
-      dispatch(triggerDrawer('toggle'));
-   };
+   const drawer = useAppSelector(selectDrawer);
 
    return (
-      <Container data-is-open={isOpen}>
+      <Container data-is-open={drawer.isOpen}>
          <Hidden smDown>
             <IconButton
                color="inherit"
-               aria-label="close-drawer"
-               onClick={handleClick}
+               onClick={() => dispatch(triggerDrawer('toggle'))}
             >
                <ArrowRightIcon />
             </IconButton>

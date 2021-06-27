@@ -40,7 +40,7 @@ export default function FeatureTwo() {
          },
       },
       {
-         text: 'Edit Informations',
+         text: 'Edit Information',
          icon: <EditAccountIcon />,
          onClick: () => {
             dispatch(

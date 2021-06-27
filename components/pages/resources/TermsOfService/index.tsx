@@ -5,10 +5,11 @@ import {
    WaveBackground,
 } from 'components/layouts/Page/styled';
 import { ContentContainer, ContentText } from './styled';
+import LayoutWrapper from 'components/wrappers/LayoutWrapper';
 
 export default function TermsOfService() {
    return (
-      <Fragment>
+      <LayoutWrapper pageName="terms-of-service" pageTitle="Terms Of Service">
          <WaveBackground />
          <PageContainer maxWidth="lg">
             <PageTitle variant="h4">Terms Of Service</PageTitle>
@@ -58,6 +59,6 @@ export default function TermsOfService() {
                </ContentText>
             </ContentContainer>
          </PageContainer>
-      </Fragment>
+      </LayoutWrapper>
    );
 }
