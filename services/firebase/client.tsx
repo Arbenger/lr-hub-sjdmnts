@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/storage';
+import 'firebase/firestore';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -20,9 +21,12 @@ if (!firebase.apps.length) {
 
 export const firebaseClient = firebase;
 export const authClient = firebase.auth();
-
+export const dbClient = firebase.firestore();
 export const storageClient = firebase.storage();
 
-if (isDevelopment) storageClient.useEmulator('localhost', 9199);
+if (isDevelopment) {
+   dbClient.useEmulator('localhost', 8080);
+   storageClient.useEmulator('localhost', 9199);
+}
 
 export const storageRef = storageClient.ref();

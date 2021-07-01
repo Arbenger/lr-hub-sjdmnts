@@ -3,9 +3,9 @@ import {
    PageTitle,
    WaveBackground,
 } from 'components/layouts/Page/styled';
-import { Grid } from '@material-ui/core';
-import FeatureOne from './components/FeatureOne';
-import FeatureTwo from './components/FeatureTwo';
+import Grid from '@material-ui/core/Grid';
+import ToolMenu from './ToolMenu';
+import BookMenu from './BookMenu';
 import LayoutWrapper from 'components/wrappers/LayoutWrapper';
 
 export default function Library() {
@@ -16,10 +16,10 @@ export default function Library() {
             <PageTitle variant="h4">Library</PageTitle>
             <Grid container spacing={2}>
                <Grid item xs={12}>
-                  <FeatureOne />
+                  <ToolMenu />
                </Grid>
                <Grid item xs={12}>
-                  <FeatureTwo />
+                  <BookMenu />
                </Grid>
             </Grid>
          </PageContainer>

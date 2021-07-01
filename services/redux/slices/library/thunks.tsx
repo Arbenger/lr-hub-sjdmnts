@@ -1,27 +1,28 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from 'services/redux/store';
-import signToken from 'utils/jwt/signToken';
-import axios from 'axios';
+import { dbClient, storageRef } from 'services/firebase/client';
+import { NO_IMAGE } from 'utils/variables';
+import { Book } from './types';
 
-export const fetchBook = createAsyncThunk(
-   'library/searchStatus',
-   async (none, thunkAPI) => {
-      const { library } = thunkAPI.getState() as RootState;
-      const { searchInput, sortBy, sortDirection, filterBy } = library;
+export const fetchBooks = createAsyncThunk('library/fetchStatus', async () => {
+   const booksSnapshot = await dbClient.collection('books').get();
+   const books = await Promise.all(
+      booksSnapshot.docs.map(async (doc) => {
+         const book = {
+            id: doc.id,
+            coverURL: NO_IMAGE,
+            ...doc.data(),
+         };
 
-      const response = await axios({
-         url: '/api/book/getter',
-         method: 'POST',
-         params: {
-            token: signToken({
-               sortBy,
-               filterBy,
-               searchInput,
-               sortDirection,
-            }),
-         },
-      });
+         try {
+            book.coverURL = await storageRef
+               .child(`bookCovers/${doc.id}.png`)
+               .getDownloadURL();
+         } catch (error) {
+            book.coverURL = NO_IMAGE;
+         }
 
-      return response.data;
-   }
-);
+         return book;
+      })
+   );
+   return books as Book[];
+});
