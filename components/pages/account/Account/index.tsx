@@ -5,9 +5,9 @@ import {
 } from 'components/layouts/Page/styled';
 import { Grid } from '@material-ui/core';
 
-import FeatureOne from './components/FeatureOne';
-import FeatureTwo from './components/FeatureTwo';
 import LayoutWrapper from 'components/wrappers/LayoutWrapper';
+import Informations from './Informations';
+import Actions from './Actions';
 
 export default function Account() {
    return (
@@ -15,13 +15,12 @@ export default function Account() {
          <WaveBackground />
          <PageContainer maxWidth="lg">
             <PageTitle variant="h4">Account</PageTitle>
-
             <Grid container spacing={2}>
                <Grid item xs={12} sm={7}>
-                  <FeatureOne />
+                  <Informations />
                </Grid>
                <Grid item xs={12} sm={5}>
-                  <FeatureTwo />
+                  <Actions />
                </Grid>
             </Grid>
          </PageContainer>

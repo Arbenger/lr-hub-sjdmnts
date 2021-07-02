@@ -3,21 +3,12 @@ import { AccountState, TriggerDialogPayload } from './types';
 
 const initialState: AccountState = {
    dialogs: {
-      edit: {
-         isOpen: false,
-      },
-      editFulfilled: {
-         isOpen: false,
-      },
-      editRejected: {
-         isOpen: false,
-      },
-      deactivate: {
-         isOpen: false,
-      },
-      redirect: {
-         isOpen: false,
-      },
+      edit: false,
+      editFulfilled: false,
+      editRejected: false,
+      deactivate: false,
+      deactivateFulfilled: false,
+      deactivateRejected: false,
    },
 };
 
@@ -25,13 +16,9 @@ const accountSlice = createSlice({
    name: 'account',
    initialState,
    reducers: {
-      triggerDialog(
-         { dialogs },
-         { payload }: PayloadAction<TriggerDialogPayload>
-      ) {
-         Object.keys(payload.state).map((key) => {
-            dialogs[payload.dialog][key] = payload.state[key];
-         });
+      triggerDialog(state, action: PayloadAction<TriggerDialogPayload>) {
+         const { dialog, isOpen } = action.payload;
+         state.dialogs[dialog] = isOpen;
       },
    },
 });

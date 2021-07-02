@@ -11,7 +11,7 @@ import {
    Select,
    MenuItem,
 } from '@material-ui/core';
-import { useState, FormEvent, ChangeEvent, useEffect } from 'react';
+import { useState, FormEvent, ChangeEvent, useEffect, useMemo } from 'react';
 import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
 import { selectAccount, selectUser } from 'services/redux/selectors';
 import { triggerDialog } from 'services/redux/slices/account';
@@ -19,41 +19,43 @@ import { editUser } from 'services/redux/slices/user/thunks';
 
 export default function EditAccountDialog() {
    const dispatch = useAppDispatch();
-   const user = useAppSelector(selectUser);
-   const account = useAppSelector(selectAccount);
-   const { info } = user;
-   const { isPending } = user.thunks.edit;
-   const { isOpen } = account.dialogs.edit;
+
+   const { dialogs } = useAppSelector(selectAccount);
+   const { info, thunks } = useAppSelector(selectUser);
+   const { isPending } = thunks.edit;
+
    const [displayName, setDisplayName] = useState(info.displayName);
    const [occupation, setOccupation] = useState(info.occupation);
 
-   useEffect(() => {
-      setDisplayName(user.info.displayName);
-      setOccupation(user.info.occupation);
-   }, [user.info]);
+   const isChanged = useMemo(() => {
+      return occupation !== info.occupation || displayName !== info.displayName;
+   }, [displayName, occupation]);
 
-   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+   useEffect(() => {
+      setDisplayName(info.displayName);
+      setOccupation(info.occupation);
+   }, [info.displayName, info.occupation]);
+
+   function handleClose() {
+      dispatch(
+         triggerDialog({
+            dialog: 'edit',
+            isOpen: false,
+         })
+      );
+   }
+
+   function handleChange(event: ChangeEvent<HTMLInputElement>) {
       const { name, value } = event.target;
 
       if (name === 'displayName') setDisplayName(value);
       if (name === 'occupation') setOccupation(value);
-   };
+   }
 
-   const handleClose = () => {
-      dispatch(
-         triggerDialog({
-            dialog: 'edit',
-            state: {
-               isOpen: false,
-            },
-         })
-      );
-   };
-
-   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
       event.preventDefault();
 
-      if (occupation !== info.occupation || displayName !== info.displayName) {
+      if (isChanged) {
          const response = await dispatch(
             editUser({
                uid: info.uid,
@@ -61,50 +63,40 @@ export default function EditAccountDialog() {
                occupation,
             })
          );
+         const isFulfilled = response.payload.status === 'fulfilled';
 
-         if (response.payload.status === 'rejected') {
+         handleClose();
+
+         if (!isFulfilled) {
             setDisplayName(info.displayName);
             setOccupation(info.occupation);
-
-            dispatch(
-               triggerDialog({
-                  dialog: 'editRejected',
-                  state: {
-                     isOpen: true,
-                  },
-               })
-            );
-         } else {
-            handleClose();
-
-            dispatch(
-               triggerDialog({
-                  dialog: 'editFulfilled',
-                  state: {
-                     isOpen: true,
-                  },
-               })
-            );
          }
+
+         dispatch(
+            triggerDialog({
+               dialog: isFulfilled ? 'editFulfilled' : 'editRejected',
+               isOpen: true,
+            })
+         );
       }
-   };
+   }
 
    return (
-      <Dialog open={isOpen} onClose={handleClose}>
+      <Dialog open={dialogs.edit} onClose={handleClose}>
          <form onSubmit={handleSubmit}>
-            <DialogTitle>Edit Account Information</DialogTitle>
+            <DialogTitle>Edit Account</DialogTitle>
 
             <DialogContent>
                <Grid container spacing={2}>
                   <Grid item xs={12}>
                      <TextField
+                        value={displayName}
+                        onChange={handleChange}
                         name="displayName"
                         label="Display Name"
                         margin="dense"
                         required
                         fullWidth
-                        value={displayName}
-                        onChange={handleChange}
                      />
                   </Grid>
 
@@ -112,9 +104,9 @@ export default function EditAccountDialog() {
                      <FormControl fullWidth>
                         <InputLabel>Occupation</InputLabel>
                         <Select
-                           name="occupation"
                            value={occupation}
                            onChange={handleChange}
+                           name="occupation"
                         >
                            <MenuItem value="Unknown">Unknown</MenuItem>
                            <MenuItem value="Student">Student</MenuItem>
@@ -134,12 +126,7 @@ export default function EditAccountDialog() {
                   type="submit"
                   color="primary"
                   variant="contained"
-                  disabled={
-                     (occupation === info.occupation &&
-                        displayName === info.displayName) ||
-                     isPending ||
-                     !displayName
-                  }
+                  disabled={!isChanged || isPending || !displayName}
                >
                   {isPending ? '...' : 'Submit'}
                </Button>

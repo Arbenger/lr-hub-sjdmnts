@@ -9,59 +9,57 @@ import {
 } from '@material-ui/core';
 import { useAppDispatch, useAppSelector } from 'services/redux/hooks';
 import { selectAccount, selectUser } from 'services/redux/selectors';
-import { ChangeEvent, useState } from 'react';
 import { triggerDialog } from 'services/redux/slices/account';
 import { authClient } from 'services/firebase/client';
 import { deactivateUser } from 'services/redux/slices/user/thunks';
+import { FormEvent, useMemo, useState } from 'react';
 
 export default function DeactivateAccountDialog() {
    const dispatch = useAppDispatch();
-   const user = useAppSelector(selectUser);
-   const account = useAppSelector(selectAccount);
-   const { info } = user;
-   const { isOpen } = account.dialogs.deactivate;
-   const { isPending } = user.thunks.deactivate;
+
+   const { info, thunks } = useAppSelector(selectUser);
+   const { dialogs } = useAppSelector(selectAccount);
+   const { isPending } = thunks.deactivate;
+
    const [input, setInput] = useState('');
-   const [isMatched, setIsMatched] = useState(false);
 
-   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-      setInput(target.value);
-      setIsMatched(target.value === 'DEACTIVATE ACCOUNT');
-   };
+   const isMatched = useMemo(() => {
+      return input === 'DEACTIVATE ACCOUNT';
+   }, [input]);
 
-   const handleClose = () => {
+   function handleClose() {
       setInput('');
       dispatch(
          triggerDialog({
             dialog: 'deactivate',
-            state: {
-               isOpen: false,
-            },
+            isOpen: false,
          })
       );
-   };
+   }
 
-   const handleContinue = async () => {
+   async function handleContinue() {
       const response = await dispatch(deactivateUser(info.uid));
+      const isFulfilled = response.payload.status === 'fulfilled';
 
-      if (response.payload.status === 'fulfilled') {
-         await authClient.signOut();
+      handleClose();
 
-         handleClose();
+      isFulfilled && (await authClient.signOut());
 
-         dispatch(
-            triggerDialog({
-               dialog: 'redirect',
-               state: {
-                  isOpen: true,
-               },
-            })
-         );
-      }
-   };
+      dispatch(
+         triggerDialog({
+            dialog: isFulfilled ? 'deactivateFulfilled' : 'deactivateRejected',
+            isOpen: true,
+         })
+      );
+   }
+
+   function handleSubmit(event: FormEvent<HTMLFormElement>) {
+      event.preventDefault();
+      isMatched && handleContinue();
+   }
 
    return (
-      <Dialog open={isOpen} onClose={handleClose}>
+      <Dialog open={dialogs.deactivate} onClose={handleClose}>
          <DialogTitle>Account Deactivation Confirmation</DialogTitle>
 
          <DialogContent>
@@ -71,15 +69,17 @@ export default function DeactivateAccountDialog() {
                access your account again once you deactivate it.
             </DialogContentText>
 
-            <TextField
-               autoFocus
-               margin="dense"
-               label="Confirmation"
-               type="email"
-               fullWidth
-               onChange={handleChange}
-               value={input}
-            />
+            <form onSubmit={handleSubmit}>
+               <TextField
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  margin="dense"
+                  label="Confirmation"
+                  type="text"
+                  autoFocus
+                  fullWidth
+               />
+            </form>
          </DialogContent>
 
          <DialogActions>

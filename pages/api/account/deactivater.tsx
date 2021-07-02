@@ -8,6 +8,7 @@ export default async (req: NextApiRequestWithToken, res: NextApiResponse) => {
       const decodedToken = verifyToken(req.query.token);
       const { uid } = decodedToken;
 
+      await auth.getUser(uid);
       await auth.deleteUser(uid);
       await usersRef.doc(uid).delete();
 

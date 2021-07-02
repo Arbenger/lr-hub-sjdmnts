@@ -1,21 +1,18 @@
 export type Dialog =
    | 'edit'
-   | 'deactivate'
    | 'editFulfilled'
    | 'editRejected'
-   | 'redirect';
-
-export type DialogState = Partial<{
-   isOpen: boolean;
-}>;
+   | 'deactivate'
+   | 'deactivateFulfilled'
+   | 'deactivateRejected';
 
 export type Dialogs = {
-   [key in Dialog]: DialogState;
+   [key in Dialog]: boolean;
 };
 
 export interface TriggerDialogPayload {
    dialog: Dialog;
-   state: DialogState;
+   isOpen: boolean;
 }
 
 export interface AccountState {
