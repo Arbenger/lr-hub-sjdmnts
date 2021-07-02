@@ -8,6 +8,7 @@ export {
    BiEdit as EditAccountIcon,
    BiTargetLock as MissionIcon,
    BiDetail as DetailIcon,
+   BiBookContent as PageIcon,
 } from 'react-icons/bi';
 export {
    IoArrowUndoOutline as ReturnedBookIcon,
@@ -23,6 +24,7 @@ export {
    RiFacebookCircleLine as FacebookIcon,
    RiBookmarkLine as UnbookmarkedStateIcon,
    RiBookmarkFill as BookmarkedStateIcon,
+   RiBook2Line as BookIcon,
 } from 'react-icons/ri';
 export {
    MdKeyboardArrowRight as ArrowRightIcon,
@@ -57,3 +59,4 @@ export {
    FaQuestion as FAQIcon,
 } from 'react-icons/fa';
 export { BsLightning as ActionIcon } from 'react-icons/bs';
+export { CgTag as TagIcon } from 'react-icons/cg';

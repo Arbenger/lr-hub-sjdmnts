@@ -8,3 +8,4 @@ export const selectUser = (state: RootState) => state.user;
 export const selectAccount = (state: RootState) => state.account;
 export const selectLibrary = (state: RootState) => state.library;
 export const selectBookAdder = (state: RootState) => state.bookAdder;
+export const selectMainBook = (state: RootState) => state.mainBook;
