@@ -1,5 +1,7 @@
 import { List, ListSubheader, Paper } from '@material-ui/core';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
+import { useAppSelector } from 'services/redux/hooks';
+import { selectUser } from 'services/redux/selectors';
 
 import SignOutButton from './buttons/SignOutButton';
 import DeactivateAccountButton from './buttons/DeactivateAccountButton';
@@ -12,6 +14,10 @@ import DeactivateAccountDialog from './dialogs/DeactivateAccountDialog';
 import DeactivateAccountFulfilledDialog from './dialogs/DeactivateAccountFulfilledDialog';
 
 export default function Actions() {
+   const {
+      info: { isLibrarian },
+   } = useAppSelector(selectUser);
+
    return (
       <Fragment>
          <Paper>
@@ -20,17 +26,25 @@ export default function Actions() {
 
                {/* BUTTONS */}
                <SignOutButton />
-               <EditAccountButton />
-               <DeactivateAccountButton />
+               {!isLibrarian && (
+                  <Fragment>
+                     <EditAccountButton />
+                     <DeactivateAccountButton />
+                  </Fragment>
+               )}
             </List>
          </Paper>
 
          {/* DIALOGS */}
-         <EditAccountDialog />
-         <EditAccountFulfilledDialog />
-         <EditAccountRejectedDialog />
-         <DeactivateAccountDialog />
-         <DeactivateAccountFulfilledDialog />
+         {!isLibrarian && (
+            <Fragment>
+               <EditAccountDialog />
+               <EditAccountFulfilledDialog />
+               <EditAccountRejectedDialog />
+               <DeactivateAccountDialog />
+               <DeactivateAccountFulfilledDialog />
+            </Fragment>
+         )}
       </Fragment>
    );
 }

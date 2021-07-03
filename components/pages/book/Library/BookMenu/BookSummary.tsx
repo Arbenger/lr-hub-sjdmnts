@@ -1,13 +1,17 @@
 import { makeStyles, Box, Paper, Typography } from '@material-ui/core';
 import { Book } from 'services/redux/slices/library/types';
+import { useAppDispatch } from 'services/redux/hooks';
+import { setConfig as setMainBookDialogConfig } from 'services/redux/slices/globals/mainBookDialog';
+import { fetchBook } from 'services/redux/slices/globals/mainBookDialog/thunks';
 import Image from 'next/image';
-import Link from 'next/link';
 
 interface Props {
    book: Book;
 }
 
 export default function BookSummary({ book }: Props) {
+   const dispatch = useAppDispatch();
+
    const classes = makeStyles(({ transitions, shadows }) => ({
       root: {
          display: 'flex',
@@ -26,29 +30,37 @@ export default function BookSummary({ book }: Props) {
       },
    }))();
 
-   return (
-      <Link href={`/book/main/${book.id}`}>
-         <Paper className={classes.root}>
-            <Box bgcolor="#D6D6D6">
-               <Image
-                  src={book.coverURL}
-                  width="100%"
-                  height="auto"
-                  layout="responsive"
-                  objectFit="cover"
-                  objectPosition="center top"
-               />
-            </Box>
+   function handleClick() {
+      dispatch(
+         setMainBookDialogConfig({
+            isOpen: true,
+            targetBookId: book.id,
+         })
+      );
+      dispatch(fetchBook());
+   }
 
-            <Box padding={2}>
-               <Typography variant="h6" className={classes.title}>
-                  {book.title}
-               </Typography>
-               <Typography>
-                  {book.statistics.available} available copies
-               </Typography>
-            </Box>
-         </Paper>
-      </Link>
+   return (
+      <Paper className={classes.root} onClick={handleClick}>
+         <Box bgcolor="#D6D6D6">
+            <Image
+               src={book.coverURL}
+               width="100%"
+               height="auto"
+               layout="responsive"
+               objectFit="cover"
+               objectPosition="center top"
+            />
+         </Box>
+
+         <Box padding={2}>
+            <Typography variant="h6" className={classes.title}>
+               {book.title}
+            </Typography>
+            <Typography>
+               {book.statistics.available} available copies
+            </Typography>
+         </Box>
+      </Paper>
    );
 }

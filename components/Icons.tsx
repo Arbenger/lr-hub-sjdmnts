@@ -46,6 +46,7 @@ export {
    AiOutlineSortDescending as DescendingIcon,
    AiFillEye as VisionIcon,
    AiOutlineQrcode as QRCodeIcon,
+   AiOutlineDelete as DeleteIcon,
 } from 'react-icons/ai';
 export {
    FiTwitter as TwitterIcon,
@@ -53,6 +54,7 @@ export {
    FiLogOut as SignOutIcon,
    FiFilter as FilterIcon,
    FiMoreHorizontal as MoreIcon,
+   FiEdit2 as EditIcon,
 } from 'react-icons/fi';
 export {
    FaRegTimesCircle as ExpiredBookIcon,

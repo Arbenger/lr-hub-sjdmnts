@@ -8,6 +8,7 @@ import Navbar from 'components/layouts/Navbar';
 import Drawer from 'components/layouts/Drawer';
 import Footer from 'components/layouts/Footer';
 import QuickAccess from 'components/layouts/QuickAccess';
+import MainBookDialog from 'components/globals/MainBookDialog';
 
 interface Props {
    children: ReactNode;
@@ -70,6 +71,9 @@ export default function LayoutWrapper({
                {children}
                <Footer />
             </Box>
+
+            {/* GLOBALS */}
+            <MainBookDialog />
          </Box>
       </Fragment>
    );

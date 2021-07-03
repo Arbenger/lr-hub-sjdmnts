@@ -7,7 +7,7 @@ import userReducer from './slices/user';
 import accountReducer from './slices/account';
 import libraryReducer from './slices/library';
 import bookAdderReducer from './slices/bookAdder';
-import mainBookReducer from './slices/mainBook';
+import mainBookDialogReducer from './slices/globals/mainBookDialog';
 
 export const store = configureStore({
    reducer: {
@@ -19,7 +19,7 @@ export const store = configureStore({
       account: accountReducer,
       library: libraryReducer,
       bookAdder: bookAdderReducer,
-      mainBook: mainBookReducer,
+      mainBookDialog: mainBookDialogReducer,
    },
 });
 

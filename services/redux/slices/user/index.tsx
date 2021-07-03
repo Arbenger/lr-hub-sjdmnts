@@ -11,6 +11,7 @@ const initialState: UserState = {
       registeredAt: Date.now().toString(),
       photoURL: '/images/no-profile-picture.png',
       provider: '',
+      isLibrarian: false,
    },
    thunks: {
       edit: {
@@ -30,6 +31,9 @@ const userSlice = createSlice({
          Object.keys(action.payload).map(
             (key) => (state.info[key] = action.payload[key])
          );
+
+         if (action.payload.occupation === 'Librarian')
+            state.info.isLibrarian = true;
       },
       clearInfo(state) {
          Object.keys(state.info).map((key) => {

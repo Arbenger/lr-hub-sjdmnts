@@ -6,6 +6,7 @@ export interface Info {
    registeredAt: string;
    photoURL: string;
    provider: string;
+   isLibrarian: boolean;
 }
 
 export type Thunk = 'edit' | 'deactivate';

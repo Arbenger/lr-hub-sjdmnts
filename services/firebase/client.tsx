@@ -25,7 +25,14 @@ export const dbClient = firebase.firestore();
 export const storageClient = firebase.storage();
 
 if (isDevelopment) {
-   authClient.useEmulator('http://localhost:9099', { disableWarnings: true });
+   try {
+      // @ts-ignore
+      authClient.useEmulator('http://localhost:9099', {
+         disableWarnings: true,
+      });
+   } catch (error) {
+      authClient.useEmulator('http://localhost:9099');
+   }
    dbClient.useEmulator('localhost', 8080);
    storageClient.useEmulator('localhost', 9199);
 }
