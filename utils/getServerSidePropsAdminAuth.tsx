@@ -7,11 +7,12 @@ export default async function getServerSidePropsAdminAuth(
 ) {
    try {
       const cookies = nookies.get(ctx);
-      const token = await auth.verifyIdToken(cookies.token);
-      const userRecord = await auth.getUser(token.uid);
-      const userRef = usersRef.doc(userRecord.uid);
-      const userDoc = await userRef.get();
-      const { occupation } = userDoc.data();
+      const { uid } = await auth.verifyIdToken(cookies.token);
+
+      await auth.getUser(uid);
+
+      const user = await usersRef.doc(uid).get();
+      const { occupation } = user.data();
 
       return occupation !== 'Librarian'
          ? {
