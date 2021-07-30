@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+:root {
+   --base-light: #e0e0e0;
+   --base-dark: #303030;
+}
+
+* {
+   font-family: 'Comfortaa';
+   user-select: none;
+   -webkit-tap-highlight-color: transparent;
+}
+
+body {
+   * {
+      &::-webkit-scrollbar {
+         width: 5px;
+         height: 5px;
+         background-color: var(--base-light);
+      }
+      &::-webkit-scrollbar-thumb {
+         border-radius: 5px;
+         background-color: var(--theme-palette-light);
+      }
+   }
+}
